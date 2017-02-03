@@ -2,10 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kyhau/ssllabs-scan.svg?branch=master)](https://travis-ci.org/kyhau/ssllabs-scan)
 
-Calling SSL Labs API to do SSL testings on our servers.
-
-See API doc: https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md
-
+Call SSL Labs [API](https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md) to do SSL testings on servers.
 
 ## Build
 
