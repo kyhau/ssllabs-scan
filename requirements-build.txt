@@ -1,6 +1,6 @@
 # This file is used for running tox, pylint and build the wheel
-py>=1.4.31
-pip>=8.1.1
-tox>=2.3.1
-virtualenv>=15.0.1
-wheel>=0.26.0
+pip>=9.0.1
+virtualenv>=15.1.0
+setuptools>=33.3.1
+tox>=2.4.1
+wheel>=0.29.0
