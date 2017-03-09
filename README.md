@@ -30,15 +30,3 @@ python ssllabsscan/main.py SampleServerList.txt
 pip install -r requirements-build.txt
 tox -r
 ```
-
-**Or using helper scripts**
-
-### Linux
-```bash
-./test.sh
-```
-
-### Windows
-```
-test.bat
-```
