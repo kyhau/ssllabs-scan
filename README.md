@@ -6,14 +6,14 @@
 
 Call SSL Labs [API](https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md) to do SSL testings on servers.
 
-## Build
+## Build and Run
 
 ### Linux
 ```bash
 virtualenv env
 . env/bin/activate
 pip install -e .
-python ssllabsscan/main.py SampleServerList.txt
+. env/bin/ssllabs-scan SampleServerList.txt
 ```
 
 ### Windows
@@ -21,7 +21,7 @@ python ssllabsscan/main.py SampleServerList.txt
 virtualenv env
 env\Scripts\activate
 pip install -e .
-python ssllabsscan/main.py SampleServerList.txt
+env\Scripts\ssllabs-scan SampleServerList.txt
 ```
 
 ## Tox Tests and Build the Wheels
