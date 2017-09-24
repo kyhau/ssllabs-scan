@@ -1,6 +1,6 @@
 # SSL Labs Scan #
 
-[![Build Status](https://travis-ci.org/kyhau/ssllabs-scan.svg?branch=master)](https://travis-ci.org/kyhau/ssllabs-scan)
+Python 2/3 [![Build Status](https://travis-ci.org/kyhau/ssllabs-scan.svg?branch=master)](https://travis-ci.org/kyhau/ssllabs-scan) 
 [![codecov](https://codecov.io/gh/kyhau/ssllabs-scan/branch/master/graph/badge.svg)](https://codecov.io/gh/kyhau/ssllabs-scan)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://en.wikipedia.org/wiki/MIT_License)
 
