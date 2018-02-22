@@ -69,4 +69,4 @@ def test_ssl_labs_client_start_new_scan(sample_ok_response):
 )
 def test_prepare_datetime(time):
     """Test that SSLLabsClient.prepare_datetime works as expected."""
-    assert SSLLabsClient().prepare_datetime(time) == "Sat Mar 17 2018"
+    assert SSLLabsClient().prepare_datetime(time) == "2018-03-17"
