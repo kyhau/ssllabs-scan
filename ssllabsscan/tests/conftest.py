@@ -36,7 +36,10 @@ SAMPLE_OK_RESPONSE = {
                     }
                 ],
                 "forwardSecrecy": 4,
-                "heartbeat": True
+                "heartbeat": True,
+                "cert": {
+                    "notAfter": 1521257378000,
+                }
             },
         }
     ],

@@ -1,5 +1,6 @@
 from mock import Mock
 import os
+import pytest
 
 from ssllabsscan.ssllabs_client import SSLLabsClient
 
@@ -48,3 +49,24 @@ def test_ssl_labs_client_start_new_scan(sample_ok_response):
 
     ret = client2.start_new_scan(host="example2.com")
     assert ret["status"] == "ERROR"
+
+
+@pytest.mark.parametrize(
+    ("time"),
+    [
+        # 10 digit epoch timestamp
+        1521257378,
+        # 13 digit epoch timestamp with milliseconds
+        1521257378000,
+        # 10 digit epoch timestamp string
+        "1521257378",
+    ],
+    ids=[
+        "10_digit_timestamp",
+        "13_digit_timestamp",
+        "10_digit_timestamp_string",
+    ],
+)
+def test_prepare_datetime(time):
+    """Test that SSLLabsClient.prepare_datetime works as expected."""
+    assert SSLLabsClient().prepare_datetime(time) == "Sat Mar 17 2018"

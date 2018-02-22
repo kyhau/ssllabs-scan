@@ -2,6 +2,7 @@
 See APi doc: https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md
 """
 from __future__ import print_function
+from datetime import datetime
 import json
 import os
 import requests
@@ -11,6 +12,7 @@ import time
 API_URL = "https://api.ssllabs.com/api/v2/analyze"
 
 CHAIN_ISSUES = {
+    "0": "none",
     "1": "unused",
     "2": "incomplete chain",
     "3": "chain contains unrelated or duplicate certificates",
@@ -31,7 +33,7 @@ PROTOCOLS = ["TLS 1.2", "TLS 1.1", "TLS 1.0", "SSL 3.0 INSECURE", "SSL 2.0 INSEC
 VULNERABLES = ["Vuln Beast", "Vuln Drown", "Vuln Heartbleed", "Vuln FREAK",
                "Vuln openSsl Ccs", "Vuln openSSL LuckyMinus20", "Vuln POODLE", "Vuln POODLE TLS"]
 
-SUMMARY_COL_NAMES = ["Host", "Grade", "HasWarnings", "Chain Status", "Forward Secrecy", "Heartbeat ext"] + VULNERABLES + PROTOCOLS
+SUMMARY_COL_NAMES = ["Host", "Grade", "HasWarnings", "Cert Expiry", "Chain Status", "Forward Secrecy", "Heartbeat ext"] + VULNERABLES + PROTOCOLS
 
 
 class SSLLabsClient():
@@ -42,26 +44,26 @@ class SSLLabsClient():
         data = self.start_new_scan(host=host)
 
         # write the output to file
-        json_file = os.path.join(os.path.dirname(summary_csv_file), '{}.json'.format(host))
-        with open(json_file, 'w') as outfile:
+        json_file = os.path.join(os.path.dirname(summary_csv_file), "{}.json".format(host))
+        with open(json_file, "w") as outfile:
             json.dump(data, outfile, indent=2)
 
         # write the summary to file
         self.append_summary_csv(summary_csv_file, host, data)
 
-    def start_new_scan(self, host, publish='off', startNew='on', all='done', ignoreMismatch='on'):
+    def start_new_scan(self, host, publish="off", startNew="on", all="done", ignoreMismatch="on"):
         path = API_URL
         payload = {
-            'host': host,
-            'publish': publish,
-            'startNew': startNew,
-            'all': all,
-            'ignoreMismatch': ignoreMismatch
+            "host": host,
+            "publish": publish,
+            "startNew": startNew,
+            "all": all,
+            "ignoreMismatch": ignoreMismatch
         }
         results = self.request_api(path, payload)
-        payload.pop('startNew')
+        payload.pop("startNew")
 
-        while results['status'] != 'READY' and results['status'] != 'ERROR':
+        while results["status"] != "READY" and results["status"] != "ERROR":
             time.sleep(self.__check_progress_interval_secs)
             results = self.request_api(path, payload)
         return results
@@ -71,15 +73,21 @@ class SSLLabsClient():
         response = requests.get(url, params=payload)
         return response.json()
 
+    @staticmethod
+    def prepare_datetime(epoch_time):
+        # SSL Labs returns an 13-digit epoch time that contains milliseconds, Python only expects 10 digits (seconds)
+        return datetime.utcfromtimestamp(float(str(epoch_time)[:10])).strftime("%Y-%m-%d")
+
     def append_summary_csv(self, summary_file, host, data):
         # write the summary to file
-        with open(summary_file, 'a') as outfile:
+        with open(summary_file, "a") as outfile:
             for ep in data["endpoints"]:
                 # see SUMMARY_COL_NAMES
                 summary = [
                     host,
                     ep["grade"],
                     ep["hasWarnings"],
+                    self.prepare_datetime(ep["details"]["cert"]["notAfter"]),
                     CHAIN_ISSUES[str(ep["details"]["chain"]["issues"])],
                     FORWARD_SECRECY[str(ep["details"]["forwardSecrecy"])],
                     ep["details"]["heartbeat"],
@@ -95,10 +103,9 @@ class SSLLabsClient():
                 for protocol in PROTOCOLS:
                     found = False
                     for p in ep["details"]["protocols"]:
-                        if protocol.startswith('{} {}'.format(p['name'], p['version'])):
+                        if protocol.startswith("{} {}".format(p["name"], p["version"])):
                             found = True
                             break
                     summary += ["Yes" if found is True else "No"]
 
-                outfile.write(",".join(str(s) for s in summary) + '\n')
-
+                outfile.write(",".join(str(s) for s in summary) + "\n")

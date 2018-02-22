@@ -8,6 +8,17 @@ Support Python 2/3
 
 Call SSL Labs [API](https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md) to do SSL testings on servers.
 
+## Input and Output
+
+Sample input: [sample/SampleServerList.txt](sample/SampleServerList.txt)
+
+1. summary.html (sample output: [sample/summary.html](sample/summary.html))
+1. summary.csv (sample output: [sample/summary.csv](sample/summary.csv))
+1. _hostname_.json (sample output: [sample/google.com.json](sample/google.com.json))
+
+**Sample html output:**
+![alt text](sample/SampleHtmlOutput.png "Sample html output")
+
 ## Build and Run
 
 ### Linux
