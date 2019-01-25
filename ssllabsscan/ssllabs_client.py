@@ -30,10 +30,14 @@ FORWARD_SECRECY = {
 
 PROTOCOLS = ["TLS 1.2", "TLS 1.1", "TLS 1.0", "SSL 3.0 INSECURE", "SSL 2.0 INSECURE"]
 
-VULNERABLES = ["Vuln Beast", "Vuln Drown", "Vuln Heartbleed", "Vuln FREAK",
-               "Vuln openSsl Ccs", "Vuln openSSL LuckyMinus20", "Vuln POODLE", "Vuln POODLE TLS"]
+VULNERABLES = [
+    "Vuln Beast", "Vuln Drown", "Vuln Heartbleed", "Vuln FREAK",
+    "Vuln openSsl Ccs", "Vuln openSSL LuckyMinus20", "Vuln POODLE", "Vuln POODLE TLS"
+]
 
-SUMMARY_COL_NAMES = ["Host", "Grade", "HasWarnings", "Cert Expiry", "Chain Status", "Forward Secrecy", "Heartbeat ext"] + VULNERABLES + PROTOCOLS
+SUMMARY_COL_NAMES = [
+    "Host", "Grade", "HasWarnings", "Cert Expiry", "Chain Status", "Forward Secrecy", "Heartbeat ext"
+] + VULNERABLES + PROTOCOLS
 
 
 class SSLLabsClient():

@@ -22,7 +22,7 @@ Sample input: [sample/SampleServerList.txt](sample/SampleServerList.txt)
 ## Build and Run
 
 ### Linux
-```bash
+```
 virtualenv env
 . env/bin/activate
 pip install -e .
