@@ -9,12 +9,12 @@ __uri__ = "https://github.com/kyhau/ssllabs-scan"
 __summary__ = "SSL Labs Analysis Reporting"
 
 __requirements__ = [
-    'requests>=2.13.0',
+    "requests>=2.13.0",
 ]
 
 __entry_points__ = {
-    'console_scripts': [
-        'ssllabs-scan = ssllabsscan.main:main',
+    "console_scripts": [
+        "ssllabs-scan = ssllabsscan.main:main",
     ]
 }
 
@@ -30,13 +30,13 @@ setup(
     author_email=__email__,
     classifiers=CLASSIFIERS,
     data_files=[
-        ('', ['ReleaseNotes.md']),
+        ("", ["ReleaseNotes.md"]),
     ],
     description=__summary__,
     entry_points=__entry_points__,
     install_requires=__requirements__,
     name=__title__,
-    packages=find_packages(exclude=['tests']),
+    packages=find_packages(exclude=["tests"]),
     python_requires=">=3.6",
     url=__uri__,
     version=__version__,
