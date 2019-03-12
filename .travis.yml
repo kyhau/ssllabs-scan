@@ -5,10 +5,8 @@ matrix:
     include:
     - python: 3.6
       env: TOXENV=py36
-      dist: xenial
     - python: nightly
       env: TOXENV=py37
-      dist: xenial
     allow_failures:
     - env: TOXENV=py37
 
