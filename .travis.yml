@@ -3,12 +3,8 @@ sudo: false
 
 matrix:
     include:
-    - python: 2.7
-      env: TOXENV=py27
     - python: 3.6
       env: TOXENV=py36
-    - python: 3.6
-      env: TOXENV=py2-cover,py3-cover,coverage
     - python: nightly
       env: TOXENV=py37
     allow_failures:
@@ -24,4 +20,3 @@ install:
 # command to run tests
 script:
     - tox
-

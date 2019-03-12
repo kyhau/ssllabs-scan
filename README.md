@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/kyhau/ssllabs-scan/branch/master/graph/badge.svg)](https://codecov.io/gh/kyhau/ssllabs-scan)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://en.wikipedia.org/wiki/MIT_License)
 
-Support Python 2/3
+Support Python 3.6 / 3.7
 
 Call SSL Labs [API](https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md) to do SSL testings on servers.
 

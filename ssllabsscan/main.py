@@ -1,7 +1,6 @@
 """
 App"s main
 """
-from __future__ import print_function
 import csv
 import os
 import shutil

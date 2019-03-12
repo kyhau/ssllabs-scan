@@ -1,7 +1,6 @@
 """
 See APi doc: https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md
 """
-from __future__ import print_function
 from datetime import datetime
 import json
 import os
