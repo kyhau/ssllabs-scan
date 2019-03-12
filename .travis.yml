@@ -9,8 +9,8 @@ matrix:
     - python: nightly
       env: TOXENV=py37
       dist: xenial
-    #allow_failures:
-    #- env: TOXENV=py37
+    allow_failures:
+    - env: TOXENV=py37
 
 before_install:
     - python -m pip install --upgrade setuptools pip virtualenv
