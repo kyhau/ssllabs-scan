@@ -4,11 +4,16 @@ sudo: false
 matrix:
     include:
     - python: 3.6
+      dist: xenial
       env: TOXENV=py36
-    - python: nightly
+    - python: 3.7
+      dist: xenial
       env: TOXENV=py37
+    - python: nightly
+      dist: xenial
+      env: TOXENV=py38
     allow_failures:
-    - env: TOXENV=py37
+    - env: TOXENV=py38
 
 before_install:
     - python -m pip install --upgrade setuptools pip virtualenv
@@ -20,3 +25,4 @@ install:
 # command to run tests
 script:
     - tox
+
