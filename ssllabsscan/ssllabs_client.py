@@ -27,7 +27,7 @@ FORWARD_SECRECY = {
     "4": "Yes (with most browsers) ROBUST",
 }
 
-PROTOCOLS = ["TLS 1.2", "TLS 1.1", "TLS 1.0", "SSL 3.0 INSECURE", "SSL 2.0 INSECURE"]
+PROTOCOLS = ["TLS 1.3", "TLS 1.2", "TLS 1.1", "TLS 1.0", "SSL 3.0 INSECURE", "SSL 2.0 INSECURE"]
 
 VULNERABLES = [
     "Vuln Beast", "Vuln Drown", "Vuln Heartbleed", "Vuln FREAK",
@@ -106,7 +106,7 @@ class SSLLabsClient():
                 for protocol in PROTOCOLS:
                     found = False
                     for p in ep["details"]["protocols"]:
-                        if protocol.startswith("{} {}".format(p["name"], p["version"])):
+                        if protocol.startswith(f"{p["name"]} {p["version"]}"):
                             found = True
                             break
                     summary += ["Yes" if found is True else "No"]
