@@ -2,7 +2,7 @@
 conftest.py for testing
 """
 import os
-import py.test
+import pytest
 from shutil import rmtree
 from tempfile import mkdtemp
 
@@ -47,12 +47,12 @@ SAMPLE_OK_RESPONSE = {
 }
 
 
-@py.test.fixture(scope="function")
+@pytest.fixture(scope="function")
 def sample_ok_response():
     return SAMPLE_OK_RESPONSE
 
 
-@py.test.fixture(scope='session')
+@pytest.fixture(scope='session')
 def unit_tests_tmp_output_dir(request):
     """
     Create a tmp directory for running tests and will be deleted at the end of the testing.
@@ -71,7 +71,7 @@ def unit_tests_tmp_output_dir(request):
     return t
 
 
-@py.test.fixture(scope='session')
+@pytest.fixture(scope='session')
 def sample_server_list_file(unit_tests_tmp_output_dir):
     """
     Create a sample server_list file in the tmp unit tests file.
@@ -83,15 +83,15 @@ def sample_server_list_file(unit_tests_tmp_output_dir):
     return server_list_file
 
 
-@py.test.fixture(scope='session')
+@pytest.fixture(scope='session')
 def output_summary_csv_file(unit_tests_tmp_output_dir):
     return os.path.join(unit_tests_tmp_output_dir, 'test_summary.csv')
 
 
-@py.test.fixture(scope='session')
+@pytest.fixture(scope='session')
 def output_summary_html_file(unit_tests_tmp_output_dir):
     return os.path.join(unit_tests_tmp_output_dir, 'test_summary.html')
 
-@py.test.fixture(scope='session')
+@pytest.fixture(scope='session')
 def output_server_1_json_file(unit_tests_tmp_output_dir):
     return os.path.join(unit_tests_tmp_output_dir, 'example.com.json')
