@@ -1,0 +1,3 @@
+#Host,Grade,HasWarnings,Cert Expiry,Chain Status,Forward Secrecy,Heartbeat ext,Vuln Beast,Vuln Drown,Vuln Heartbleed,Vuln FREAK,Vuln openSsl Ccs,Vuln openSSL LuckyMinus20,Vuln POODLE,Vuln POODLE TLS,TLS 1.3,TLS 1.2,TLS 1.1,TLS 1.0,SSL 3.0 INSECURE,SSL 2.0 INSECURE
+google.com,A,False,2019-05-24,none,With modern browsers,False,True,False,False,False,False,False,False,False,No,Yes,Yes,Yes,No,No
+google.com,A,False,2019-05-24,none,With modern browsers,False,True,False,False,False,False,False,False,False,No,Yes,Yes,Yes,No,No
