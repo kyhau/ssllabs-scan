@@ -42,8 +42,9 @@ SUMMARY_COL_NAMES = [
 
 
 class SSLLabsClient():
-    def __init__(self, check_progress_interval_secs=30):
-        self.__check_progress_interval_secs = check_progress_interval_secs
+    def __init__(self, check_progress_interval_secs=30, max_attempts=100):
+        self._check_progress_interval_secs = check_progress_interval_secs
+        self._max_attempts = max_attempts
 
     def analyze(self, host, summary_csv_file):
         data = self.start_new_scan(host=host)
@@ -69,13 +70,19 @@ class SSLLabsClient():
         payload.pop("startNew")
 
         while results["status"] != "READY" and results["status"] != "ERROR":
-            time.sleep(self.__check_progress_interval_secs)
+            time.sleep(self._check_progress_interval_secs)
             results = self.request_api(path, payload)
         return results
 
-    @staticmethod
-    def request_api(url, payload):
+    def request_api(self, url, payload):
         response = requests.get(url, params=payload)
+        attempts = 0
+        while response.status_code != 200 and attempts < self._max_attempts:
+            print(f"Response code: {str(response.status_code)} - Error on requesting API. "
+                  f"Waiting {str(self._check_progress_interval_secs)} sec until next retry...")
+            attempts += 1
+            time.sleep(self._check_progress_interval_secs)
+            response = requests.get(url, params=payload)
         return response.json()
 
     @staticmethod
