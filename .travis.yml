@@ -3,17 +3,17 @@ sudo: false
 
 matrix:
   include:
-    - python: 3.7
-      dist: bionic
-      env: TOXENV=py37
-    - python: 3.8
-      dist: bionic
-      env: TOXENV=py38
-    - python: nightly
-      dist: bionic
-      env: TOXENV=py39
-    allow_failures:
-    - env: TOXENV=py39
+  - python: 3.7
+    dist: bionic
+    env: TOXENV=py37
+  - python: 3.8
+    dist: bionic
+    env: TOXENV=py38
+  - python: nightly
+    dist: bionic
+    env: TOXENV=py39
+  allow_failures:
+  - env: TOXENV=py39
 
 before_install:
   - python -m pip install --upgrade setuptools pip virtualenv
