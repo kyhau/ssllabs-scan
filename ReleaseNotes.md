@@ -3,7 +3,7 @@
 - When the API server is overloaded with requests it returns response.status_code 529. In this case request_api()
   should not return the response before the the API accepts the request and status_code 200 is returned.
   Updated `request_api` to retry `max_attempts` at `check_progress_interval_secs` interval.
-- Support building with Python 3.8 and Python 3.9.
+- Support building/testing with Python 3.8.
 
 1.0.0 - 2019-03-12
 ==================
