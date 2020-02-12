@@ -1,8 +1,7 @@
 from setuptools import setup, find_packages
 
-
 __title__ = "ssllabsscan"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "Kay Hau"
 __email__ = "virtualda@gmail.com"
 __uri__ = "https://github.com/kyhau/ssllabs-scan"
@@ -22,6 +21,8 @@ CLASSIFIERS = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3 :: Only",
 ]
 
