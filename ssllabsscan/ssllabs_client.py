@@ -1,12 +1,12 @@
 """
-See APi doc: https://github.com/ssllabs/ssllabs-scan/blob/stable/ssllabs-api-docs.md
+See API doc: https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs.md
 """
-from datetime import datetime
 import json
 import os
-import requests
 import time
+from datetime import datetime
 
+import requests
 
 API_URL = "https://api.ssllabs.com/api/v2/analyze"
 
@@ -31,6 +31,8 @@ PROTOCOLS = [
     "TLS 1.3", "TLS 1.2", "TLS 1.1", "TLS 1.0", "SSL 3.0 INSECURE", "SSL 2.0 INSECURE"
 ]
 
+RC4 = ["Support RC4", "RC4 with modern protocols", "RC4 Only"]
+
 VULNERABLES = [
     "Vuln Beast", "Vuln Drown", "Vuln Heartbleed", "Vuln FREAK",
     "Vuln openSsl Ccs", "Vuln openSSL LuckyMinus20", "Vuln POODLE", "Vuln POODLE TLS"
@@ -38,7 +40,7 @@ VULNERABLES = [
 
 SUMMARY_COL_NAMES = [
     "Host", "Grade", "HasWarnings", "Cert Expiry", "Chain Status", "Forward Secrecy", "Heartbeat ext"
-] + VULNERABLES + PROTOCOLS
+] + VULNERABLES + RC4 + PROTOCOLS
 
 
 class SSLLabsClient():
@@ -70,6 +72,7 @@ class SSLLabsClient():
         payload.pop("startNew")
 
         while results["status"] != "READY" and results["status"] != "ERROR":
+            print(f"Status: {results['status']}, wait for {self._check_progress_interval_secs} seconds...")
             time.sleep(self._check_progress_interval_secs)
             results = self.request_api(path, payload)
         return results
@@ -111,6 +114,9 @@ class SSLLabsClient():
                     False if ep["details"]["openSSLLuckyMinus20"] == 1 else True,
                     ep["details"]["poodle"],
                     False if ep["details"]["poodleTls"] == 1 else True,
+                    ep["details"]["supportsRc4"],
+                    ep["details"]["rc4WithModern"],
+                    ep["details"]["rc4Only"],
                 ]
                 for protocol in PROTOCOLS:
                     found = False

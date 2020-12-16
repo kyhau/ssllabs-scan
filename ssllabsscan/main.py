@@ -1,5 +1,5 @@
 """
-App"s main
+App's main
 """
 import csv
 import os
@@ -8,8 +8,7 @@ import sys
 import traceback
 
 from ssllabsscan.report_template import REPORT_HTML
-from ssllabsscan.ssllabs_client import SSLLabsClient, SUMMARY_COL_NAMES
-
+from ssllabsscan.ssllabs_client import SUMMARY_COL_NAMES, SSLLabsClient
 
 SUMMARY_CSV = "summary.csv"
 SUMMARY_HTML = "summary.html"
@@ -20,7 +19,7 @@ DEFAULT_STYLES = "styles.css"
 
 
 def output_summary_html(input_csv, output_html):
-    print("Creating {} ...".format(output_html))
+    print(f"Creating {output_html} ...")
 
     data = ""
     with open(input_csv, "r") as csvfile:
@@ -77,7 +76,7 @@ def main():
     Entry point of the app.
     """
     if len(sys.argv) != 2:
-        print("{} [SERVER_LIST_FILE]".format(sys.argv[0]))
+        print(f"{sys.argv[0]} [SERVER_LIST_FILE]")
         return 1
     return process(server_list_file=sys.argv[1])
 

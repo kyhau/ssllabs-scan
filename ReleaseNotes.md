@@ -1,3 +1,7 @@
+1.1.0 - 2020-12-16
+==================
+- Added "supportsRc4", "rc4WithModern" and "rc4Only" to the html summary.
+
 1.0.1 - 2020-02-12
 ==================
 - When the API server is overloaded with requests it returns response.status_code 529. In this case request_api()

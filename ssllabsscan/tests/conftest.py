@@ -39,7 +39,10 @@ SAMPLE_OK_RESPONSE = {
                 "heartbeat": True,
                 "cert": {
                     "notAfter": 1521257378000,
-                }
+                },
+                "supportsRc4": False,
+                "rc4WithModern": False,
+                "rc4Only": False,
             },
         }
     ],

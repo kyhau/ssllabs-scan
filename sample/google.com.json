@@ -1,28 +1,28 @@
 {
   "host": "google.com",
   "port": 443,
-  "protocol": "HTTP",
+  "protocol": "http",
   "isPublic": false,
   "status": "READY",
-  "startTime": 1554368435610,
-  "testTime": 1554368615496,
-  "engineVersion": "1.33.1",
-  "criteriaVersion": "2009p",
+  "startTime": 1608111800657,
+  "testTime": 1608112017068,
+  "engineVersion": "2.1.8",
+  "criteriaVersion": "2009q",
   "endpoints": [
     {
-      "ipAddress": "216.58.195.238",
-      "serverName": "sfo03s06-in-f238.1e100.net",
+      "ipAddress": "216.58.194.206",
+      "serverName": "sfo03s01-in-f206.1e100.net",
       "statusMessage": "Ready",
-      "grade": "A",
-      "gradeTrustIgnored": "A",
+      "grade": "B",
+      "gradeTrustIgnored": "B",
       "hasWarnings": false,
       "isExceptional": false,
       "progress": 100,
-      "duration": 94808,
+      "duration": 107078,
       "eta": 1,
       "delegation": 1,
       "details": {
-        "hostStartTime": 1554368435610,
+        "hostStartTime": 1608111800657,
         "key": {
           "size": 256,
           "alg": "EC",
@@ -37,11 +37,15 @@
             "*.google.com",
             "*.android.com",
             "*.appengine.google.com",
+            "*.bdn.dev",
             "*.cloud.google.com",
             "*.crowdsource.google.com",
+            "*.datacompute.google.com",
             "*.g.co",
             "*.gcp.gvt2.com",
+            "*.gcpcdn.gvt1.com",
             "*.ggpht.cn",
+            "*.gkecnapps.cn",
             "*.google-analytics.com",
             "*.google.ca",
             "*.google.cl",
@@ -76,6 +80,7 @@
             "*.metric.gstatic.com",
             "*.urchin.com",
             "*.url.google.com",
+            "*.wear.gkecnapps.cn",
             "*.youtube-nocookie.com",
             "*.youtube.com",
             "*.youtubeeducation.com",
@@ -88,6 +93,7 @@
             "developers.android.google.cn",
             "g.co",
             "ggpht.cn",
+            "gkecnapps.cn",
             "goo.gl",
             "google-analytics.com",
             "google.com",
@@ -102,37 +108,37 @@
             "youtubekids.com",
             "yt.be"
           ],
-          "notBefore": 1551433437000,
-          "notAfter": 1558689900000,
-          "issuerSubject": "CN=Google Internet Authority G3, O=Google Trust Services, C=US",
-          "issuerLabel": "Google Internet Authority G3",
+          "notBefore": 1605018883000,
+          "notAfter": 1612276482000,
+          "issuerSubject": "CN=GTS CA 1O1, O=Google Trust Services, C=US",
+          "issuerLabel": "GTS CA 1O1",
           "sigAlg": "SHA256withRSA",
           "revocationInfo": 3,
           "crlURIs": [
-            "http://crl.pki.goog/GTSGIAG3.crl"
+            "http://crl.pki.goog/GTS1O1core.crl"
           ],
           "ocspURIs": [
-            "http://ocsp.pki.goog/GTSGIAG3"
+            "http://ocsp.pki.goog/gts1o1core"
           ],
           "revocationStatus": 2,
           "crlRevocationStatus": 2,
           "ocspRevocationStatus": 2,
           "sgc": 0,
           "issues": 0,
-          "sct": false,
+          "sct": true,
           "mustStaple": 0,
-          "sha1Hash": "f81e3171fa085bc04c83b6644b9f229f0cba8e57",
-          "pinSha256": "1T073i1JjmCuCjyUSt2gTRL4iGbrP3r8aeJjYFxn7F0="
+          "sha1Hash": "e48943d96a40d534b9337ee5eda976d2201d2ebf",
+          "pinSha256": "U3xTWXJOd447ON2zOz9w35qNaPAJDpqlFO4Jt/443us="
         },
         "chain": {
           "certs": [
             {
               "subject": "CN=*.google.com, O=Google LLC, L=Mountain View, ST=California, C=US",
               "label": "*.google.com",
-              "notBefore": 1551433437000,
-              "notAfter": 1558689900000,
-              "issuerSubject": "CN=Google Internet Authority G3, O=Google Trust Services, C=US",
-              "issuerLabel": "Google Internet Authority G3",
+              "notBefore": 1605018883000,
+              "notAfter": 1612276482000,
+              "issuerSubject": "CN=GTS CA 1O1, O=Google Trust Services, C=US",
+              "issuerLabel": "GTS CA 1O1",
               "sigAlg": "SHA256withRSA",
               "issues": 0,
               "keyAlg": "EC",
@@ -141,13 +147,13 @@
               "revocationStatus": 2,
               "crlRevocationStatus": 2,
               "ocspRevocationStatus": 2,
-              "sha1Hash": "f81e3171fa085bc04c83b6644b9f229f0cba8e57",
-              "pinSha256": "1T073i1JjmCuCjyUSt2gTRL4iGbrP3r8aeJjYFxn7F0=",
-              "raw": "-----BEGIN CERTIFICATE-----\nMIIIDTCCBvWgAwIBAgIQdCdvtO3S1SGVFWeeric83zANBgkqhkiG9w0BAQsFADBUMQswCQYDVQQG\r\nEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMSUwIwYDVQQDExxHb29nbGUgSW50\r\nZXJuZXQgQXV0aG9yaXR5IEczMB4XDTE5MDMwMTA5NDM1N1oXDTE5MDUyNDA5MjUwMFowZjELMAkG\r\nA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDU1vdW50YWluIFZpZXcxEzAR\r\nBgNVBAoMCkdvb2dsZSBMTEMxFTATBgNVBAMMDCouZ29vZ2xlLmNvbTBZMBMGByqGSM49AgEGCCqG\r\nSM49AwEHA0IABDos6V7pCUxMZ2A8pDa+je+faVgctzvOrRwMQCXWKgsUymr7357AkjKx2PnN2NHf\r\nt7Ua/aqD/nKV7p4DdMEU9SWjggWSMIIFjjATBgNVHSUEDDAKBggrBgEFBQcDATAOBgNVHQ8BAf8E\r\nBAMCB4AwggRXBgNVHREEggROMIIESoIMKi5nb29nbGUuY29tgg0qLmFuZHJvaWQuY29tghYqLmFw\r\ncGVuZ2luZS5nb29nbGUuY29tghIqLmNsb3VkLmdvb2dsZS5jb22CGCouY3Jvd2Rzb3VyY2UuZ29v\r\nZ2xlLmNvbYIGKi5nLmNvgg4qLmdjcC5ndnQyLmNvbYIKKi5nZ3BodC5jboIWKi5nb29nbGUtYW5h\r\nbHl0aWNzLmNvbYILKi5nb29nbGUuY2GCCyouZ29vZ2xlLmNsgg4qLmdvb2dsZS5jby5pboIOKi5n\r\nb29nbGUuY28uanCCDiouZ29vZ2xlLmNvLnVrgg8qLmdvb2dsZS5jb20uYXKCDyouZ29vZ2xlLmNv\r\nbS5hdYIPKi5nb29nbGUuY29tLmJygg8qLmdvb2dsZS5jb20uY2+CDyouZ29vZ2xlLmNvbS5teIIP\r\nKi5nb29nbGUuY29tLnRygg8qLmdvb2dsZS5jb20udm6CCyouZ29vZ2xlLmRlggsqLmdvb2dsZS5l\r\nc4ILKi5nb29nbGUuZnKCCyouZ29vZ2xlLmh1ggsqLmdvb2dsZS5pdIILKi5nb29nbGUubmyCCyou\r\nZ29vZ2xlLnBsggsqLmdvb2dsZS5wdIISKi5nb29nbGVhZGFwaXMuY29tgg8qLmdvb2dsZWFwaXMu\r\nY26CESouZ29vZ2xlY25hcHBzLmNughQqLmdvb2dsZWNvbW1lcmNlLmNvbYIRKi5nb29nbGV2aWRl\r\nby5jb22CDCouZ3N0YXRpYy5jboINKi5nc3RhdGljLmNvbYISKi5nc3RhdGljY25hcHBzLmNuggoq\r\nLmd2dDEuY29tggoqLmd2dDIuY29tghQqLm1ldHJpYy5nc3RhdGljLmNvbYIMKi51cmNoaW4uY29t\r\nghAqLnVybC5nb29nbGUuY29tghYqLnlvdXR1YmUtbm9jb29raWUuY29tgg0qLnlvdXR1YmUuY29t\r\nghYqLnlvdXR1YmVlZHVjYXRpb24uY29tghEqLnlvdXR1YmVraWRzLmNvbYIHKi55dC5iZYILKi55\r\ndGltZy5jb22CGmFuZHJvaWQuY2xpZW50cy5nb29nbGUuY29tggthbmRyb2lkLmNvbYIbZGV2ZWxv\r\ncGVyLmFuZHJvaWQuZ29vZ2xlLmNughxkZXZlbG9wZXJzLmFuZHJvaWQuZ29vZ2xlLmNuggRnLmNv\r\ngghnZ3BodC5jboIGZ29vLmdsghRnb29nbGUtYW5hbHl0aWNzLmNvbYIKZ29vZ2xlLmNvbYIPZ29v\r\nZ2xlY25hcHBzLmNughJnb29nbGVjb21tZXJjZS5jb22CGHNvdXJjZS5hbmRyb2lkLmdvb2dsZS5j\r\nboIKdXJjaGluLmNvbYIKd3d3Lmdvby5nbIIIeW91dHUuYmWCC3lvdXR1YmUuY29tghR5b3V0dWJl\r\nZWR1Y2F0aW9uLmNvbYIPeW91dHViZWtpZHMuY29tggV5dC5iZTBoBggrBgEFBQcBAQRcMFowLQYI\r\nKwYBBQUHMAKGIWh0dHA6Ly9wa2kuZ29vZy9nc3IyL0dUU0dJQUczLmNydDApBggrBgEFBQcwAYYd\r\naHR0cDovL29jc3AucGtpLmdvb2cvR1RTR0lBRzMwHQYDVR0OBBYEFK0EWGE69tfHVmsgC1gJeREi\r\n92m2MAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUd8K4UJpndnaxLcKG0IOgfqZ+ukswIQYDVR0g\r\nBBowGDAMBgorBgEEAdZ5AgUDMAgGBmeBDAECAjAxBgNVHR8EKjAoMCagJKAihiBodHRwOi8vY3Js\r\nLnBraS5nb29nL0dUU0dJQUczLmNybDANBgkqhkiG9w0BAQsFAAOCAQEAiRzb/eu7AaK8KDzrumNr\r\niEbEhbWG5KH/ae54vRKJGLSBl9YT6bJ/u4IRNXSiigF6ZAfThvloPiMmYqxXB4BzclQBP5Deercs\r\njLRwos6QTPbKryU+SYfO/s0VtOYRCRISpG1gbPJLZPjaAw/P56khVTCVErjUXkSC5ReMIKuzfQ3V\r\n2HE8zsmioS0rFT39P6QujhcwMmOq0IeJnemwtxzqDvrN/ReqE7sdJq9Ze43vJDGvGZfUxJjHblWt\r\nsDNtqxMdMYZosRyo1YT6DZRjUDUEj3kr/z7oRjn96mRiC4AIebe5HCGHuBWxfXw2G/5PDD1Z0wdN\r\nQ4U04nzWE2bBl/VNlA==\r\n-----END CERTIFICATE-----\n"
+              "sha1Hash": "e48943d96a40d534b9337ee5eda976d2201d2ebf",
+              "pinSha256": "U3xTWXJOd447ON2zOz9w35qNaPAJDpqlFO4Jt/443us=",
+              "raw": "-----BEGIN CERTIFICATE-----\nMIIJcTCCCFmgAwIBAgIQbkMYuNeQFlwDAAAAALrbijANBgkqhkiG9w0BAQsFADBCMQswCQYDVQQG\r\nEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMRMwEQYDVQQDEwpHVFMgQ0EgMU8x\r\nMB4XDTIwMTExMDE0MzQ0M1oXDTIxMDIwMjE0MzQ0MlowZjELMAkGA1UEBhMCVVMxEzARBgNVBAgT\r\nCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxEzARBgNVBAoTCkdvb2dsZSBMTEMx\r\nFTATBgNVBAMMDCouZ29vZ2xlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABFIhx27fGJ+R\r\n9kmype5uzK8Ka/rxmEk/J/QovXjqMP/TkMyS2fVTcIQ5gYCxxh6ottMx5iAB+9Q0Kg7qLsJAP/qj\r\nggcIMIIHBDAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDAYDVR0TAQH/BAIw\r\nADAdBgNVHQ4EFgQUhekgVwayZa1bqtk9uha5R6cvJHEwHwYDVR0jBBgwFoAUmNH4bhDrz5vsYJ8Y\r\nkBug630J/SswaAYIKwYBBQUHAQEEXDBaMCsGCCsGAQUFBzABhh9odHRwOi8vb2NzcC5wa2kuZ29v\r\nZy9ndHMxbzFjb3JlMCsGCCsGAQUFBzAChh9odHRwOi8vcGtpLmdvb2cvZ3NyMi9HVFMxTzEuY3J0\r\nMIIEwgYDVR0RBIIEuTCCBLWCDCouZ29vZ2xlLmNvbYINKi5hbmRyb2lkLmNvbYIWKi5hcHBlbmdp\r\nbmUuZ29vZ2xlLmNvbYIJKi5iZG4uZGV2ghIqLmNsb3VkLmdvb2dsZS5jb22CGCouY3Jvd2Rzb3Vy\r\nY2UuZ29vZ2xlLmNvbYIYKi5kYXRhY29tcHV0ZS5nb29nbGUuY29tggYqLmcuY2+CDiouZ2NwLmd2\r\ndDIuY29tghEqLmdjcGNkbi5ndnQxLmNvbYIKKi5nZ3BodC5jboIOKi5na2VjbmFwcHMuY26CFiou\r\nZ29vZ2xlLWFuYWx5dGljcy5jb22CCyouZ29vZ2xlLmNhggsqLmdvb2dsZS5jbIIOKi5nb29nbGUu\r\nY28uaW6CDiouZ29vZ2xlLmNvLmpwgg4qLmdvb2dsZS5jby51a4IPKi5nb29nbGUuY29tLmFygg8q\r\nLmdvb2dsZS5jb20uYXWCDyouZ29vZ2xlLmNvbS5icoIPKi5nb29nbGUuY29tLmNvgg8qLmdvb2ds\r\nZS5jb20ubXiCDyouZ29vZ2xlLmNvbS50coIPKi5nb29nbGUuY29tLnZuggsqLmdvb2dsZS5kZYIL\r\nKi5nb29nbGUuZXOCCyouZ29vZ2xlLmZyggsqLmdvb2dsZS5odYILKi5nb29nbGUuaXSCCyouZ29v\r\nZ2xlLm5sggsqLmdvb2dsZS5wbIILKi5nb29nbGUucHSCEiouZ29vZ2xlYWRhcGlzLmNvbYIPKi5n\r\nb29nbGVhcGlzLmNughEqLmdvb2dsZWNuYXBwcy5jboIUKi5nb29nbGVjb21tZXJjZS5jb22CESou\r\nZ29vZ2xldmlkZW8uY29tggwqLmdzdGF0aWMuY26CDSouZ3N0YXRpYy5jb22CEiouZ3N0YXRpY2Nu\r\nYXBwcy5jboIKKi5ndnQxLmNvbYIKKi5ndnQyLmNvbYIUKi5tZXRyaWMuZ3N0YXRpYy5jb22CDCou\r\ndXJjaGluLmNvbYIQKi51cmwuZ29vZ2xlLmNvbYITKi53ZWFyLmdrZWNuYXBwcy5jboIWKi55b3V0\r\ndWJlLW5vY29va2llLmNvbYINKi55b3V0dWJlLmNvbYIWKi55b3V0dWJlZWR1Y2F0aW9uLmNvbYIR\r\nKi55b3V0dWJla2lkcy5jb22CByoueXQuYmWCCyoueXRpbWcuY29tghphbmRyb2lkLmNsaWVudHMu\r\nZ29vZ2xlLmNvbYILYW5kcm9pZC5jb22CG2RldmVsb3Blci5hbmRyb2lkLmdvb2dsZS5jboIcZGV2\r\nZWxvcGVycy5hbmRyb2lkLmdvb2dsZS5jboIEZy5jb4IIZ2dwaHQuY26CDGdrZWNuYXBwcy5jboIG\r\nZ29vLmdsghRnb29nbGUtYW5hbHl0aWNzLmNvbYIKZ29vZ2xlLmNvbYIPZ29vZ2xlY25hcHBzLmNu\r\nghJnb29nbGVjb21tZXJjZS5jb22CGHNvdXJjZS5hbmRyb2lkLmdvb2dsZS5jboIKdXJjaGluLmNv\r\nbYIKd3d3Lmdvby5nbIIIeW91dHUuYmWCC3lvdXR1YmUuY29tghR5b3V0dWJlZWR1Y2F0aW9uLmNv\r\nbYIPeW91dHViZWtpZHMuY29tggV5dC5iZTAhBgNVHSAEGjAYMAgGBmeBDAECAjAMBgorBgEEAdZ5\r\nAgUDMDMGA1UdHwQsMCowKKAmoCSGImh0dHA6Ly9jcmwucGtpLmdvb2cvR1RTMU8xY29yZS5jcmww\r\nggEFBgorBgEEAdZ5AgQCBIH2BIHzAPEAdgD2XJQv0XcwIhRUGAgwlFaO400TGTO/3wwvIAvMTvFk\r\n4wAAAXWyy4p7AAAEAwBHMEUCIBaIfxadDwtOlUoYpiV6u+B0G04PZv17JeceTO7xYjEfAiEA/S0V\r\ntKdopPSFFmnqlBWlliDGsn27KFh1aR9YtoSz41IAdwBElGUusO7Or8RAB9io/ijA2uaCvtjLMbU/\r\n0zOWtbaBqAAAAXWyy4rUAAAEAwBIMEYCIQDWKWwFnf9CaLYGWYqvKNRlryN0m6eQxwTP8uM54yq6\r\n3gIhAMWeB6x3v7qm3B6PmUMQRlVZaDR3FOcaz2V7O/88tHtfMA0GCSqGSIb3DQEBCwUAA4IBAQCE\r\naoPOwtxgWQb8UJYtXQTuHxxQLF2mcPwAFHszxvOJNXdCplX1G+X+fkrA3cKXgv3CoQy5xs6eRzXR\r\nKoAAUtFmki++5dvgufiMYnSnyPe62x6bcUkowoGMFjLwCA91w7vqSZ2Gnd26YbfLcABonmAb/1Hy\r\nYOxD1l1wn0kOgRBsV3MLEuVoQ+eZ3yWG38WkwzPGtSvAV+6dzWbGu+XC3BT9XhwvQ5WwABMGxPZr\r\nAW4aqW0ArD1gzr1iSz4W0pBWtwYynme0SwfqTf7VJQYKpevuF4bQNOuMy+8E2kouClssLDQ3HOJZ\r\nKkyn3byIK0NCee1+DTNQX0hl6e/f6va5HaiJ\r\n-----END CERTIFICATE-----\n"
             },
             {
-              "subject": "CN=Google Internet Authority G3, O=Google Trust Services, C=US",
-              "label": "Google Internet Authority G3",
+              "subject": "CN=GTS CA 1O1, O=Google Trust Services, C=US",
+              "label": "GTS CA 1O1",
               "notBefore": 1497484842000,
               "notAfter": 1639526442000,
               "issuerSubject": "CN=GlobalSign, O=GlobalSign, OU=GlobalSign Root CA - R2",
@@ -160,9 +166,9 @@
               "revocationStatus": 2,
               "crlRevocationStatus": 2,
               "ocspRevocationStatus": 2,
-              "sha1Hash": "eeacbd0cb452819577911e1e6203db262f84a318",
-              "pinSha256": "f8NnEFZxQ4ExFOhSN7EiFWtiudZQVD2oY60uauV/n78=",
-              "raw": "-----BEGIN CERTIFICATE-----\nMIIEXDCCA0SgAwIBAgINAeOpMBz8cgY4P5pTHTANBgkqhkiG9w0BAQsFADBMMSAwHgYDVQQLExdH\r\nbG9iYWxTaWduIFJvb3QgQ0EgLSBSMjETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UEAxMKR2xv\r\nYmFsU2lnbjAeFw0xNzA2MTUwMDAwNDJaFw0yMTEyMTUwMDAwNDJaMFQxCzAJBgNVBAYTAlVTMR4w\r\nHAYDVQQKExVHb29nbGUgVHJ1c3QgU2VydmljZXMxJTAjBgNVBAMTHEdvb2dsZSBJbnRlcm5ldCBB\r\ndXRob3JpdHkgRzMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDKUkvqHv/OJGuo2nIY\r\naNVWXQ5IWi01CXZaz6TIHLGp/lOJ+600/4hbn7vn6AAB3DVzdQOts7G5pH0rJnnOFUAK71G4nzKM\r\nfHCGUksW/mona+Y2emJQ2N+aicwJKetPKRSIgAuPOB6Aahh8Hb2XO3h9RUk2T0HNouB2VzxoMXlk\r\nyW7XUR5mw6JkLHnA52XDVoRTWkNty5oCINLvGmnRsJ1zouAqYGVQMc/7sy+/EYhALrVJEA8KbtyX\r\n+r8snwU5C1hUrwaW6MWOARa8qBpNQcWTkaIeoYvy/sGIJEmjR0vFEwHdp1cSaWIr6/4g72n7OqXw\r\nfinu7ZYW97EfoOSQJeAzAgMBAAGjggEzMIIBLzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0lBBYwFAYI\r\nKwYBBQUHAwEGCCsGAQUFBwMCMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHfCuFCaZ3Z2\r\nsS3ChtCDoH6mfrpLMB8GA1UdIwQYMBaAFJviB1dnHB7AagbeWbSaLd/cGYYuMDUGCCsGAQUFBwEB\r\nBCkwJzAlBggrBgEFBQcwAYYZaHR0cDovL29jc3AucGtpLmdvb2cvZ3NyMjAyBgNVHR8EKzApMCeg\r\nJaAjhiFodHRwOi8vY3JsLnBraS5nb29nL2dzcjIvZ3NyMi5jcmwwPwYDVR0gBDgwNjA0BgZngQwB\r\nAgIwKjAoBggrBgEFBQcCARYcaHR0cHM6Ly9wa2kuZ29vZy9yZXBvc2l0b3J5LzANBgkqhkiG9w0B\r\nAQsFAAOCAQEAHLeJluRT7bvs26gyAZ8so81trUISd7O45skDUmAge1cnxhG1P2cNmSxbWsoiCt2e\r\nux9LSD+PAj2LIYRFHW31/6xoic1k4tbWXkDCjir37xTTNqRAMPUyFRWSdvt+nlPqwnb8Oa2I/maS\r\nJukcxDjNSfpDh/Bd1lZNgdd/8cLdsE3+wypufJ9uXO1iQpnh9zbuFIwsIONGl1p3A8CgxkqI/UAi\r\nh3JaGOqcpcdaCIzkBaR9uYQ1X4k2Vg5APRLouzVy7a8IVk6wuy6pm+T7HT4LY8ibS5FEZlfAFLSW\r\n8NwsVz9SBK2Vqn1N0PIMn5xA6NZVc7o835DLAFshEWfC7TIe3g==\r\n-----END CERTIFICATE-----\n"
+              "sha1Hash": "dfe2070c79e7ff36a925ffa327ffe3deecf8f9c2",
+              "pinSha256": "YZPgTZ+woNCCCIW3LH2CxQeLzB/1m42QcCTBSdgayjs=",
+              "raw": "-----BEGIN CERTIFICATE-----\nMIIESjCCAzKgAwIBAgINAeO0mqGNiqmBJWlQuDANBgkqhkiG9w0BAQsFADBMMSAwHgYDVQQLExdH\r\nbG9iYWxTaWduIFJvb3QgQ0EgLSBSMjETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UEAxMKR2xv\r\nYmFsU2lnbjAeFw0xNzA2MTUwMDAwNDJaFw0yMTEyMTUwMDAwNDJaMEIxCzAJBgNVBAYTAlVTMR4w\r\nHAYDVQQKExVHb29nbGUgVHJ1c3QgU2VydmljZXMxEzARBgNVBAMTCkdUUyBDQSAxTzEwggEiMA0G\r\nCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQGM9F1IvN05zkQO9+tN1pIRvJzzyOTHW5DzEZhD2e\r\nPCnvUA0Qk28FgICfKqC9EksC4T2fWBYk/jCfC3R3VZMdS/dN4ZKCEPZRrAzDsiKUDzRrmBBJ5wud\r\ngzndIMYcLe/RGGFl5yODIKgjEv/SJH/UL+dEaltN11BmsK+eQmMF++AcxGNhr59qM/9il71I2dN8\r\nFGfcddwuaej4bXhp0LcQBbjxMcI7JP0aM3T4I+DsaxmKFsbjzaTNC9uzpFlgOIg7rR25xoynUxv8\r\nvNmkq7zdPGHXkxWY7oG9j+JkRyBABk7XrJfoucBZEqFJJSPk7XA0LKW0Y3z5oz2D0c1tJKwHAgMB\r\nAAGjggEzMIIBLzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMC\r\nMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFJjR+G4Q68+b7GCfGJAboOt9Cf0rMB8GA1Ud\r\nIwQYMBaAFJviB1dnHB7AagbeWbSaLd/cGYYuMDUGCCsGAQUFBwEBBCkwJzAlBggrBgEFBQcwAYYZ\r\naHR0cDovL29jc3AucGtpLmdvb2cvZ3NyMjAyBgNVHR8EKzApMCegJaAjhiFodHRwOi8vY3JsLnBr\r\naS5nb29nL2dzcjIvZ3NyMi5jcmwwPwYDVR0gBDgwNjA0BgZngQwBAgIwKjAoBggrBgEFBQcCARYc\r\naHR0cHM6Ly9wa2kuZ29vZy9yZXBvc2l0b3J5LzANBgkqhkiG9w0BAQsFAAOCAQEAGoA+Nnn78y6p\r\nRjd9XlQWNa7HTgiZ/r3RNGkmUmYHPQq6Scti9PEajvwRT2iWTHQr02fesqOqBY2ETUwgZQ+lltoN\r\nFvhsO9tvBCOIazpswWC9aJ9xju4tWDQH8NVU6YZZ/XteDSGU9YzJqPjY8q3MDxrzmqepBCf5o8mw\r\n/wJ4a2G6xzUr6Fb6T8McDO22PLRL6u3M4Tzs3A2M1j6bykJYi8wWIRdAvKLWZu/axBVbzYmqmwkm\r\n5zLSDW5nIAJbELCQCZwMH56t2Dvqofxs6BBcCFIZUSpxu6x6td0V7SvJCCosirSmIatj/9dSSVDQ\r\nibet8q/7UK4v4ZUN80atnZz1yg==\r\n-----END CERTIFICATE-----\n"
             }
           ],
           "issues": 0
@@ -437,7 +443,7 @@
             },
             {
               "client": {
-                "id": 139,
+                "id": 167,
                 "name": "Android",
                 "version": "7.0",
                 "isReference": false
@@ -446,6 +452,45 @@
               "attempts": 1,
               "protocolId": 771,
               "suiteId": 52393,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 168,
+                "name": "Android",
+                "version": "8.0",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 771,
+              "suiteId": 52393,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 157,
+                "name": "Android",
+                "version": "8.1",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4867,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 158,
+                "name": "Android",
+                "version": "9.0",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4867,
               "kxInfo": "ECDH x25519"
             },
             {
@@ -518,6 +563,20 @@
             },
             {
               "client": {
+                "id": 170,
+                "name": "Chrome",
+                "platform": "Win 10",
+                "version": "80",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4865,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
                 "id": 84,
                 "name": "Firefox",
                 "platform": "Win 7",
@@ -570,6 +629,20 @@
               "attempts": 1,
               "protocolId": 771,
               "suiteId": 49195,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 171,
+                "name": "Firefox",
+                "platform": "Win 10",
+                "version": "73",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4865,
               "kxInfo": "ECDH x25519"
             },
             {
@@ -737,6 +810,34 @@
             },
             {
               "client": {
+                "id": 159,
+                "name": "Edge",
+                "platform": "Win 10",
+                "version": "16",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 771,
+              "suiteId": 49195,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 160,
+                "name": "Edge",
+                "platform": "Win 10",
+                "version": "18",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 771,
+              "suiteId": 49195,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
                 "id": 120,
                 "name": "Edge",
                 "platform": "Win Phone 10",
@@ -789,6 +890,32 @@
             },
             {
               "client": {
+                "id": 162,
+                "name": "Java",
+                "version": "11.0.3",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4865,
+              "kxInfo": "ECDH secp256r1"
+            },
+            {
+              "client": {
+                "id": 163,
+                "name": "Java",
+                "version": "12.0.1",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4865,
+              "kxInfo": "ECDH secp256r1"
+            },
+            {
+              "client": {
                 "id": 27,
                 "name": "OpenSSL",
                 "version": "0.9.8y",
@@ -814,16 +941,42 @@
             },
             {
               "client": {
-                "id": 121,
+                "id": 164,
                 "name": "OpenSSL",
-                "version": "1.0.2e",
+                "version": "1.0.2s",
                 "isReference": true
               },
               "errorCode": 0,
               "attempts": 1,
               "protocolId": 771,
-              "suiteId": 49195,
+              "suiteId": 49199,
               "kxInfo": "ECDH secp256r1"
+            },
+            {
+              "client": {
+                "id": 169,
+                "name": "OpenSSL",
+                "version": "1.1.0k",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 771,
+              "suiteId": 52393,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 165,
+                "name": "OpenSSL",
+                "version": "1.1.1c",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4866,
+              "kxInfo": "ECDH x25519"
             },
             {
               "client": {
@@ -981,6 +1134,34 @@
             },
             {
               "client": {
+                "id": 161,
+                "name": "Safari",
+                "platform": "MacOS 10.14.6 Beta",
+                "version": "12.1.2",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4867,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 166,
+                "name": "Safari",
+                "platform": "iOS 12.3.1",
+                "version": "12.1.1",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4867,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
                 "id": 112,
                 "name": "Apple ATS",
                 "platform": "iOS 9",
@@ -1029,7 +1210,7 @@
         "poodleTls": 1,
         "fallbackScsv": true,
         "freak": false,
-        "hasSct": 4,
+        "hasSct": 1,
         "logjam": false,
         "chaCha20Preference": true,
         "hstsPolicy": {
@@ -1042,25 +1223,25 @@
             "source": "Chrome",
             "hostname": "google.com",
             "status": "absent",
-            "sourceTime": 1554367441126
+            "sourceTime": 1608109802581
           },
           {
             "source": "Edge",
             "hostname": "google.com",
             "status": "absent",
-            "sourceTime": 1554367442684
+            "sourceTime": 1608111661651
           },
           {
             "source": "Firefox",
             "hostname": "google.com",
             "status": "absent",
-            "sourceTime": 1554367442684
+            "sourceTime": 1608111661651
           },
           {
             "source": "IE",
             "hostname": "google.com",
             "status": "absent",
-            "sourceTime": 1554367442684
+            "sourceTime": 1608111661651
           }
         ],
         "hpkpPolicy": {
@@ -1081,19 +1262,19 @@
       }
     },
     {
-      "ipAddress": "2607:f8b0:4005:806:0:0:0:200e",
-      "serverName": "sfo03s06-in-x0e.1e100.net",
+      "ipAddress": "2607:f8b0:4005:805:0:0:0:200e",
+      "serverName": "sfo03s01-in-x0e.1e100.net",
       "statusMessage": "Ready",
-      "grade": "A",
-      "gradeTrustIgnored": "A",
+      "grade": "B",
+      "gradeTrustIgnored": "B",
       "hasWarnings": false,
       "isExceptional": false,
       "progress": 100,
-      "duration": 84948,
+      "duration": 109225,
       "eta": 0,
       "delegation": 1,
       "details": {
-        "hostStartTime": 1554368435610,
+        "hostStartTime": 1608111800657,
         "key": {
           "size": 256,
           "alg": "EC",
@@ -1108,11 +1289,15 @@
             "*.google.com",
             "*.android.com",
             "*.appengine.google.com",
+            "*.bdn.dev",
             "*.cloud.google.com",
             "*.crowdsource.google.com",
+            "*.datacompute.google.com",
             "*.g.co",
             "*.gcp.gvt2.com",
+            "*.gcpcdn.gvt1.com",
             "*.ggpht.cn",
+            "*.gkecnapps.cn",
             "*.google-analytics.com",
             "*.google.ca",
             "*.google.cl",
@@ -1147,6 +1332,7 @@
             "*.metric.gstatic.com",
             "*.urchin.com",
             "*.url.google.com",
+            "*.wear.gkecnapps.cn",
             "*.youtube-nocookie.com",
             "*.youtube.com",
             "*.youtubeeducation.com",
@@ -1159,6 +1345,7 @@
             "developers.android.google.cn",
             "g.co",
             "ggpht.cn",
+            "gkecnapps.cn",
             "goo.gl",
             "google-analytics.com",
             "google.com",
@@ -1173,37 +1360,37 @@
             "youtubekids.com",
             "yt.be"
           ],
-          "notBefore": 1551433437000,
-          "notAfter": 1558689900000,
-          "issuerSubject": "CN=Google Internet Authority G3, O=Google Trust Services, C=US",
-          "issuerLabel": "Google Internet Authority G3",
+          "notBefore": 1605018883000,
+          "notAfter": 1612276482000,
+          "issuerSubject": "CN=GTS CA 1O1, O=Google Trust Services, C=US",
+          "issuerLabel": "GTS CA 1O1",
           "sigAlg": "SHA256withRSA",
           "revocationInfo": 3,
           "crlURIs": [
-            "http://crl.pki.goog/GTSGIAG3.crl"
+            "http://crl.pki.goog/GTS1O1core.crl"
           ],
           "ocspURIs": [
-            "http://ocsp.pki.goog/GTSGIAG3"
+            "http://ocsp.pki.goog/gts1o1core"
           ],
           "revocationStatus": 2,
           "crlRevocationStatus": 2,
           "ocspRevocationStatus": 2,
           "sgc": 0,
           "issues": 0,
-          "sct": false,
+          "sct": true,
           "mustStaple": 0,
-          "sha1Hash": "f81e3171fa085bc04c83b6644b9f229f0cba8e57",
-          "pinSha256": "1T073i1JjmCuCjyUSt2gTRL4iGbrP3r8aeJjYFxn7F0="
+          "sha1Hash": "e48943d96a40d534b9337ee5eda976d2201d2ebf",
+          "pinSha256": "U3xTWXJOd447ON2zOz9w35qNaPAJDpqlFO4Jt/443us="
         },
         "chain": {
           "certs": [
             {
               "subject": "CN=*.google.com, O=Google LLC, L=Mountain View, ST=California, C=US",
               "label": "*.google.com",
-              "notBefore": 1551433437000,
-              "notAfter": 1558689900000,
-              "issuerSubject": "CN=Google Internet Authority G3, O=Google Trust Services, C=US",
-              "issuerLabel": "Google Internet Authority G3",
+              "notBefore": 1605018883000,
+              "notAfter": 1612276482000,
+              "issuerSubject": "CN=GTS CA 1O1, O=Google Trust Services, C=US",
+              "issuerLabel": "GTS CA 1O1",
               "sigAlg": "SHA256withRSA",
               "issues": 0,
               "keyAlg": "EC",
@@ -1212,13 +1399,13 @@
               "revocationStatus": 2,
               "crlRevocationStatus": 2,
               "ocspRevocationStatus": 2,
-              "sha1Hash": "f81e3171fa085bc04c83b6644b9f229f0cba8e57",
-              "pinSha256": "1T073i1JjmCuCjyUSt2gTRL4iGbrP3r8aeJjYFxn7F0=",
-              "raw": "-----BEGIN CERTIFICATE-----\nMIIIDTCCBvWgAwIBAgIQdCdvtO3S1SGVFWeeric83zANBgkqhkiG9w0BAQsFADBUMQswCQYDVQQG\r\nEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMSUwIwYDVQQDExxHb29nbGUgSW50\r\nZXJuZXQgQXV0aG9yaXR5IEczMB4XDTE5MDMwMTA5NDM1N1oXDTE5MDUyNDA5MjUwMFowZjELMAkG\r\nA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDU1vdW50YWluIFZpZXcxEzAR\r\nBgNVBAoMCkdvb2dsZSBMTEMxFTATBgNVBAMMDCouZ29vZ2xlLmNvbTBZMBMGByqGSM49AgEGCCqG\r\nSM49AwEHA0IABDos6V7pCUxMZ2A8pDa+je+faVgctzvOrRwMQCXWKgsUymr7357AkjKx2PnN2NHf\r\nt7Ua/aqD/nKV7p4DdMEU9SWjggWSMIIFjjATBgNVHSUEDDAKBggrBgEFBQcDATAOBgNVHQ8BAf8E\r\nBAMCB4AwggRXBgNVHREEggROMIIESoIMKi5nb29nbGUuY29tgg0qLmFuZHJvaWQuY29tghYqLmFw\r\ncGVuZ2luZS5nb29nbGUuY29tghIqLmNsb3VkLmdvb2dsZS5jb22CGCouY3Jvd2Rzb3VyY2UuZ29v\r\nZ2xlLmNvbYIGKi5nLmNvgg4qLmdjcC5ndnQyLmNvbYIKKi5nZ3BodC5jboIWKi5nb29nbGUtYW5h\r\nbHl0aWNzLmNvbYILKi5nb29nbGUuY2GCCyouZ29vZ2xlLmNsgg4qLmdvb2dsZS5jby5pboIOKi5n\r\nb29nbGUuY28uanCCDiouZ29vZ2xlLmNvLnVrgg8qLmdvb2dsZS5jb20uYXKCDyouZ29vZ2xlLmNv\r\nbS5hdYIPKi5nb29nbGUuY29tLmJygg8qLmdvb2dsZS5jb20uY2+CDyouZ29vZ2xlLmNvbS5teIIP\r\nKi5nb29nbGUuY29tLnRygg8qLmdvb2dsZS5jb20udm6CCyouZ29vZ2xlLmRlggsqLmdvb2dsZS5l\r\nc4ILKi5nb29nbGUuZnKCCyouZ29vZ2xlLmh1ggsqLmdvb2dsZS5pdIILKi5nb29nbGUubmyCCyou\r\nZ29vZ2xlLnBsggsqLmdvb2dsZS5wdIISKi5nb29nbGVhZGFwaXMuY29tgg8qLmdvb2dsZWFwaXMu\r\nY26CESouZ29vZ2xlY25hcHBzLmNughQqLmdvb2dsZWNvbW1lcmNlLmNvbYIRKi5nb29nbGV2aWRl\r\nby5jb22CDCouZ3N0YXRpYy5jboINKi5nc3RhdGljLmNvbYISKi5nc3RhdGljY25hcHBzLmNuggoq\r\nLmd2dDEuY29tggoqLmd2dDIuY29tghQqLm1ldHJpYy5nc3RhdGljLmNvbYIMKi51cmNoaW4uY29t\r\nghAqLnVybC5nb29nbGUuY29tghYqLnlvdXR1YmUtbm9jb29raWUuY29tgg0qLnlvdXR1YmUuY29t\r\nghYqLnlvdXR1YmVlZHVjYXRpb24uY29tghEqLnlvdXR1YmVraWRzLmNvbYIHKi55dC5iZYILKi55\r\ndGltZy5jb22CGmFuZHJvaWQuY2xpZW50cy5nb29nbGUuY29tggthbmRyb2lkLmNvbYIbZGV2ZWxv\r\ncGVyLmFuZHJvaWQuZ29vZ2xlLmNughxkZXZlbG9wZXJzLmFuZHJvaWQuZ29vZ2xlLmNuggRnLmNv\r\ngghnZ3BodC5jboIGZ29vLmdsghRnb29nbGUtYW5hbHl0aWNzLmNvbYIKZ29vZ2xlLmNvbYIPZ29v\r\nZ2xlY25hcHBzLmNughJnb29nbGVjb21tZXJjZS5jb22CGHNvdXJjZS5hbmRyb2lkLmdvb2dsZS5j\r\nboIKdXJjaGluLmNvbYIKd3d3Lmdvby5nbIIIeW91dHUuYmWCC3lvdXR1YmUuY29tghR5b3V0dWJl\r\nZWR1Y2F0aW9uLmNvbYIPeW91dHViZWtpZHMuY29tggV5dC5iZTBoBggrBgEFBQcBAQRcMFowLQYI\r\nKwYBBQUHMAKGIWh0dHA6Ly9wa2kuZ29vZy9nc3IyL0dUU0dJQUczLmNydDApBggrBgEFBQcwAYYd\r\naHR0cDovL29jc3AucGtpLmdvb2cvR1RTR0lBRzMwHQYDVR0OBBYEFK0EWGE69tfHVmsgC1gJeREi\r\n92m2MAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUd8K4UJpndnaxLcKG0IOgfqZ+ukswIQYDVR0g\r\nBBowGDAMBgorBgEEAdZ5AgUDMAgGBmeBDAECAjAxBgNVHR8EKjAoMCagJKAihiBodHRwOi8vY3Js\r\nLnBraS5nb29nL0dUU0dJQUczLmNybDANBgkqhkiG9w0BAQsFAAOCAQEAiRzb/eu7AaK8KDzrumNr\r\niEbEhbWG5KH/ae54vRKJGLSBl9YT6bJ/u4IRNXSiigF6ZAfThvloPiMmYqxXB4BzclQBP5Deercs\r\njLRwos6QTPbKryU+SYfO/s0VtOYRCRISpG1gbPJLZPjaAw/P56khVTCVErjUXkSC5ReMIKuzfQ3V\r\n2HE8zsmioS0rFT39P6QujhcwMmOq0IeJnemwtxzqDvrN/ReqE7sdJq9Ze43vJDGvGZfUxJjHblWt\r\nsDNtqxMdMYZosRyo1YT6DZRjUDUEj3kr/z7oRjn96mRiC4AIebe5HCGHuBWxfXw2G/5PDD1Z0wdN\r\nQ4U04nzWE2bBl/VNlA==\r\n-----END CERTIFICATE-----\n"
+              "sha1Hash": "e48943d96a40d534b9337ee5eda976d2201d2ebf",
+              "pinSha256": "U3xTWXJOd447ON2zOz9w35qNaPAJDpqlFO4Jt/443us=",
+              "raw": "-----BEGIN CERTIFICATE-----\nMIIJcTCCCFmgAwIBAgIQbkMYuNeQFlwDAAAAALrbijANBgkqhkiG9w0BAQsFADBCMQswCQYDVQQG\r\nEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMRMwEQYDVQQDEwpHVFMgQ0EgMU8x\r\nMB4XDTIwMTExMDE0MzQ0M1oXDTIxMDIwMjE0MzQ0MlowZjELMAkGA1UEBhMCVVMxEzARBgNVBAgT\r\nCkNhbGlmb3JuaWExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxEzARBgNVBAoTCkdvb2dsZSBMTEMx\r\nFTATBgNVBAMMDCouZ29vZ2xlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABFIhx27fGJ+R\r\n9kmype5uzK8Ka/rxmEk/J/QovXjqMP/TkMyS2fVTcIQ5gYCxxh6ottMx5iAB+9Q0Kg7qLsJAP/qj\r\nggcIMIIHBDAOBgNVHQ8BAf8EBAMCB4AwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDAYDVR0TAQH/BAIw\r\nADAdBgNVHQ4EFgQUhekgVwayZa1bqtk9uha5R6cvJHEwHwYDVR0jBBgwFoAUmNH4bhDrz5vsYJ8Y\r\nkBug630J/SswaAYIKwYBBQUHAQEEXDBaMCsGCCsGAQUFBzABhh9odHRwOi8vb2NzcC5wa2kuZ29v\r\nZy9ndHMxbzFjb3JlMCsGCCsGAQUFBzAChh9odHRwOi8vcGtpLmdvb2cvZ3NyMi9HVFMxTzEuY3J0\r\nMIIEwgYDVR0RBIIEuTCCBLWCDCouZ29vZ2xlLmNvbYINKi5hbmRyb2lkLmNvbYIWKi5hcHBlbmdp\r\nbmUuZ29vZ2xlLmNvbYIJKi5iZG4uZGV2ghIqLmNsb3VkLmdvb2dsZS5jb22CGCouY3Jvd2Rzb3Vy\r\nY2UuZ29vZ2xlLmNvbYIYKi5kYXRhY29tcHV0ZS5nb29nbGUuY29tggYqLmcuY2+CDiouZ2NwLmd2\r\ndDIuY29tghEqLmdjcGNkbi5ndnQxLmNvbYIKKi5nZ3BodC5jboIOKi5na2VjbmFwcHMuY26CFiou\r\nZ29vZ2xlLWFuYWx5dGljcy5jb22CCyouZ29vZ2xlLmNhggsqLmdvb2dsZS5jbIIOKi5nb29nbGUu\r\nY28uaW6CDiouZ29vZ2xlLmNvLmpwgg4qLmdvb2dsZS5jby51a4IPKi5nb29nbGUuY29tLmFygg8q\r\nLmdvb2dsZS5jb20uYXWCDyouZ29vZ2xlLmNvbS5icoIPKi5nb29nbGUuY29tLmNvgg8qLmdvb2ds\r\nZS5jb20ubXiCDyouZ29vZ2xlLmNvbS50coIPKi5nb29nbGUuY29tLnZuggsqLmdvb2dsZS5kZYIL\r\nKi5nb29nbGUuZXOCCyouZ29vZ2xlLmZyggsqLmdvb2dsZS5odYILKi5nb29nbGUuaXSCCyouZ29v\r\nZ2xlLm5sggsqLmdvb2dsZS5wbIILKi5nb29nbGUucHSCEiouZ29vZ2xlYWRhcGlzLmNvbYIPKi5n\r\nb29nbGVhcGlzLmNughEqLmdvb2dsZWNuYXBwcy5jboIUKi5nb29nbGVjb21tZXJjZS5jb22CESou\r\nZ29vZ2xldmlkZW8uY29tggwqLmdzdGF0aWMuY26CDSouZ3N0YXRpYy5jb22CEiouZ3N0YXRpY2Nu\r\nYXBwcy5jboIKKi5ndnQxLmNvbYIKKi5ndnQyLmNvbYIUKi5tZXRyaWMuZ3N0YXRpYy5jb22CDCou\r\ndXJjaGluLmNvbYIQKi51cmwuZ29vZ2xlLmNvbYITKi53ZWFyLmdrZWNuYXBwcy5jboIWKi55b3V0\r\ndWJlLW5vY29va2llLmNvbYINKi55b3V0dWJlLmNvbYIWKi55b3V0dWJlZWR1Y2F0aW9uLmNvbYIR\r\nKi55b3V0dWJla2lkcy5jb22CByoueXQuYmWCCyoueXRpbWcuY29tghphbmRyb2lkLmNsaWVudHMu\r\nZ29vZ2xlLmNvbYILYW5kcm9pZC5jb22CG2RldmVsb3Blci5hbmRyb2lkLmdvb2dsZS5jboIcZGV2\r\nZWxvcGVycy5hbmRyb2lkLmdvb2dsZS5jboIEZy5jb4IIZ2dwaHQuY26CDGdrZWNuYXBwcy5jboIG\r\nZ29vLmdsghRnb29nbGUtYW5hbHl0aWNzLmNvbYIKZ29vZ2xlLmNvbYIPZ29vZ2xlY25hcHBzLmNu\r\nghJnb29nbGVjb21tZXJjZS5jb22CGHNvdXJjZS5hbmRyb2lkLmdvb2dsZS5jboIKdXJjaGluLmNv\r\nbYIKd3d3Lmdvby5nbIIIeW91dHUuYmWCC3lvdXR1YmUuY29tghR5b3V0dWJlZWR1Y2F0aW9uLmNv\r\nbYIPeW91dHViZWtpZHMuY29tggV5dC5iZTAhBgNVHSAEGjAYMAgGBmeBDAECAjAMBgorBgEEAdZ5\r\nAgUDMDMGA1UdHwQsMCowKKAmoCSGImh0dHA6Ly9jcmwucGtpLmdvb2cvR1RTMU8xY29yZS5jcmww\r\nggEFBgorBgEEAdZ5AgQCBIH2BIHzAPEAdgD2XJQv0XcwIhRUGAgwlFaO400TGTO/3wwvIAvMTvFk\r\n4wAAAXWyy4p7AAAEAwBHMEUCIBaIfxadDwtOlUoYpiV6u+B0G04PZv17JeceTO7xYjEfAiEA/S0V\r\ntKdopPSFFmnqlBWlliDGsn27KFh1aR9YtoSz41IAdwBElGUusO7Or8RAB9io/ijA2uaCvtjLMbU/\r\n0zOWtbaBqAAAAXWyy4rUAAAEAwBIMEYCIQDWKWwFnf9CaLYGWYqvKNRlryN0m6eQxwTP8uM54yq6\r\n3gIhAMWeB6x3v7qm3B6PmUMQRlVZaDR3FOcaz2V7O/88tHtfMA0GCSqGSIb3DQEBCwUAA4IBAQCE\r\naoPOwtxgWQb8UJYtXQTuHxxQLF2mcPwAFHszxvOJNXdCplX1G+X+fkrA3cKXgv3CoQy5xs6eRzXR\r\nKoAAUtFmki++5dvgufiMYnSnyPe62x6bcUkowoGMFjLwCA91w7vqSZ2Gnd26YbfLcABonmAb/1Hy\r\nYOxD1l1wn0kOgRBsV3MLEuVoQ+eZ3yWG38WkwzPGtSvAV+6dzWbGu+XC3BT9XhwvQ5WwABMGxPZr\r\nAW4aqW0ArD1gzr1iSz4W0pBWtwYynme0SwfqTf7VJQYKpevuF4bQNOuMy+8E2kouClssLDQ3HOJZ\r\nKkyn3byIK0NCee1+DTNQX0hl6e/f6va5HaiJ\r\n-----END CERTIFICATE-----\n"
             },
             {
-              "subject": "CN=Google Internet Authority G3, O=Google Trust Services, C=US",
-              "label": "Google Internet Authority G3",
+              "subject": "CN=GTS CA 1O1, O=Google Trust Services, C=US",
+              "label": "GTS CA 1O1",
               "notBefore": 1497484842000,
               "notAfter": 1639526442000,
               "issuerSubject": "CN=GlobalSign, O=GlobalSign, OU=GlobalSign Root CA - R2",
@@ -1231,9 +1418,9 @@
               "revocationStatus": 2,
               "crlRevocationStatus": 2,
               "ocspRevocationStatus": 2,
-              "sha1Hash": "eeacbd0cb452819577911e1e6203db262f84a318",
-              "pinSha256": "f8NnEFZxQ4ExFOhSN7EiFWtiudZQVD2oY60uauV/n78=",
-              "raw": "-----BEGIN CERTIFICATE-----\nMIIEXDCCA0SgAwIBAgINAeOpMBz8cgY4P5pTHTANBgkqhkiG9w0BAQsFADBMMSAwHgYDVQQLExdH\r\nbG9iYWxTaWduIFJvb3QgQ0EgLSBSMjETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UEAxMKR2xv\r\nYmFsU2lnbjAeFw0xNzA2MTUwMDAwNDJaFw0yMTEyMTUwMDAwNDJaMFQxCzAJBgNVBAYTAlVTMR4w\r\nHAYDVQQKExVHb29nbGUgVHJ1c3QgU2VydmljZXMxJTAjBgNVBAMTHEdvb2dsZSBJbnRlcm5ldCBB\r\ndXRob3JpdHkgRzMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDKUkvqHv/OJGuo2nIY\r\naNVWXQ5IWi01CXZaz6TIHLGp/lOJ+600/4hbn7vn6AAB3DVzdQOts7G5pH0rJnnOFUAK71G4nzKM\r\nfHCGUksW/mona+Y2emJQ2N+aicwJKetPKRSIgAuPOB6Aahh8Hb2XO3h9RUk2T0HNouB2VzxoMXlk\r\nyW7XUR5mw6JkLHnA52XDVoRTWkNty5oCINLvGmnRsJ1zouAqYGVQMc/7sy+/EYhALrVJEA8KbtyX\r\n+r8snwU5C1hUrwaW6MWOARa8qBpNQcWTkaIeoYvy/sGIJEmjR0vFEwHdp1cSaWIr6/4g72n7OqXw\r\nfinu7ZYW97EfoOSQJeAzAgMBAAGjggEzMIIBLzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0lBBYwFAYI\r\nKwYBBQUHAwEGCCsGAQUFBwMCMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHfCuFCaZ3Z2\r\nsS3ChtCDoH6mfrpLMB8GA1UdIwQYMBaAFJviB1dnHB7AagbeWbSaLd/cGYYuMDUGCCsGAQUFBwEB\r\nBCkwJzAlBggrBgEFBQcwAYYZaHR0cDovL29jc3AucGtpLmdvb2cvZ3NyMjAyBgNVHR8EKzApMCeg\r\nJaAjhiFodHRwOi8vY3JsLnBraS5nb29nL2dzcjIvZ3NyMi5jcmwwPwYDVR0gBDgwNjA0BgZngQwB\r\nAgIwKjAoBggrBgEFBQcCARYcaHR0cHM6Ly9wa2kuZ29vZy9yZXBvc2l0b3J5LzANBgkqhkiG9w0B\r\nAQsFAAOCAQEAHLeJluRT7bvs26gyAZ8so81trUISd7O45skDUmAge1cnxhG1P2cNmSxbWsoiCt2e\r\nux9LSD+PAj2LIYRFHW31/6xoic1k4tbWXkDCjir37xTTNqRAMPUyFRWSdvt+nlPqwnb8Oa2I/maS\r\nJukcxDjNSfpDh/Bd1lZNgdd/8cLdsE3+wypufJ9uXO1iQpnh9zbuFIwsIONGl1p3A8CgxkqI/UAi\r\nh3JaGOqcpcdaCIzkBaR9uYQ1X4k2Vg5APRLouzVy7a8IVk6wuy6pm+T7HT4LY8ibS5FEZlfAFLSW\r\n8NwsVz9SBK2Vqn1N0PIMn5xA6NZVc7o835DLAFshEWfC7TIe3g==\r\n-----END CERTIFICATE-----\n"
+              "sha1Hash": "dfe2070c79e7ff36a925ffa327ffe3deecf8f9c2",
+              "pinSha256": "YZPgTZ+woNCCCIW3LH2CxQeLzB/1m42QcCTBSdgayjs=",
+              "raw": "-----BEGIN CERTIFICATE-----\nMIIESjCCAzKgAwIBAgINAeO0mqGNiqmBJWlQuDANBgkqhkiG9w0BAQsFADBMMSAwHgYDVQQLExdH\r\nbG9iYWxTaWduIFJvb3QgQ0EgLSBSMjETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UEAxMKR2xv\r\nYmFsU2lnbjAeFw0xNzA2MTUwMDAwNDJaFw0yMTEyMTUwMDAwNDJaMEIxCzAJBgNVBAYTAlVTMR4w\r\nHAYDVQQKExVHb29nbGUgVHJ1c3QgU2VydmljZXMxEzARBgNVBAMTCkdUUyBDQSAxTzEwggEiMA0G\r\nCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDQGM9F1IvN05zkQO9+tN1pIRvJzzyOTHW5DzEZhD2e\r\nPCnvUA0Qk28FgICfKqC9EksC4T2fWBYk/jCfC3R3VZMdS/dN4ZKCEPZRrAzDsiKUDzRrmBBJ5wud\r\ngzndIMYcLe/RGGFl5yODIKgjEv/SJH/UL+dEaltN11BmsK+eQmMF++AcxGNhr59qM/9il71I2dN8\r\nFGfcddwuaej4bXhp0LcQBbjxMcI7JP0aM3T4I+DsaxmKFsbjzaTNC9uzpFlgOIg7rR25xoynUxv8\r\nvNmkq7zdPGHXkxWY7oG9j+JkRyBABk7XrJfoucBZEqFJJSPk7XA0LKW0Y3z5oz2D0c1tJKwHAgMB\r\nAAGjggEzMIIBLzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMC\r\nMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFJjR+G4Q68+b7GCfGJAboOt9Cf0rMB8GA1Ud\r\nIwQYMBaAFJviB1dnHB7AagbeWbSaLd/cGYYuMDUGCCsGAQUFBwEBBCkwJzAlBggrBgEFBQcwAYYZ\r\naHR0cDovL29jc3AucGtpLmdvb2cvZ3NyMjAyBgNVHR8EKzApMCegJaAjhiFodHRwOi8vY3JsLnBr\r\naS5nb29nL2dzcjIvZ3NyMi5jcmwwPwYDVR0gBDgwNjA0BgZngQwBAgIwKjAoBggrBgEFBQcCARYc\r\naHR0cHM6Ly9wa2kuZ29vZy9yZXBvc2l0b3J5LzANBgkqhkiG9w0BAQsFAAOCAQEAGoA+Nnn78y6p\r\nRjd9XlQWNa7HTgiZ/r3RNGkmUmYHPQq6Scti9PEajvwRT2iWTHQr02fesqOqBY2ETUwgZQ+lltoN\r\nFvhsO9tvBCOIazpswWC9aJ9xju4tWDQH8NVU6YZZ/XteDSGU9YzJqPjY8q3MDxrzmqepBCf5o8mw\r\n/wJ4a2G6xzUr6Fb6T8McDO22PLRL6u3M4Tzs3A2M1j6bykJYi8wWIRdAvKLWZu/axBVbzYmqmwkm\r\n5zLSDW5nIAJbELCQCZwMH56t2Dvqofxs6BBcCFIZUSpxu6x6td0V7SvJCCosirSmIatj/9dSSVDQ\r\nibet8q/7UK4v4ZUN80atnZz1yg==\r\n-----END CERTIFICATE-----\n"
             }
           ],
           "issues": 0
@@ -1508,7 +1695,7 @@
             },
             {
               "client": {
-                "id": 139,
+                "id": 167,
                 "name": "Android",
                 "version": "7.0",
                 "isReference": false
@@ -1517,6 +1704,45 @@
               "attempts": 1,
               "protocolId": 771,
               "suiteId": 52393,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 168,
+                "name": "Android",
+                "version": "8.0",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 771,
+              "suiteId": 52393,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 157,
+                "name": "Android",
+                "version": "8.1",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4867,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 158,
+                "name": "Android",
+                "version": "9.0",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4867,
               "kxInfo": "ECDH x25519"
             },
             {
@@ -1589,6 +1815,20 @@
             },
             {
               "client": {
+                "id": 170,
+                "name": "Chrome",
+                "platform": "Win 10",
+                "version": "80",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4865,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
                 "id": 84,
                 "name": "Firefox",
                 "platform": "Win 7",
@@ -1641,6 +1881,20 @@
               "attempts": 1,
               "protocolId": 771,
               "suiteId": 49195,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 171,
+                "name": "Firefox",
+                "platform": "Win 10",
+                "version": "73",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4865,
               "kxInfo": "ECDH x25519"
             },
             {
@@ -1808,6 +2062,34 @@
             },
             {
               "client": {
+                "id": 159,
+                "name": "Edge",
+                "platform": "Win 10",
+                "version": "16",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 771,
+              "suiteId": 49195,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 160,
+                "name": "Edge",
+                "platform": "Win 10",
+                "version": "18",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 771,
+              "suiteId": 49195,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
                 "id": 120,
                 "name": "Edge",
                 "platform": "Win Phone 10",
@@ -1860,6 +2142,32 @@
             },
             {
               "client": {
+                "id": 162,
+                "name": "Java",
+                "version": "11.0.3",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4865,
+              "kxInfo": "ECDH secp256r1"
+            },
+            {
+              "client": {
+                "id": 163,
+                "name": "Java",
+                "version": "12.0.1",
+                "isReference": false
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4865,
+              "kxInfo": "ECDH secp256r1"
+            },
+            {
+              "client": {
                 "id": 27,
                 "name": "OpenSSL",
                 "version": "0.9.8y",
@@ -1885,16 +2193,42 @@
             },
             {
               "client": {
-                "id": 121,
+                "id": 164,
                 "name": "OpenSSL",
-                "version": "1.0.2e",
+                "version": "1.0.2s",
                 "isReference": true
               },
               "errorCode": 0,
               "attempts": 1,
               "protocolId": 771,
-              "suiteId": 49195,
+              "suiteId": 49199,
               "kxInfo": "ECDH secp256r1"
+            },
+            {
+              "client": {
+                "id": 169,
+                "name": "OpenSSL",
+                "version": "1.1.0k",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 771,
+              "suiteId": 52393,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 165,
+                "name": "OpenSSL",
+                "version": "1.1.1c",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4866,
+              "kxInfo": "ECDH x25519"
             },
             {
               "client": {
@@ -2052,6 +2386,34 @@
             },
             {
               "client": {
+                "id": 161,
+                "name": "Safari",
+                "platform": "MacOS 10.14.6 Beta",
+                "version": "12.1.2",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4867,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
+                "id": 166,
+                "name": "Safari",
+                "platform": "iOS 12.3.1",
+                "version": "12.1.1",
+                "isReference": true
+              },
+              "errorCode": 0,
+              "attempts": 1,
+              "protocolId": 772,
+              "suiteId": 4867,
+              "kxInfo": "ECDH x25519"
+            },
+            {
+              "client": {
                 "id": 112,
                 "name": "Apple ATS",
                 "platform": "iOS 9",
@@ -2100,7 +2462,7 @@
         "poodleTls": 1,
         "fallbackScsv": true,
         "freak": false,
-        "hasSct": 4,
+        "hasSct": 1,
         "logjam": false,
         "chaCha20Preference": true,
         "hstsPolicy": {
@@ -2113,25 +2475,25 @@
             "source": "Chrome",
             "hostname": "google.com",
             "status": "absent",
-            "sourceTime": 1554367441126
+            "sourceTime": 1608109802581
           },
           {
             "source": "Edge",
             "hostname": "google.com",
             "status": "absent",
-            "sourceTime": 1554367442684
+            "sourceTime": 1608111661651
           },
           {
             "source": "Firefox",
             "hostname": "google.com",
             "status": "absent",
-            "sourceTime": 1554367442684
+            "sourceTime": 1608111661651
           },
           {
             "source": "IE",
             "hostname": "google.com",
             "status": "absent",
-            "sourceTime": 1554367442684
+            "sourceTime": 1608111661651
           }
         ],
         "hpkpPolicy": {
