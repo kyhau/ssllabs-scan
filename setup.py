@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 __title__ = "ssllabsscan"
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 __author__ = "Kay Hau"
 __email__ = "virtualda@gmail.com"
 __uri__ = "https://github.com/kyhau/ssllabs-scan"
