@@ -8,14 +8,14 @@ from datetime import datetime
 
 import requests
 
-API_URL = "https://api.ssllabs.com/api/v2/analyze"
+API_URL = "https://api.ssllabs.com/api/v3/analyze"
 
 CHAIN_ISSUES = {
     "0": "none",
     "1": "unused",
     "2": "incomplete chain",
-    "3": "chain contains unrelated or duplicate certificates",
-    "4": "the certificates form a chain (trusted or not) but incorrect order",
+    "4": "chain contains unrelated or duplicate certificates",
+    "8": "the certificates form a chain (trusted or not) but incorrect order",
     "16": "contains a self-signed root certificate",
     "32": "the certificates form a chain but cannot be validated",
 }
@@ -59,7 +59,7 @@ class SSLLabsClient():
         # write the summary to file
         self.append_summary_csv(summary_csv_file, host, data)
 
-    def start_new_scan(self, host, publish="off", startNew="on", all="done", ignoreMismatch="on"):
+    def start_new_scan(self, host, publish="off", startNew="off", all="done", ignoreMismatch="on"):
         path = API_URL
         payload = {
             "host": host,
@@ -96,14 +96,18 @@ class SSLLabsClient():
     def append_summary_csv(self, summary_file, host, data):
         # write the summary to file
         with open(summary_file, "a") as outfile:
+            na = self.prepare_datetime(data["certs"][0]["notAfter"])
             for ep in data["endpoints"]:
+                # Endpoints with IPv6 addresses will not return a full complement of details
+                if ":" in ep["ipAddress"]:
+                    continue
                 # see SUMMARY_COL_NAMES
                 summary = [
                     host,
                     ep["grade"],
                     ep["hasWarnings"],
-                    self.prepare_datetime(ep["details"]["cert"]["notAfter"]),
-                    CHAIN_ISSUES[str(ep["details"]["chain"]["issues"])],
+                    na,
+                    CHAIN_ISSUES[str(ep["details"]["certChains"][0]["issues"])],
                     FORWARD_SECRECY[str(ep["details"]["forwardSecrecy"])],
                     ep["details"]["heartbeat"],
                     ep["details"]["vulnBeast"],
