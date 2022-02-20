@@ -1,0 +1,8 @@
+www.envoytx.com
+mas.worldpay.com
+www.envoyautoapi.com
+www.envoytransfers.com
+secure-test.worldpay.com
+secure-test1.worldpay.com
+www.mwam.com
+www.devtty.uk

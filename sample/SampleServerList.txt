@@ -1,2 +1,2 @@
-duckduckgo.com
 google.com
+duckduckgo.com
