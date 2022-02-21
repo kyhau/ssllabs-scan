@@ -26,9 +26,9 @@ def output_summary_html(input_csv, output_html):
         reader = csv.reader(csvfile)
         for row in reader:
             if row[0].startswith("#"):
-                data += "<tr><th>{}</th></tr>".format('</th><th>'.join(row))
+                data += "  <tr>\n\t<th>{}</th>\n  </tr>".format('</th>\n\t<th>'.join(row))
             else:
-                data += '<tr class="{}"><td>{}</td></tr>'.format(row[1][:1], '</td><td>'.join(row))
+                data += '\n  <tr class="{}">\n\t<td>{}</td>\n  </tr>'.format(row[1][:1], '</td>\n\t<td>'.join(row))
 
     # Replace the target string
     content = REPORT_HTML
