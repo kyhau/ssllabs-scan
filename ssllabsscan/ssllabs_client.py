@@ -59,7 +59,7 @@ class SSLLabsClient():
         # write the summary to file
         self.append_summary_csv(summary_csv_file, host, data)
 
-    def start_new_scan(self, host, publish="off", startNew="off", all="done", ignoreMismatch="on"):
+    def start_new_scan(self, host, publish="off", startNew="on", all="done", ignoreMismatch="on"):
         path = API_URL
         payload = {
             "host": host,
@@ -98,8 +98,8 @@ class SSLLabsClient():
         with open(summary_file, "a") as outfile:
             na = self.prepare_datetime(data["certs"][0]["notAfter"])
             for ep in data["endpoints"]:
-                # Endpoints with IPv6 addresses will not return a full complement of details
-                if ":" in ep["ipAddress"]:
+                # Skip endpoints that were not contactable during the scan (e.g. GitHub Pages URLs with IPv6 endpoints)
+                if "Unable" in ep["statusMessage"]:
                     continue
                 # see SUMMARY_COL_NAMES
                 summary = [
