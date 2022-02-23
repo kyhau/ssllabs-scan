@@ -59,7 +59,7 @@ class SSLLabsClient():
         # write the summary to file
         self.append_summary_csv(summary_csv_file, host, data)
 
-    def start_new_scan(self, host, publish="off", startNew="on", all="done", ignoreMismatch="on"):
+    def start_new_scan(self, host, publish="off", startNew="off", all="done", ignoreMismatch="on"):
         path = API_URL
         payload = {
             "host": host,
