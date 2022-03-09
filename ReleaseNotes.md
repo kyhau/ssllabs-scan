@@ -1,3 +1,8 @@
+1.1.1 - 2022-03-09
+==================
+- Fixed README
+- Changed the check from IPv6 address to "statusMessage" when deciding to skip uncontactable endpoints (ssllabs_client).
+
 1.1.0 - 2020-12-16
 ==================
 - Added "supportsRc4", "rc4WithModern" and "rc4Only" to the html summary.
