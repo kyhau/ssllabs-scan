@@ -7,10 +7,9 @@
 
 Support Python >= 3.6
 
-This tool calls the SSL Labs [API v2](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs.md) to do SSL testings on servers.
+This tool calls the SSL Labs [API v3](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md) to do SSL testings on servers.
 
-- **TODO**: use v3 instead of v2
-- **NOTE**: Please note that the SSL Labs Assessment API has access rate limits. You can find more details in the sections "Error Response Status Codes" and "Access Rate and Rate Limiting" in the official [SSL Labs API Documentation](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs.md). Some common status codes are:
+- **NOTE**: Please note that the SSL Labs Assessment API has access rate limits. You can find more details in the sections "Error Response Status Codes" and "Access Rate and Rate Limiting" in the official [SSL Labs API Documentation](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md). Some common status codes are:
     - 400 - invocation error (e.g., invalid parameters)
     - 429 - client request rate too high or too many new assessments too fast
     - 500 - internal error
