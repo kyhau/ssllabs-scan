@@ -2,5 +2,5 @@
 pip~=22.0
 logilab-common~=1.9
 m2r~=0.2
-tox~=3.24
+tox~=3.25
 virtualenv~=20.14
