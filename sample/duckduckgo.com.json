@@ -4,8 +4,8 @@
   "protocol": "http",
   "isPublic": false,
   "status": "READY",
-  "startTime": 1645362870136,
-  "testTime": 1645362961120,
+  "startTime": 1662185888881,
+  "testTime": 1662185980658,
   "engineVersion": "2.1.10",
   "criteriaVersion": "2009q",
   "endpoints": [
@@ -17,10 +17,10 @@
       "hasWarnings": false,
       "isExceptional": true,
       "progress": 100,
-      "duration": 90910,
+      "duration": 91657,
       "delegation": 1,
       "details": {
-        "hostStartTime": 1645362870136,
+        "hostStartTime": 1662185888881,
         "certChains": [
           {
             "id": "d4d27e232d0153aef1b2651906cb4ef9abd331594d2ccfa85faeaaea7a927f12",
@@ -1598,25 +1598,25 @@
             "source": "Chrome",
             "hostname": "duckduckgo.com",
             "status": "absent",
-            "sourceTime": 1645359542393
+            "sourceTime": 1662182762090
           },
           {
             "source": "Edge",
             "hostname": "duckduckgo.com",
             "status": "absent",
-            "sourceTime": 1645359544665
+            "sourceTime": 1662184021270
           },
           {
             "source": "Firefox",
             "hostname": "duckduckgo.com",
             "status": "absent",
-            "sourceTime": 1645359544665
+            "sourceTime": 1662184021270
           },
           {
             "source": "IE",
             "hostname": "duckduckgo.com",
             "status": "absent",
-            "sourceTime": 1645359544665
+            "sourceTime": 1662184021270
           }
         ],
         "hpkpPolicy": {
@@ -1652,21 +1652,21 @@
             "responseLine": "HTTP/1.1 200 OK",
             "responseHeadersRaw": [
               "Server: nginx",
-              "Date: Sun, 20 Feb 2022 13:14:36 GMT",
+              "Date: Sat, 03 Sep 2022 06:18:15 GMT",
               "Content-Type: text/html; charset=UTF-8",
-              "Content-Length: 5777",
+              "Content-Length: 5948",
               "Connection: close",
               "Vary: Accept-Encoding",
-              "ETag: \"62103ae4-1691\"",
+              "ETag: \"63123488-173c\"",
               "Strict-Transport-Security: max-age=31536000",
               "Permissions-Policy: interest-cohort=()",
-              "Content-Security-Policy: default-src 'none' ; connect-src  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; manifest-src  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; media-src  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; script-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ 'unsafe-inline' 'unsafe-eval' ; font-src data:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; img-src data:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; style-src  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ 'unsafe-inline' ; object-src 'none' ; worker-src blob: ; child-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; frame-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; form-action  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; frame-ancestors 'self' ; base-uri 'self' ; block-all-mixed-content ;",
+              "Content-Security-Policy: default-src 'none' ; connect-src  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; manifest-src  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; media-src  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; script-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ 'unsafe-inline' 'unsafe-eval' ; font-src data:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; img-src data:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; style-src  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ 'unsafe-inline' ; object-src 'none' ; worker-src blob: ; child-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; frame-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; form-action  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; frame-ancestors 'self' ; base-uri 'self' ; block-all-mixed-content ;",
               "X-Frame-Options: SAMEORIGIN",
               "X-XSS-Protection: 1;mode=block",
               "X-Content-Type-Options: nosniff",
               "Referrer-Policy: origin",
               "Expect-CT: max-age=0",
-              "Expires: Sun, 20 Feb 2022 13:14:35 GMT",
+              "Expires: Sat, 03 Sep 2022 06:18:14 GMT",
               "Cache-Control: no-cache",
               "Accept-Ranges: bytes"
             ],
@@ -1677,7 +1677,7 @@
               },
               {
                 "name": "Date",
-                "value": "Sun, 20 Feb 2022 13:14:36 GMT"
+                "value": "Sat, 03 Sep 2022 06:18:15 GMT"
               },
               {
                 "name": "Content-Type",
@@ -1685,7 +1685,7 @@
               },
               {
                 "name": "Content-Length",
-                "value": "5777"
+                "value": "5948"
               },
               {
                 "name": "Connection",
@@ -1697,7 +1697,7 @@
               },
               {
                 "name": "ETag",
-                "value": "\"62103ae4-1691\""
+                "value": "\"63123488-173c\""
               },
               {
                 "name": "Strict-Transport-Security",
@@ -1709,7 +1709,7 @@
               },
               {
                 "name": "Content-Security-Policy",
-                "value": "default-src 'none' ; connect-src  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; manifest-src  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; media-src  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; script-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ 'unsafe-inline' 'unsafe-eval' ; font-src data:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; img-src data:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; style-src  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ 'unsafe-inline' ; object-src 'none' ; worker-src blob: ; child-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; frame-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; form-action  https://duckduckgo.com https://*.duckduckgo.com https://3g2upl4pq6kufc4m.onion/ https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; frame-ancestors 'self' ; base-uri 'self' ; block-all-mixed-content ;"
+                "value": "default-src 'none' ; connect-src  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; manifest-src  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; media-src  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; script-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ 'unsafe-inline' 'unsafe-eval' ; font-src data:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; img-src data:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; style-src  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ 'unsafe-inline' ; object-src 'none' ; worker-src blob: ; child-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; frame-src blob:  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; form-action  https://duckduckgo.com https://*.duckduckgo.com https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/ ; frame-ancestors 'self' ; base-uri 'self' ; block-all-mixed-content ;"
               },
               {
                 "name": "X-Frame-Options",
@@ -1733,7 +1733,7 @@
               },
               {
                 "name": "Expires",
-                "value": "Sun, 20 Feb 2022 13:14:35 GMT"
+                "value": "Sat, 03 Sep 2022 06:18:14 GMT"
               },
               {
                 "name": "Cache-Control",
@@ -1792,12 +1792,12 @@
         "caaRecords": [
           {
             "tag": "issue",
-            "value": "digicert.com",
+            "value": "letsencrypt.org",
             "flags": 0
           },
           {
             "tag": "issue",
-            "value": "letsencrypt.org",
+            "value": "digicert.com",
             "flags": 0
           }
         ]
