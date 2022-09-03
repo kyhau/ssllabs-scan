@@ -31,7 +31,7 @@ setup(
     author_email=__email__,
     classifiers=CLASSIFIERS,
     data_files=[
-        ("", ["ReleaseNotes.md"]),
+        ("", ["CHANGELOG.md"]),
     ],
     description=__summary__,
     entry_points=__entry_points__,
