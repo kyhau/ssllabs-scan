@@ -2,11 +2,14 @@
 See API doc: https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs.md
 """
 import json
+import logging
 import os
 import time
 from datetime import datetime
 
 import requests
+
+logging.getLogger().setLevel(logging.INFO)
 
 API_URL = "https://api.ssllabs.com/api/v3/analyze"
 
@@ -44,12 +47,15 @@ SUMMARY_COL_NAMES = [
 
 
 class SSLLabsClient():
-    def __init__(self, check_progress_interval_secs=30, max_attempts=100):
+    def __init__(self, check_progress_interval_secs=30, max_attempts=100, verify=True):
         self._check_progress_interval_secs = check_progress_interval_secs
         self._max_attempts = max_attempts
+        self._verify = verify
 
     def analyze(self, host, summary_csv_file):
         data = self.start_new_scan(host=host)
+        if data.get("status") == "ERROR":
+            return
 
         # write the output to file
         json_file = os.path.join(os.path.dirname(summary_csv_file), f"{host}.json")
@@ -68,25 +74,47 @@ class SSLLabsClient():
             "all": all,
             "ignoreMismatch": ignoreMismatch
         }
-        results = self.request_api(path, payload)
+
+        response = self.request_api(path, payload)
+        results = response.json()
+
         payload.pop("startNew")
 
-        while results["status"] != "READY" and results["status"] != "ERROR":
-            print(f"Status: {results['status']}, wait for {self._check_progress_interval_secs} seconds...")
+        # status - assessment status; possible values: DNS, ERROR, IN_PROGRESS, and READY.
+        while response.status_code == 200 and results["status"] not in ["READY", "ERROR"]:
+            self.print_msg(response, "WAIT_FOR_COMPLETE")
             time.sleep(self._check_progress_interval_secs)
-            results = self.request_api(path, payload)
+            response = self.request_api(path, payload)
+            results = response.json()
+
+        if response.status_code != 200 or results["status"] == "ERROR":
+            self.print_msg(response, "FAILED_AND_SKIPPED", host)
+            return {"status": "ERROR", "statusMessage": results.get("statusMessage")}
+
         return results
 
     def request_api(self, url, payload):
-        response = requests.get(url, params=payload)
+        response = self.requests_get(url, payload)
         attempts = 0
-        while response.status_code != 200 and attempts < self._max_attempts:
-            print(f"Response code: {str(response.status_code)} - Error on requesting API. "
-                  f"Waiting {str(self._check_progress_interval_secs)} sec until next retry...")
+
+        # Supported error codes
+        #   400  # invocation error (e.g., invalid parameters)
+        #   429  # client request rate too high or too many new assessments too fast
+        #   500  # internal error
+        #   503  # the service is not available (e.g., down for maintenance)
+        #   529  # the service is overloaded
+        # See https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md
+
+        while response.status_code in [429, 529] and attempts < self._max_attempts:
+            self.print_msg(response, "WAIT_FOR_RETRY")
             attempts += 1
             time.sleep(self._check_progress_interval_secs)
-            response = requests.get(url, params=payload)
-        return response.json()
+            response = self.requests_get(url, payload)
+
+        return response
+
+    def requests_get(self, url, payload):
+        return requests.get(url, params=payload, verify=self._verify)
 
     @staticmethod
     def prepare_datetime(epoch_time):
@@ -99,7 +127,7 @@ class SSLLabsClient():
             na = self.prepare_datetime(data["certs"][0]["notAfter"])
             for ep in data["endpoints"]:
                 # Skip endpoints that were not contactable during the scan (e.g. GitHub Pages URLs with IPv6 endpoints)
-                if "Unable" in ep["statusMessage"]:
+                if "Unable" in ep.get("statusMessage", ""):
                     continue
                 # see SUMMARY_COL_NAMES
                 summary = [
@@ -131,3 +159,24 @@ class SSLLabsClient():
                     summary += ["Yes" if found is True else "No"]
 
                 outfile.write(",".join(str(s) for s in summary) + "\n")
+
+    def print_msg(self, response, msg_type, host=None):
+        results = response.json()
+        status_code = response.status_code
+        status = results["status"]
+        status_msg = results.get("statusMessage")
+
+        if msg_type == "WAIT_FOR_COMPLETE":
+            msg = f"Status: {status}, StatusMsg({status_msg}): waiting {self._check_progress_interval_secs} secs until next check..."
+        elif msg_type == "WAIT_FOR_RETRY":
+            msg = f"Error on requesting API: StatusCode({status_code}), Status({status}), StatusMsg({status_msg}). " \
+                  f"Waiting {self._check_progress_interval_secs} secs until next retry..."
+        elif msg_type == "FAILED_AND_SKIPPED":
+            msg = f"Failed to process ({host}): StatusCode({status_code}), Status({status}), StatusMsg({status_msg}). Skip this host."
+        else:
+            msg = f"StatusCode({status_code}), Status({status}), StatusMsg({status_msg})"
+
+        if msg_type == "DEBUG":
+            logging.info(msg)
+        else:
+            print(msg)

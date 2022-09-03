@@ -1,3 +1,9 @@
+# local run's outputs
+/styles.css
+/summary.csv
+/summary.html
+/*.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

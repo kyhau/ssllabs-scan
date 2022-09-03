@@ -46,8 +46,10 @@ def output_summary_html(input_csv, output_html):
 
 
 def process(
-        server_list_file, check_progress_interval_secs=30,
-        summary_csv=SUMMARY_CSV, summary_html=SUMMARY_HTML
+    server_list_file,
+    check_progress_interval_secs=30,
+    summary_csv=SUMMARY_CSV,
+    summary_html=SUMMARY_HTML
 ):
     ret = 0
     # read from input file
@@ -61,10 +63,10 @@ def process(
 
     for server in servers:
         try:
-            print("Start analyzing {} ...".format(server))
+            print(f"Start analyzing {server}...")
             SSLLabsClient(check_progress_interval_secs).analyze(server, summary_csv)
         except Exception as e:
-            traceback.print_stack()
+            traceback.print_exc()
             ret = 1
 
     output_summary_html(summary_csv, summary_html)

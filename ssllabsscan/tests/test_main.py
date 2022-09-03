@@ -1,13 +1,16 @@
-from mock import Mock
 import os
 
+from mock import Mock
 from ssllabsscan.main import process
 from ssllabsscan.ssllabs_client import SSLLabsClient
 
 
 def test_process(
-        sample_server_list_file, sample_ok_response,
-        output_summary_csv_file, output_summary_html_file, output_server_1_json_file
+    sample_server_list_file,
+    sample_ok_response,
+    output_summary_csv_file,
+    output_summary_html_file,
+    output_server_1_json_file
 ):
     mocked_request_ok_response_sequence = [
         {"status": "DNS"},

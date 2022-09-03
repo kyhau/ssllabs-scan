@@ -1,32 +1,54 @@
-# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
 name: "Build-Test"
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push]
 
 jobs:
   build:
-
+    name: Build and test
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8]
-
+        python-version: [3.7, 3.8, 3.9, "3.10"]
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout sources
+      uses: actions/checkout@master
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip virtualenv setuptools
         pip install -r requirements-build.txt
-    - name: Test with tox
+
+    - name: Set tox setting
+      id: ToxSetting
       run: |
-        tox -r
+        if [[ "${{ matrix.python-version }}" == "3.7" ]]
+        then
+          echo "::set-output name=toxenv::py37"
+        elif [[ "${{ matrix.python-version }}" == "3.8" ]]
+        then
+          echo "::set-output name=toxenv::py38"
+        elif [[ "${{ matrix.python-version }}" == "3.9" ]]
+        then
+          echo "::set-output name=toxenv::py39"
+        elif [[ "${{ matrix.python-version }}" == "3.10" ]]
+        then
+          echo "::set-output name=toxenv::py310"
+        else
+          exit 1
+        fi
+
+      - name: Test with tox
+        run: tox -r -e ${{ steps.ToxSetting.outputs.toxenv }}
+
+      - name: Upload coverage reports to Codecov
+        run: |
+          # Replace `linux` below with the appropriate OS
+          # Options are `alpine`, `linux`, `macos`, `windows`
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -t ${CODECOV_TOKEN}
