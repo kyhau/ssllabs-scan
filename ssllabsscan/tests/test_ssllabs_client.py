@@ -4,74 +4,78 @@ import pytest
 from mock import Mock
 from ssllabsscan.ssllabs_client import SSLLabsClient
 
-SAMPLE_DNS_RESPONSE = {"status": "DNS", "statusMessage": "Resolving domain names"}
-SAMPLE_INPROGRESS_RESPONSE = {"status": "IN_PROGRESS"}
+from .conftest import MockHttpResponse
+
 SAMPLE_UNABLE_TO_RESOLVE_DOMAIN_RESPONSE = {"status": "ERROR", "statusMessage": "Unable to resolve domain name"}
 
 
-class MockHttpResponse:
-    def __init__(self, status_code, data) -> None:
-        self.data = data
-        self.status_code = status_code
-
-    def json(self):
-        return dict(self.data)
-
-
-def test_ssl_labs_client_analyze(sample_ok_response, output_summary_csv_file, output_server_1_json_file):
+def test_ssl_labs_client_analyze(
+    sample_dns_response,
+    sample_in_progress_response,
+    sample_ready_response,
+    output_summary_csv_file,
+    output_server_1_json_file
+):
     mocked_request_ok_response_sequence = [
-        MockHttpResponse(200, SAMPLE_DNS_RESPONSE),
-        MockHttpResponse(200, SAMPLE_INPROGRESS_RESPONSE),
-        MockHttpResponse(200, sample_ok_response)
+        MockHttpResponse(200, sample_dns_response),
+        MockHttpResponse(200, sample_in_progress_response),
+        MockHttpResponse(200, sample_ready_response)
     ]
 
     client = SSLLabsClient(check_progress_interval_secs=1)
-    client.request_api = Mock(side_effect=mocked_request_ok_response_sequence)
+    client.requests_get = Mock(side_effect=mocked_request_ok_response_sequence)
 
-    client.analyze(host=sample_ok_response["host"], summary_csv_file=output_summary_csv_file)
+    client.analyze(host=sample_ready_response["host"], summary_csv_file=output_summary_csv_file)
 
     assert os.path.exists(output_server_1_json_file)
     assert os.path.exists(output_summary_csv_file)
 
 
-def test_ssl_labs_client_start_new_scan_valid_url(sample_ok_response):
+def test_ssl_labs_client_start_new_scan_valid_url(
+    sample_dns_response,
+    sample_in_progress_response,
+    sample_ready_response,
+):
     """Case 1: valid server url"""
 
     mocked_request_ok_response_sequence = [
-        MockHttpResponse(200, SAMPLE_DNS_RESPONSE),
-        MockHttpResponse(200, SAMPLE_INPROGRESS_RESPONSE),
-        MockHttpResponse(200, sample_ok_response)
+        MockHttpResponse(200, sample_dns_response),
+        MockHttpResponse(200, sample_in_progress_response),
+        MockHttpResponse(200, sample_ready_response)
     ]
 
     client1 = SSLLabsClient(check_progress_interval_secs=1)
-    client1.request_api = Mock(side_effect=mocked_request_ok_response_sequence)
+    client1.requests_get = Mock(side_effect=mocked_request_ok_response_sequence)
 
-    ret = client1.start_new_scan(host=sample_ok_response["host"])
+    ret = client1.start_new_scan(host=sample_ready_response["host"])
     assert ret["status"] == "READY"
-    assert ret["host"] == sample_ok_response["host"]
+    assert ret["host"] == sample_ready_response["host"]
     assert ret["endpoints"][0]["grade"]
 
 
-def test_ssl_labs_client_start_new_scan_invalid_url(sample_ok_response):
+def test_ssl_labs_client_start_new_scan_invalid_url(sample_dns_response):
     """Case 2: unable to resolve domain name"""
     mocked_request_err_response_sequence = [
-        MockHttpResponse(200, SAMPLE_DNS_RESPONSE),
+        MockHttpResponse(200, sample_dns_response),
         MockHttpResponse(200, SAMPLE_UNABLE_TO_RESOLVE_DOMAIN_RESPONSE)
     ]
 
     client2 = SSLLabsClient(check_progress_interval_secs=1)
-    client2.request_api = Mock(side_effect=mocked_request_err_response_sequence)
+    client2.requests_get = Mock(side_effect=mocked_request_err_response_sequence)
 
     ret = client2.start_new_scan(host="example2.com")
     assert ret["status"] == "ERROR"
     assert ret["statusMessage"] == "Unable to resolve domain name"
 
 
-def test_ssl_labs_client_start_new_scan_unexpected_error_code():
+def test_ssl_labs_client_start_new_scan_unexpected_error_code(
+    sample_dns_response,
+    sample_in_progress_response
+):
     # Case 3: received error codes other than the supported one
     mocked_request_err_response_sequence = [
-        MockHttpResponse(200, SAMPLE_DNS_RESPONSE),
-        MockHttpResponse(200, SAMPLE_INPROGRESS_RESPONSE),
+        MockHttpResponse(200, sample_dns_response),
+        MockHttpResponse(200, sample_in_progress_response),
         MockHttpResponse(441, {"status": "ERROR", "statusMessage": "some error"})
     ]
 

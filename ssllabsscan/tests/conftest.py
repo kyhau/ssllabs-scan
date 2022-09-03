@@ -7,11 +7,11 @@ from tempfile import mkdtemp
 
 import pytest
 
-#SAMPLE_OK_RESPONSE_FILE = join(dirname(realpath(__file__)), "sample_response_ready.json")
-#with open(SAMPLE_OK_RESPONSE_FILE) as f:
-#    SAMPLE_OK_RESPONSE = json.load(f)
+#SAMPLE_READY_RESPONSE_FILE = join(dirname(realpath(__file__)), "sample_response_ready.json")
+#with open(SAMPLE_READY_RESPONSE_FILE) as f:
+#    SAMPLE_READY_RESPONSE = json.load(f)
 
-SAMPLE_OK_RESPONSE = {
+SAMPLE_READY_RESPONSE = {
     "host": "example.com",
     "port": 443,
     "status": "READY",
@@ -59,9 +59,28 @@ SAMPLE_OK_RESPONSE = {
 }
 
 
+class MockHttpResponse:
+    def __init__(self, status_code, data) -> None:
+        self.data = data
+        self.status_code = status_code
+
+    def json(self):
+        return dict(self.data)
+
+
 @pytest.fixture(scope="function")
-def sample_ok_response():
-    return SAMPLE_OK_RESPONSE
+def sample_dns_response():
+    return {"status": "DNS", "statusMessage": "Resolving domain names"}
+
+
+@pytest.fixture(scope="function")
+def sample_in_progress_response():
+    return {"status": "IN_PROGRESS"}
+
+
+@pytest.fixture(scope="function")
+def sample_ready_response():
+    return SAMPLE_READY_RESPONSE
 
 
 @pytest.fixture(scope="session")
