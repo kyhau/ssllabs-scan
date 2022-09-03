@@ -1,7 +1,8 @@
 # SSL Labs Scan
 
-[![githubactions](https://github.com/kyhau/ssllabs-scan/workflows/Build-Test/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions)
+[![githubactions](https://github.com/kyhau/ssllabs-scan/workflows/Build-Test/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/ci-workflow.yaml)
 [![travisci](https://travis-ci.org/kyhau/ssllabs-scan.svg?branch=master)](https://travis-ci.org/kyhau/ssllabs-scan)
+[![CodeQL](https://github.com/kyhau/ssllabs-scan/workflows/CodeQL/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/codeql-analysis.yml)
 [![codecov](https://codecov.io/gh/kyhau/ssllabs-scan/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kyhau/ssllabs-scan/tree/main)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://en.wikipedia.org/wiki/MIT_License)
 
