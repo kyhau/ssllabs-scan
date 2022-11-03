@@ -61,6 +61,10 @@ def process(
 
     for server in servers:
         try:
+            # avoid empty lines and continuing
+            if len(server) < 2:
+                print(server + " is an invalid host, continuing...")
+                continue
             print("Start analyzing {} ...".format(server))
             SSLLabsClient(check_progress_interval_secs).analyze(server, summary_csv)
         except Exception as e:
