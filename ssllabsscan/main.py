@@ -55,7 +55,7 @@ def process(
     # read from input file
     with open(server_list_file) as f:
         content = f.readlines()
-    servers = [x.strip() for x in content]
+    servers = [x.strip() for x in content if x.strip()]
 
     with open(SUMMARY_CSV, "w") as outfile:
         # write column names to file
