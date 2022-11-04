@@ -115,6 +115,19 @@ def sample_server_list_file(unit_tests_tmp_output_dir):
 
 
 @pytest.fixture(scope="session")
+def sample_server_list_file_2(unit_tests_tmp_output_dir):
+    """
+    Create a sample server_list file in the tmp unit tests file.
+    Return the full path filename
+    """
+    server_list_file = os.path.join(unit_tests_tmp_output_dir, "test_server_list_2.txt")
+    with open(server_list_file, "w") as outfile:
+        # File has emptry newlines
+        outfile.write("\nexample.com\n\n")
+    return server_list_file
+
+
+@pytest.fixture(scope="session")
 def output_summary_csv_file(unit_tests_tmp_output_dir):
     return os.path.join(unit_tests_tmp_output_dir, "test_summary.csv")
 
