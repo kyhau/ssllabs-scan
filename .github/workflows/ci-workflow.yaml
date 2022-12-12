@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9, "3.10"]
+        python-version: [3.8, 3.9, "3.10", "3.11"]
     steps:
     - name: Checkout sources
-      uses: actions/checkout@master
+      uses: actions/checkout@v3
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
@@ -20,24 +20,24 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip virtualenv setuptools
+        python -m pip install --upgrade pip
         pip install -r requirements-build.txt
 
     - name: Set tox setting
       id: ToxSetting
       run: |
-        if [[ "${{ matrix.python-version }}" == "3.7" ]]
+        if [[ "${{ matrix.python-version }}" == "3.8" ]]
         then
-          echo "::set-output name=toxenv::py37"
-        elif [[ "${{ matrix.python-version }}" == "3.8" ]]
-        then
-          echo "::set-output name=toxenv::py38"
+          echo "toxenv=py38" >> $GITHUB_OUTPUT
         elif [[ "${{ matrix.python-version }}" == "3.9" ]]
         then
-          echo "::set-output name=toxenv::py39"
+          echo "toxenv=py39" >> $GITHUB_OUTPUT
         elif [[ "${{ matrix.python-version }}" == "3.10" ]]
         then
-          echo "::set-output name=toxenv::py310"
+          echo "toxenv=py310" >> $GITHUB_OUTPUT
+        elif [[ "${{ matrix.python-version }}" == "3.11" ]]
+        then
+          echo "toxenv=py311" >> $GITHUB_OUTPUT
         else
           exit 1
         fi

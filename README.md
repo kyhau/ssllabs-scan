@@ -12,7 +12,7 @@ All notable changes to this project will be documented in [CHANGELOG](./CHANGELO
 
 ---
 ## Built with
-- Python - support Python 3.7, 3.8, 3.9, 3.10.
+- Python - support Python 3.8, 3.9, 3.10, 3.11.
 - [Dependabot version updates](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates) is [enabled](.github/dependabot.yml) in this repository.
 - [CodeQL](https://codeql.github.com) is [enabled](.github/workflows/codeql-analysis.yml) in this repository.
 
