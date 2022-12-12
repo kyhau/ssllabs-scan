@@ -1,6 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+2.1.0 - 2022-12-13
+==================
+
+### Added
+- Support Python 3.11
+
+## Removed
+- No longer support Python 3.7
+
+
 2.0.1 - 2022-11-04
 ==================
 
