@@ -38,7 +38,7 @@ setup(
     install_requires=__requirements__,
     name=__title__,
     packages=find_packages(exclude=["tests"]),
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     url=__uri__,
     version=__version__,
     zip_safe=False,
