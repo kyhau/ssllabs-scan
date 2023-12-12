@@ -65,6 +65,23 @@ pip install -e .
 ssllabs-scan sample\SampleServerList.txt
 ```
 
+### Docker
+```
+# Build docker image
+docker build . --tag=ssllabsscan
+```
+Running Docker from commandline:
+```
+# create directory for input and output
+mkdir out
+# put serverlist in directory
+cp SampleServerlist.txt out
+# Run docker image with created directory mounted as /tmp
+# use -t option to prevent output buffering
+docker run --mount type=bind,source=./out,target=/tmp ssllabsscan  -o /tmp/output.html -s /tmp/output.csv /tmp/SampleServerList.txt
+# all html, csv, json output is in the out directory
+```
+
 ### Example console output
 ```
 $ ssllabs-scan sample/SampleServerList.txt
