@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+2.2.0 - 2023-12-13
+==================
+
+### Added
+- To enable isolation of the installation, a Dockerfile is added to build a container. ([#182](https://github.com/kyhau/ssllabs-scan/pull/182) @reinoud)
+- Since the container runs in a different environment, command-line arguments were added to facilitate output files in a different location. The default behaviour and normal usage of the script was not changed. ([#182](https://github.com/kyhau/ssllabs-scan/pull/182) @reinoud)
+
 2.1.0 - 2022-12-13
 ==================
 
