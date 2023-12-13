@@ -1,6 +1,7 @@
 """
 App's main
 """
+import argparse
 import csv
 import os
 import shutil
@@ -57,7 +58,7 @@ def process(
         content = f.readlines()
     servers = [x.strip() for x in content if x.strip()]
 
-    with open(SUMMARY_CSV, "w") as outfile:
+    with open(summary_csv, "w") as outfile:
         # write column names to file
         outfile.write("#{}\n".format(",".join(str(s) for s in SUMMARY_COL_NAMES)))
 
@@ -72,15 +73,44 @@ def process(
     output_summary_html(summary_csv, summary_html)
     return ret
 
+def parse_args():
+    """
+    Parse command line arguments.
+    """
+    parser = argparse.ArgumentParser(description="SSL Labs Scan")
+    parser.add_argument(
+        "inputfile",
+        help="Input file containing list of servers to scan",
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        dest="output",
+        default=SUMMARY_HTML,
+        help="Output file containing summary of scan results",
+    )
+    parser.add_argument(
+        "-s",
+        "--summary",
+        dest="summary",
+        default=SUMMARY_CSV,
+        help="Output file containing summary of scan results",
+    )
+    parser.add_argument(
+        "-p",
+        "--progress",
+        dest="progress",
+        default=30,
+        help="Progress check interval in seconds",
+    )
+    return parser.parse_args()
 
 def main():
     """
     Entry point of the app.
     """
-    if len(sys.argv) != 2:
-        print(f"{sys.argv[0]} [SERVER_LIST_FILE]")
-        return 1
-    return process(server_list_file=sys.argv[1])
+    args = parse_args()
+    return process(server_list_file=args.inputfile, check_progress_interval_secs=args.progress, summary_csv=args.summary, summary_html=args.output)
 
 
 if __name__ == "__main__":
