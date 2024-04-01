@@ -48,6 +48,7 @@ def output_summary_html(input_csv, output_html):
 
 def process(
     server_list_file,
+    email,
     check_progress_interval_secs=30,
     summary_csv=SUMMARY_CSV,
     summary_html=SUMMARY_HTML
@@ -65,7 +66,7 @@ def process(
     for server in servers:
         try:
             print(f"Start analyzing {server}...")
-            SSLLabsClient(check_progress_interval_secs).analyze(server, summary_csv)
+            SSLLabsClient(email, check_progress_interval_secs).analyze(server, summary_csv)
         except Exception as e:
             traceback.print_exc()
             ret = 1
@@ -81,6 +82,12 @@ def parse_args():
     parser.add_argument(
         "inputfile",
         help="Input file containing list of servers to scan",
+    )
+    parser.add_argument(
+        "-e",
+        "--email",
+        dest="email",
+        help="Registered-email required for Qualys SSLLabs API v4",
     )
     parser.add_argument(
         "-o",
@@ -110,7 +117,13 @@ def main():
     Entry point of the app.
     """
     args = parse_args()
-    return process(server_list_file=args.inputfile, check_progress_interval_secs=args.progress, summary_csv=args.summary, summary_html=args.output)
+    return process(
+        server_list_file=args.inputfile,
+        email=args.email,
+        check_progress_interval_secs=args.progress,
+        summary_csv=args.summary,
+        summary_html=args.output,
+    )
 
 
 if __name__ == "__main__":
