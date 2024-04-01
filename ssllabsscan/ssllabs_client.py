@@ -139,7 +139,7 @@ class SSLLabsClient():
                     FORWARD_SECRECY[str(ep["details"]["forwardSecrecy"])],
                     ep["details"]["heartbeat"],
                     ep["details"]["vulnBeast"],
-                    ep["details"]["drownVulnerable"],
+                    ep["details"].get("drownVulnerable"),
                     ep["details"]["heartbleed"],
                     ep["details"]["freak"],
                     False if ep["details"]["openSslCcs"] == 1 else True,

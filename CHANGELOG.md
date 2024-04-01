@@ -1,6 +1,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
+2.3.0 - 2024-04-01
+==================
+
+### Added
+- Support Python 3.12
+
+### Changed
+- Update code to handle [SSL Labs – Sunsetting DROWN Test](https://notifications.qualys.com/product/2024/03/28/ssl-labs-sunsetting-drown-test) (#195). Now `Vuln Drown` returns `None` in csv and html reports.
+
+## Removed
+- No longer support Python 3.8
+
+
 2.2.0 - 2023-12-13
 ==================
 

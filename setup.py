@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 __title__ = "ssllabsscan"
-__version__ = "2.2.0"
+__version__ = "2.3.0"
 __author__ = "Kay Hau"
 __email__ = "virtualda@gmail.com"
 __uri__ = "https://github.com/kyhau/ssllabs-scan"
@@ -19,10 +19,10 @@ __entry_points__ = {
 
 CLASSIFIERS = [
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3 :: Only",
 ]
 
@@ -38,7 +38,7 @@ setup(
     install_requires=__requirements__,
     name=__title__,
     packages=find_packages(exclude=["tests"]),
-    python_requires=">=3.8",
+    python_requires=">=3.9",
     url=__uri__,
     version=__version__,
     zip_safe=False,
