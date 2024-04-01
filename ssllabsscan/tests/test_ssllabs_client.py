@@ -2,6 +2,7 @@ import os
 
 import pytest
 from mock import Mock
+
 from ssllabsscan.ssllabs_client import SSLLabsClient
 
 from .conftest import MockHttpResponse
@@ -13,6 +14,7 @@ def test_ssl_labs_client_analyze(
     sample_dns_response,
     sample_in_progress_response,
     sample_ready_response,
+    email_1,
     output_summary_csv_file,
     output_server_1_json_file
 ):
@@ -22,7 +24,7 @@ def test_ssl_labs_client_analyze(
         MockHttpResponse(200, sample_ready_response)
     ]
 
-    client = SSLLabsClient(check_progress_interval_secs=1)
+    client = SSLLabsClient(email=email_1, check_progress_interval_secs=1)
     client.requests_get = Mock(side_effect=mocked_request_ok_response_sequence)
 
     client.analyze(host=sample_ready_response["host"], summary_csv_file=output_summary_csv_file)
@@ -35,6 +37,7 @@ def test_ssl_labs_client_start_new_scan_valid_url(
     sample_dns_response,
     sample_in_progress_response,
     sample_ready_response,
+    email_1
 ):
     """Case 1: valid server url"""
 
@@ -44,7 +47,7 @@ def test_ssl_labs_client_start_new_scan_valid_url(
         MockHttpResponse(200, sample_ready_response)
     ]
 
-    client1 = SSLLabsClient(check_progress_interval_secs=1)
+    client1 = SSLLabsClient(email=email_1, check_progress_interval_secs=1)
     client1.requests_get = Mock(side_effect=mocked_request_ok_response_sequence)
 
     ret = client1.start_new_scan(host=sample_ready_response["host"])
@@ -53,14 +56,14 @@ def test_ssl_labs_client_start_new_scan_valid_url(
     assert ret["endpoints"][0]["grade"]
 
 
-def test_ssl_labs_client_start_new_scan_invalid_url(sample_dns_response):
+def test_ssl_labs_client_start_new_scan_invalid_url(sample_dns_response, email_1):
     """Case 2: unable to resolve domain name"""
     mocked_request_err_response_sequence = [
         MockHttpResponse(200, sample_dns_response),
         MockHttpResponse(200, SAMPLE_UNABLE_TO_RESOLVE_DOMAIN_RESPONSE)
     ]
 
-    client2 = SSLLabsClient(check_progress_interval_secs=1)
+    client2 = SSLLabsClient(email=email_1, check_progress_interval_secs=1)
     client2.requests_get = Mock(side_effect=mocked_request_err_response_sequence)
 
     ret = client2.start_new_scan(host="example2.com")
@@ -70,7 +73,8 @@ def test_ssl_labs_client_start_new_scan_invalid_url(sample_dns_response):
 
 def test_ssl_labs_client_start_new_scan_unexpected_error_code(
     sample_dns_response,
-    sample_in_progress_response
+    sample_in_progress_response,
+    email_1
 ):
     # Case 3: received error codes other than the supported one
     mocked_request_err_response_sequence = [
@@ -79,7 +83,7 @@ def test_ssl_labs_client_start_new_scan_unexpected_error_code(
         MockHttpResponse(441, {"status": "ERROR", "statusMessage": "some error"})
     ]
 
-    client3 = SSLLabsClient(check_progress_interval_secs=1)
+    client3 = SSLLabsClient(email=email_1, check_progress_interval_secs=1)
     client3.requests_get = Mock(side_effect=mocked_request_err_response_sequence)
 
     ret = client3.start_new_scan(host="example3.com")

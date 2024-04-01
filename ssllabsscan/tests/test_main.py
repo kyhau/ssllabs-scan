@@ -13,6 +13,7 @@ def common_tests(
     sample_dns_response,
     sample_in_progress_response,
     sample_ready_response,
+    email,
     output_summary_csv_file,
     output_summary_html_file,
     output_server_1_json_file
@@ -27,6 +28,7 @@ def common_tests(
 
     assert 0 == process(
         sample_input_file,
+        email,
         check_progress_interval_secs=1,
         summary_csv=output_summary_csv_file,
         summary_html=output_summary_html_file
@@ -42,6 +44,7 @@ def test_main_process_1(
     sample_dns_response,
     sample_in_progress_response,
     sample_ready_response,
+    email_1,
     output_summary_csv_file,
     output_summary_html_file,
     output_server_1_json_file
@@ -51,6 +54,7 @@ def test_main_process_1(
         sample_dns_response,
         sample_in_progress_response,
         sample_ready_response,
+        email_1,
         output_summary_csv_file,
         output_summary_html_file,
         output_server_1_json_file
@@ -62,6 +66,7 @@ def test_main_process_2(
     sample_dns_response,
     sample_in_progress_response,
     sample_ready_response,
+    email_2,
     output_summary_csv_file,
     output_summary_html_file,
     output_server_1_json_file
@@ -71,6 +76,7 @@ def test_main_process_2(
         sample_dns_response,
         sample_in_progress_response,
         sample_ready_response,
+        email_2,
         output_summary_csv_file,
         output_summary_html_file,
         output_server_1_json_file
