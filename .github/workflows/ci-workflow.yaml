@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.9, "3.10", "3.11"]
+        python-version: [3.9, "3.10", 3.11, 3.12]
     steps:
     - name: Checkout sources
       uses: actions/checkout@v4
@@ -26,18 +26,18 @@ jobs:
     - name: Set tox setting
       id: ToxSetting
       run: |
-        if [[ "${{ matrix.python-version }}" == "3.8" ]]
+        if [[ "${{ matrix.python-version }}" == "3.12" ]]
         then
-          echo "toxenv=py38" >> $GITHUB_OUTPUT
-        elif [[ "${{ matrix.python-version }}" == "3.9" ]]
-        then
-          echo "toxenv=py39" >> $GITHUB_OUTPUT
-        elif [[ "${{ matrix.python-version }}" == "3.10" ]]
-        then
-          echo "toxenv=py310" >> $GITHUB_OUTPUT
+          echo "toxenv=py312" >> $GITHUB_OUTPUT
         elif [[ "${{ matrix.python-version }}" == "3.11" ]]
         then
           echo "toxenv=py311" >> $GITHUB_OUTPUT
+        elif [[ "${{ matrix.python-version }}" == "3.10" ]]
+        then
+          echo "toxenv=py310" >> $GITHUB_OUTPUT
+        elif [[ "${{ matrix.python-version }}" == "3.9" ]]
+        then
+          echo "toxenv=py39" >> $GITHUB_OUTPUT
         else
           exit 1
         fi
