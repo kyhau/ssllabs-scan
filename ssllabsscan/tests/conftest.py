@@ -128,6 +128,16 @@ def sample_server_list_file_2(unit_tests_tmp_output_dir):
 
 
 @pytest.fixture(scope="session")
+def email_1():
+    return None
+
+
+@pytest.fixture(scope="session")
+def email_2():
+    return "dummy@example.com"
+
+
+@pytest.fixture(scope="session")
 def output_summary_csv_file(unit_tests_tmp_output_dir):
     return os.path.join(unit_tests_tmp_output_dir, "test_summary.csv")
 

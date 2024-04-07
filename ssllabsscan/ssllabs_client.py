@@ -11,7 +11,9 @@ import requests
 
 logging.getLogger().setLevel(logging.INFO)
 
-API_URL = "https://api.ssllabs.com/api/v3/analyze"
+API_V4_URL = "https://api.ssllabs.com/api/v4/analyze"
+API_V3_URL = "https://api.ssllabs.com/api/v3/analyze"
+
 
 CHAIN_ISSUES = {
     "0": "none",
@@ -47,7 +49,8 @@ SUMMARY_COL_NAMES = [
 
 
 class SSLLabsClient():
-    def __init__(self, check_progress_interval_secs=30, max_attempts=100, verify=True):
+    def __init__(self, email, check_progress_interval_secs=30, max_attempts=100, verify=True):
+        self.email = email
         self._check_progress_interval_secs = check_progress_interval_secs
         self._max_attempts = max_attempts
         self._verify = verify
@@ -66,7 +69,6 @@ class SSLLabsClient():
         self.append_summary_csv(summary_csv_file, host, data)
 
     def start_new_scan(self, host, publish="off", startNew="off", all="done", ignoreMismatch="on"):
-        path = API_URL
         payload = {
             "host": host,
             "publish": publish,
@@ -75,7 +77,7 @@ class SSLLabsClient():
             "ignoreMismatch": ignoreMismatch
         }
 
-        response = self.request_api(path, payload)
+        response = self.request_api(payload)
         results = response.json()
 
         payload.pop("startNew")
@@ -84,7 +86,7 @@ class SSLLabsClient():
         while response.status_code == 200 and results["status"] not in ["READY", "ERROR"]:
             self.print_msg(response, "WAIT_FOR_COMPLETE")
             time.sleep(self._check_progress_interval_secs)
-            response = self.request_api(path, payload)
+            response = self.request_api(payload)
             results = response.json()
 
         if response.status_code != 200 or results["status"] == "ERROR":
@@ -93,8 +95,8 @@ class SSLLabsClient():
 
         return results
 
-    def request_api(self, url, payload):
-        response = self.requests_get(url, payload)
+    def request_api(self, payload):
+        response = self.requests_get(payload)
         attempts = 0
 
         # Supported error codes
@@ -109,12 +111,18 @@ class SSLLabsClient():
             self.print_msg(response, "WAIT_FOR_RETRY")
             attempts += 1
             time.sleep(self._check_progress_interval_secs)
-            response = self.requests_get(url, payload)
+            response = self.requests_get(payload)
 
         return response
 
-    def requests_get(self, url, payload):
-        return requests.get(url, params=payload, verify=self._verify)
+    def requests_get(self, payload):
+        kargs = {}
+        url = API_V3_URL
+        if self.email:
+            kargs = {"headers": {"email": self.email}}
+            url = API_V4_URL
+
+        return requests.get(url, params=payload, verify=self._verify, **kargs)
 
     @staticmethod
     def prepare_datetime(epoch_time):

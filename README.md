@@ -6,7 +6,10 @@
 [![SecretsScan](https://github.com/kyhau/ssllabs-scan/actions/workflows/secrets-scan.yml/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/secrets-scan.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://en.wikipedia.org/wiki/MIT_License)
 
-This tool calls the SSL Labs [API v3](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md) to do SSL testings on the given hosts, and generates csv and html reports.
+This tool calls the SSL Labs API to do SSL testings on the given hosts, and generates csv and html reports.
+- The tool uses [API v4](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v4.md) if you provide your registered email with Qualys SSLLabs via the `--email` argument.
+- The tool uses [API v3](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md) if you do not specify the `--email` argument. Note that v3 will be being deprecated in 2024 by Qualys.
+
 
 All notable changes to this project will be documented in [CHANGELOG](./CHANGELOG.md).
 
@@ -33,6 +36,12 @@ You can change the report template and styles in these files:
 - [ssllabsscan/report_template.py](./ssllabsscan/report_template.py)
 - [ssllabsscan/styles.css](./ssllabsscan/styles.css)
 
+---
+## Important Notes
+
+ℹ️ Please note that from Qualys SSLLabs API v4, you must use a one-time registration with Qualys SSLLabs. For details see [Introduction of API v4 for Qualys SSLLabs and deprecation of API v3](https://notifications.qualys.com/api/2023/09/28/introduction-of-api-v4-for-qualys-ssllabs-and-deprecation-of-api-v3).
+> The API v3 API will be available until the end of 2023 (Dec 31st 2023), and starting from 1st January 2024, we will be deprecating the API v3 support for SSL Labs. Request all customers to move to API v4.
+
 ℹ️ Please note that the SSL Labs Assessment API has access rate limits. You can find more details in the sections "Error Response Status Codes" and "Access Rate and Rate Limiting" in the official [SSL Labs API Documentation](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md). Some common status codes are:
 - 400 - invocation error (e.g., invalid parameters)
 - 429 - client request rate too high or too many new assessments too fast
@@ -49,9 +58,14 @@ You can change the report template and styles in these files:
 virtualenv env
 . env/bin/activate
 
-# Install and run
+# Install
 pip install -e .
+
+# Run with v3 (v3, which does not required a registered email, will be being deprecated in 2024)
 ssllabs-scan sample/SampleServerList.txt
+
+# Run with v4
+ssllabs-scan sample/SampleServerList.txt --email <your registered email with Qualys SSLLabs>
 ```
 
 ### Windows
@@ -60,9 +74,14 @@ ssllabs-scan sample/SampleServerList.txt
 virtualenv env
 env\Scripts\activate
 
-# Install and run
+# Install
 pip install -e .
+
+# Run with v3 (v3, which does not required a registered email, will be being deprecated in 2024)
 ssllabs-scan sample\SampleServerList.txt
+
+# Run with v4
+ssllabs-scan sample\SampleServerList.txt --email <your registered email with Qualys SSLLabs>
 ```
 
 ### Docker

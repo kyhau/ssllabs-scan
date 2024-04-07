@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+3.0.0 - 2024-04-02
+==================
+
+### Changed
+- Support Qualys SSLLabs API v4 (#189)
+   - The tool uses [API v4](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v4.md) if you provide your registered email with Qualys SSLLabs via the `--email` argument.
+   - The tool uses [API v3](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md) if you do not specify the `--email` argument. Note that v3 will be being deprecated in 2024 by Qualys.
+
 
 2.3.0 - 2024-04-01
 ==================
