@@ -29,7 +29,7 @@ def output_summary_html(input_csv, output_html):
             if row[0].startswith("#"):
                 data += "  <tr>\n\t<th>{}</th>\n  </tr>".format('</th>\n\t<th>'.join(row))
             else:
-                data += '\n  <tr class="{}">\n\t<td>{}</td>\n  </tr>'.format(row[1][:1], '</td>\n\t<td>'.join(row))
+                data += '\n  <tr class="{}">\n\t<td>{}</td>\n  </tr>'.format(row[2][:1], '</td>\n\t<td>'.join(row))
 
     # Replace the target string
     content = REPORT_HTML

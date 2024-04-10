@@ -44,7 +44,7 @@ VULNERABLES = [
 ]
 
 SUMMARY_COL_NAMES = [
-    "Host", "Grade", "HasWarnings", "Cert Expiry", "Chain Status", "Forward Secrecy", "Heartbeat ext"
+    "Host", "IP", "Grade", "HasWarnings", "Cert Expiry", "Chain Status", "Forward Secrecy", "Heartbeat ext"
 ] + VULNERABLES + RC4 + PROTOCOLS
 
 
@@ -140,6 +140,7 @@ class SSLLabsClient():
                 # see SUMMARY_COL_NAMES
                 summary = [
                     host,
+                    ep.get("ipAddress"),
                     ep["grade"],
                     ep["hasWarnings"],
                     na,

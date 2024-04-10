@@ -18,6 +18,7 @@ SAMPLE_READY_RESPONSE = {
     "protocol": "HTTP",
     "endpoints": [
         {
+            "ipAddress": "142.250.72.174",
             "statusMessage": "Ready",
             "grade": "A+",
             "hasWarnings": False,
