@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+3.1.0 - 2024-04-10
+==================
+
+### Changed
+- Add IP address to html report (column 2) (#200)
+
+
 3.0.0 - 2024-04-02
 ==================
 
