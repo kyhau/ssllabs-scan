@@ -1,7 +1,7 @@
 # This file is used for running tox, flake8 and building the wheel
 pip~=24.2
-virtualenv~=20.26
+virtualenv~=20.27
 setuptools>=70.0.0 # not directly required, pinned by Snyk to avoid a vulnerability
 logilab-common~=2.0
 m2r~=0.3
-tox~=4.21
+tox~=4.23
