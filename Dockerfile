@@ -1,10 +1,22 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11-slim-buster
+FROM python:3.13.1-slim-bookworm
 
-COPY . /
+# Install poetry
+RUN pip install --no-cache-dir poetry==1.8.5
 
-# Install ssllabsscan module
-RUN pip3 install .
-COPY sample/styles.css /usr/local/lib/python3.11/site-packages/ssllabsscan/styles.css
+WORKDIR /app
 
-ENTRYPOINT  [ "ssllabs-scan" ]
+# Copy only dependency files first for better caching
+COPY pyproject.toml poetry.lock* ./
+
+# Install dependencies without dev dependencies
+RUN poetry config virtualenvs.create false && \
+    poetry install --only main --no-interaction --no-ansi
+
+# Copy the rest of the application
+COPY . .
+
+# Copy styles.css to the correct location
+RUN cp sample/styles.css /usr/local/lib/python3.13/site-packages/ssllabsscan/styles.css
+
+ENTRYPOINT [ "ssllabs-scan" ]

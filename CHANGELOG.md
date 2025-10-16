@@ -1,6 +1,33 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+4.0.0 - 2025-10-12
+==================
+
+### Added
+- Support for Python 3.13
+- Makefile for task automation with commands like `make test`, `make build`, `make lint`
+- MIGRATION.md guide for transitioning from tox to Poetry
+
+### Changed
+- **BREAKING**: Minimum Python version is now 3.11 (dropped 3.9 and 3.10 support)
+- Migrated from tox to Poetry for dependency management
+- Updated CI/CD workflows to use Poetry and Make commands
+- Modernized build system to use PEP 517/518 standards (pyproject.toml only)
+- All project configuration consolidated in pyproject.toml
+- Updated Dockerfile to use Python 3.13
+- All dev dependencies now pinned to exact versions for security
+
+### Removed
+- Python 3.9 and 3.10 support (minimum version now 3.11)
+- tox.ini (replaced by Poetry + Makefile)
+- setup.py (replaced by pyproject.toml)
+- requirements-test.txt (replaced by pyproject.toml dev dependencies)
+- requirements-build.txt (no longer needed with Poetry)
+- constraints.txt (replaced by poetry.lock)
+- MANIFEST.in (replaced by include field in pyproject.toml)
+- .travis.yml (legacy CI, now using GitHub Actions)
+
 3.1.0 - 2024-04-10
 ==================
 

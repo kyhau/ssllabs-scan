@@ -1,0 +1,118 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ssllabsscan"
+version = "4.0.0"
+description = "SSL Labs Analysis Reporting"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Kay Hau", email = "virtualda@gmail.com"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+    "requests==2.32.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/kyhau/ssllabs-scan"
+Repository = "https://github.com/kyhau/ssllabs-scan"
+
+[project.scripts]
+ssllabs-scan = "ssllabsscan.main:main"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*", "ssllabsscan.tests*"]
+
+[tool.setuptools]
+zip-safe = false
+
+# Test dependencies
+[project.optional-dependencies]
+test = [
+    "pytest==8.4.0",
+    "pytest-cov==7.0.0",
+    "pytest-gitignore==1.3.0",
+    "pytest-mock==3.15.0",
+    "coverage==7.10.6",
+    "mock==5.2.0",
+    "flake8==7.3.0",
+]
+
+# Build dependencies (for development)
+dev = [
+    "setuptools==80.9.0",
+    "wheel==0.45.0",
+    "yamllint==1.35.0",
+]
+
+# Poetry-specific configuration (for compatibility)
+[tool.poetry]
+name = "ssllabsscan"
+version = "4.0.0"
+description = "SSL Labs Analysis Reporting"
+authors = ["Kay Hau <virtualda@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "ssllabsscan"}]
+exclude = ["ssllabsscan/tests"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+requests = "2.32.3"
+
+[tool.poetry.group.test.dependencies]
+pytest = "8.4.0"
+pytest-cov = "7.0.0"
+pytest-gitignore = "1.3.0"
+pytest-mock = "3.15.0"
+coverage = "7.10.6"
+mock = "5.2.0"
+flake8 = "7.3.0"
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "80.9.0"
+wheel = "0.45.0"
+yamllint = "1.35.0"
+
+[tool.poetry.scripts]
+ssllabs-scan = "ssllabsscan.main:main"
+
+# Pytest configuration
+[tool.pytest.ini_options]
+testpaths = ["ssllabsscan/tests"]
+norecursedirs = ["env", ".git", "dist", "build", ".venv"]
+xfail_strict = true
+junit_family = "xunit2"
+addopts = "--strict-markers"
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["ssllabsscan"]
+omit = [
+    "*/__init__.py",
+    "*/tests/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
