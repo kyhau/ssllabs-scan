@@ -1,0 +1,49 @@
+---
+description: Makefile-based development workflow for ssllabs-scan
+globs: ["Makefile", "pyproject.toml", "ssllabsscan/**"]
+alwaysApply: true
+---
+
+# ssllabs-scan Development Workflow
+
+## Build and Test Commands
+Use the Makefile for all build and test operations:
+
+### Build Commands
+- `make build` - Build the Python package
+- `make install-deps` - Install project dependencies
+- `make install-test-deps` - Install test dependencies
+
+### Test Commands
+- `make test` - Run unit tests without coverage
+- `make test-coverage` - Run unit tests with coverage reporting
+- `make yamllint` - Run yamllint on GitHub workflow files
+
+### Development Commands
+- `make clean` - Clean test artifacts, build artifacts and temporary files
+- `make help` - Show all available targets
+
+## Project Structure
+- Main package: `ssllabsscan/`
+- Tests: `ssllabsscan/tests/`
+- CLI entry point: `ssllabs-scan` (defined in pyproject.toml)
+- Configuration: `pyproject.toml`
+
+## Development Workflow
+1. Install dependencies: `make install-deps`
+2. Run tests: `make test` or `make test-coverage`
+3. Build package: `make build`
+4. Run application: `ssllabs-scan` (after installation)
+5. Clean artifacts: `make clean`
+
+## Python Environment
+- Python 3.11+ required (uses Python 3.13 via Poetry)
+- Uses Poetry for Python package management
+- Uses setuptools for building
+- Dependencies managed via pyproject.toml
+- Test dependencies in optional-dependencies.test
+
+## Code Quality
+- Use `make yamllint` for YAML linting
+- Use `make test-coverage` for comprehensive testing
+- Clean up with `make clean` before commits

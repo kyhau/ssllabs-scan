@@ -5,7 +5,7 @@ import json
 import logging
 import os
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 
 import requests
 
@@ -127,7 +127,7 @@ class SSLLabsClient():
     @staticmethod
     def prepare_datetime(epoch_time):
         # SSL Labs returns an 13-digit epoch time that contains milliseconds, Python only expects 10 digits (seconds)
-        return datetime.utcfromtimestamp(float(str(epoch_time)[:10])).strftime("%Y-%m-%d")
+        return datetime.fromtimestamp(float(str(epoch_time)[:10]), timezone.utc).strftime("%Y-%m-%d")
 
     def append_summary_csv(self, summary_file, host, data):
         # write the summary to file

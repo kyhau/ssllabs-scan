@@ -1,6 +1,6 @@
 # SSL Labs Scan
 
-[![githubactions](https://github.com/kyhau/ssllabs-scan/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/ci-workflow.yaml)
+[![githubactions](https://github.com/kyhau/ssllabs-scan/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/build-and-test.yml)
 [![codecov](https://codecov.io/gh/kyhau/ssllabs-scan/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kyhau/ssllabs-scan/tree/main)
 [![CodeQL](https://github.com/kyhau/ssllabs-scan/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/codeql-analysis.yml)
 [![SecretsScan](https://github.com/kyhau/ssllabs-scan/actions/workflows/secrets-scan.yml/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/secrets-scan.yml)
@@ -15,7 +15,7 @@ All notable changes to this project will be documented in [CHANGELOG](./CHANGELO
 
 ---
 ## Built with
-- Python - support Python 3.9, 3.10, 3.11, 3.12.
+- Python - support Python 3.11, 3.12, 3.13.
 - [CodeQL](https://codeql.github.com) is [enabled](.github/workflows/codeql-analysis.yml) in this repository.
 - [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates) is [enabled](.github/dependabot.yml) for auto dependency updates.
 - [Gitleaks](https://github.com/gitleaks/gitleaks) and [TruffleHog](https://github.com/trufflesecurity/trufflehog) are enabled in this GitHub Actions [workflow](.github/workflows/secrets-scan.yml) for detecting and preventing hardcoded secrets.
@@ -52,36 +52,36 @@ You can change the report template and styles in these files:
 ---
 ## Build and run
 
-### Linux
+### Using Poetry (Recommended)
+```bash
+# Install dependencies
+make install
+
+# Or manually with poetry
+poetry install --only main
+
+# Run with v3 (v3, which does not required a registered email, will be being deprecated in 2024)
+poetry run ssllabs-scan sample/SampleServerList.txt
+
+# Run with v4
+poetry run ssllabs-scan sample/SampleServerList.txt --email <your registered email with Qualys SSLLabs>
 ```
+
+### Using pip (Alternative)
+```bash
 # Create and activate a new virtual env (optional)
-virtualenv env
-. env/bin/activate
+python -m venv env
+source env/bin/activate  # On Linux/Mac
+# env\Scripts\activate  # On Windows
 
 # Install
 pip install -e .
 
-# Run with v3 (v3, which does not required a registered email, will be being deprecated in 2024)
+# Run with v3
 ssllabs-scan sample/SampleServerList.txt
 
 # Run with v4
 ssllabs-scan sample/SampleServerList.txt --email <your registered email with Qualys SSLLabs>
-```
-
-### Windows
-```
-# Create and activate a new virtual env (optional)
-virtualenv env
-env\Scripts\activate
-
-# Install
-pip install -e .
-
-# Run with v3 (v3, which does not required a registered email, will be being deprecated in 2024)
-ssllabs-scan sample\SampleServerList.txt
-
-# Run with v4
-ssllabs-scan sample\SampleServerList.txt --email <your registered email with Qualys SSLLabs>
 ```
 
 ### Docker
@@ -119,9 +119,76 @@ Status: IN_PROGRESS, StatusMsg(None): waiting 30 secs until next check...
 Creating summary.html ...
 ```
 
-## Run Tox tests and build the wheels
+## Development
 
+**Note**: This project uses Poetry for dependency management and Makefile for task automation.
+
+### Setup Development Environment
+
+```bash
+# Install Poetry (if not already installed)
+curl -sSL https://install.python-poetry.org | python3 -
+
+# Install dependencies with dev packages
+make install-dev
+
+# Or manually with poetry
+poetry install
 ```
-pip install -r requirements-build.txt
-tox -r
+
+### Available Make Commands
+
+Run `make help` to see all available commands. Common commands:
+
+```bash
+# Install dependencies
+make install          # Production dependencies only
+make install-dev      # All dependencies including dev
+
+# Testing
+make test            # Run tests
+make test-all        # Run tests on all Python versions (3.9-3.12)
+make coverage        # Run tests with coverage report
+make check-deps      # Check dependency security and compatibility
+
+# Code Quality
+make lint            # Run flake8 linter
+
+# Build and Release
+make build           # Build wheel package
+make clean           # Clean build artifacts
+
+# Version Management
+make version         # Show current version
+make version-patch   # Bump patch version (0.0.X)
+make version-minor   # Bump minor version (0.X.0)
+make version-major   # Bump major version (X.0.0)
+
+# Utilities
+make update          # Update dependencies
+make show-deps       # Show dependency tree
+make ci              # Run all CI checks (test, coverage, lint)
+make all             # Run complete workflow
+
+# See all available commands
+make help
+```
+
+### Manual Poetry Commands
+
+```bash
+# Run tests manually
+poetry run pytest
+
+# Run tests with coverage
+poetry run pytest --cov=ssllabsscan --cov-report=html
+
+# Run linter
+poetry run flake8 ssllabsscan
+
+# Build package
+poetry build
+
+# Update dependencies
+poetry update
 ```
