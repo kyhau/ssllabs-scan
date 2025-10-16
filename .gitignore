@@ -54,3 +54,5 @@ Thumbs.db
 styles.css
 summary.csv
 summary.html
+ssllabsscan/tests/sample_response_error.json
+ssllabsscan/tests/sample_response_ready.json
