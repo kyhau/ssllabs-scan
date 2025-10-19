@@ -1,5 +1,6 @@
 version: 2
 updates:
+  # GitHub Actions dependencies
   - package-ecosystem: github-actions
     directory: "/"
     groups:
@@ -11,18 +12,7 @@ updates:
       time: "08:00"
       timezone: Australia/Melbourne
 
-  - package-ecosystem: pip
-    directory: "/"
-    groups:
-      all-dependencies:
-        patterns:
-          - "*"
-    schedule:
-      interval: weekly
-      time: "09:00"
-      timezone: Australia/Melbourne
-    open-pull-requests-limit: 1
-
+  # Python dependencies managed by Poetry
   - package-ecosystem: poetry
     directory: "/"
     groups:
@@ -31,6 +21,6 @@ updates:
           - "*"
     schedule:
       interval: weekly
-      time: "09:30"
+      time: "08:00"
       timezone: Australia/Melbourne
     open-pull-requests-limit: 1

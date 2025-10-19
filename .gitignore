@@ -1,3 +1,6 @@
+tests/sample_response_error.json
+tests/sample_response_ready.json
+
 # Python
 __pycache__/
 *.py[cod]
@@ -49,10 +52,3 @@ __pypackages__/
 # OS
 .DS_Store
 Thumbs.db
-
-# Application-specific outputs (generated files)
-styles.css
-summary.csv
-summary.html
-ssllabsscan/tests/sample_response_error.json
-ssllabsscan/tests/sample_response_ready.json

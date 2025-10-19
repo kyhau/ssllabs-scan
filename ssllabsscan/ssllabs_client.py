@@ -1,6 +1,7 @@
 """
 See API doc: https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs.md
 """
+
 import json
 import logging
 import os
@@ -32,23 +33,39 @@ FORWARD_SECRECY = {
     "4": "Yes (with most browsers) ROBUST",
 }
 
-PROTOCOLS = [
-    "TLS 1.3", "TLS 1.2", "TLS 1.1", "TLS 1.0", "SSL 3.0 INSECURE", "SSL 2.0 INSECURE"
-]
+PROTOCOLS = ["TLS 1.3", "TLS 1.2", "TLS 1.1", "TLS 1.0", "SSL 3.0 INSECURE", "SSL 2.0 INSECURE"]
 
 RC4 = ["Support RC4", "RC4 with modern protocols", "RC4 Only"]
 
 VULNERABLES = [
-    "Vuln Beast", "Vuln Drown", "Vuln Heartbleed", "Vuln FREAK",
-    "Vuln openSsl Ccs", "Vuln openSSL LuckyMinus20", "Vuln POODLE", "Vuln POODLE TLS"
+    "Vuln Beast",
+    "Vuln Drown",
+    "Vuln Heartbleed",
+    "Vuln FREAK",
+    "Vuln openSsl Ccs",
+    "Vuln openSSL LuckyMinus20",
+    "Vuln POODLE",
+    "Vuln POODLE TLS",
 ]
 
-SUMMARY_COL_NAMES = [
-    "Host", "IP", "Grade", "HasWarnings", "Cert Expiry", "Chain Status", "Forward Secrecy", "Heartbeat ext"
-] + VULNERABLES + RC4 + PROTOCOLS
+SUMMARY_COL_NAMES = (
+    [
+        "Host",
+        "IP",
+        "Grade",
+        "HasWarnings",
+        "Cert Expiry",
+        "Chain Status",
+        "Forward Secrecy",
+        "Heartbeat ext",
+    ]
+    + VULNERABLES
+    + RC4
+    + PROTOCOLS
+)
 
 
-class SSLLabsClient():
+class SSLLabsClient:
     def __init__(self, email, check_progress_interval_secs=30, max_attempts=100, verify=True):
         self.email = email
         self._check_progress_interval_secs = check_progress_interval_secs
@@ -74,7 +91,7 @@ class SSLLabsClient():
             "publish": publish,
             "startNew": startNew,
             "all": all,
-            "ignoreMismatch": ignoreMismatch
+            "ignoreMismatch": ignoreMismatch,
         }
 
         response = self.request_api(payload)
@@ -126,15 +143,19 @@ class SSLLabsClient():
 
     @staticmethod
     def prepare_datetime(epoch_time):
-        # SSL Labs returns an 13-digit epoch time that contains milliseconds, Python only expects 10 digits (seconds)
-        return datetime.fromtimestamp(float(str(epoch_time)[:10]), timezone.utc).strftime("%Y-%m-%d")
+        # SSL Labs returns an 13-digit epoch time that contains milliseconds,
+        # Python only expects 10 digits (seconds)
+        return datetime.fromtimestamp(float(str(epoch_time)[:10]), timezone.utc).strftime(
+            "%Y-%m-%d"
+        )
 
     def append_summary_csv(self, summary_file, host, data):
         # write the summary to file
         with open(summary_file, "a") as outfile:
             na = self.prepare_datetime(data["certs"][0]["notAfter"])
             for ep in data["endpoints"]:
-                # Skip endpoints that were not contactable during the scan (e.g. GitHub Pages URLs with IPv6 endpoints)
+                # Skip endpoints that were not contactable during scan
+                # (e.g. GitHub Pages URLs with IPv6 endpoints)
                 if "Unable" in ep.get("statusMessage", ""):
                     continue
                 # see SUMMARY_COL_NAMES
@@ -176,12 +197,21 @@ class SSLLabsClient():
         status_msg = results.get("statusMessage")
 
         if msg_type == "WAIT_FOR_COMPLETE":
-            msg = f"Status: {status}, StatusMsg({status_msg}): waiting {self._check_progress_interval_secs} secs until next check..."
+            msg = (
+                f"Status: {status}, StatusMsg({status_msg}): "
+                f"waiting {self._check_progress_interval_secs} secs until next check..."
+            )
         elif msg_type == "WAIT_FOR_RETRY":
-            msg = f"Error on requesting API: StatusCode({status_code}), Status({status}), StatusMsg({status_msg}). " \
-                  f"Waiting {self._check_progress_interval_secs} secs until next retry..."
+            msg = (
+                f"Error on requesting API: StatusCode({status_code}), "
+                f"Status({status}), StatusMsg({status_msg}). "
+                f"Waiting {self._check_progress_interval_secs} secs until next retry..."
+            )
         elif msg_type == "FAILED_AND_SKIPPED":
-            msg = f"Failed to process ({host}): StatusCode({status_code}), Status({status}), StatusMsg({status_msg}). Skip this host."
+            msg = (
+                f"Failed to process ({host}): StatusCode({status_code}), "
+                f"Status({status}), StatusMsg({status_msg}). Skip this host."
+            )
         else:
             msg = f"StatusCode({status_code}), Status({status}), StatusMsg({status_msg})"
 

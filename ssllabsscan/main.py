@@ -1,6 +1,7 @@
 """
 App's main
 """
+
 import argparse
 import csv
 import os
@@ -27,9 +28,11 @@ def output_summary_html(input_csv, output_html):
         reader = csv.reader(csvfile)
         for row in reader:
             if row[0].startswith("#"):
-                data += "  <tr>\n\t<th>{}</th>\n  </tr>".format('</th>\n\t<th>'.join(row))
+                data += "  <tr>\n\t<th>{}</th>\n  </tr>".format("</th>\n\t<th>".join(row))
             else:
-                data += '\n  <tr class="{}">\n\t<td>{}</td>\n  </tr>'.format(row[2][:1], '</td>\n\t<td>'.join(row))
+                data += '\n  <tr class="{}">\n\t<td>{}</td>\n  </tr>'.format(
+                    row[2][:1], "</td>\n\t<td>".join(row)
+                )
 
     # Replace the target string
     content = REPORT_HTML
@@ -51,7 +54,7 @@ def process(
     email,
     check_progress_interval_secs=30,
     summary_csv=SUMMARY_CSV,
-    summary_html=SUMMARY_HTML
+    summary_html=SUMMARY_HTML,
 ):
     ret = 0
     # read from input file
@@ -67,12 +70,13 @@ def process(
         try:
             print(f"Start analyzing {server}...")
             SSLLabsClient(email, check_progress_interval_secs).analyze(server, summary_csv)
-        except Exception as e:
+        except Exception:
             traceback.print_exc()
             ret = 1
 
     output_summary_html(summary_csv, summary_html)
     return ret
+
 
 def parse_args():
     """
@@ -111,6 +115,7 @@ def parse_args():
         help="Progress check interval in seconds",
     )
     return parser.parse_args()
+
 
 def main():
     """
