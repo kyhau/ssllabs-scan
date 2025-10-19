@@ -1,0 +1,59 @@
+---
+description: General coding standards (language-agnostic)
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# General Coding Standards
+
+## Documentation & Instructions
+
+- **Be concise** - Instructions, rules, and documentation should be brief and actionable
+- **Focus on essentials** - Include only what's necessary, remove verbose explanations
+
+## File Formatting
+
+- **End files with newline** - POSIX standard, required for Git diffs
+- **Use LF (`\n`) line endings** - Not CRLF (`\r\n`), except `.bat`/`.cmd` files
+- **No trailing whitespace** - Remove spaces/tabs at end of lines
+- **Consistent indentation** - Spaces or tabs, never mixed
+
+## File Naming
+
+- **Lowercase with hyphens** - `my-file.txt` not `My-File.txt`
+- **Be descriptive** - `user-authentication.py` not `auth.py`
+- **Avoid special characters** - Use only `a-z`, `0-9`, `-`, `_`, `.`
+
+**Exceptions:**
+- Python: `snake_case.py`
+- JavaScript/TypeScript: `PascalCase.tsx`
+
+## Git
+
+**Commits:**
+- Atomic (one change per commit)
+- Present tense messages ("Add feature" not "Added feature")
+- Include issue numbers (`Fixes #123`)
+
+**Never commit:**
+- ❌ Build artifacts (`dist/`, `build/`)
+- ❌ Dependencies (`node_modules/`, `.venv/`)
+- ❌ IDE files (`.vscode/`, `.idea/`)
+- ❌ OS files (`.DS_Store`, `Thumbs.db`)
+- ❌ Secrets or credentials
+
+## Security
+
+- **Never commit secrets** - Use environment variables
+- **Pin dependency versions** - Use exact versions
+- **Use secret scanners** - gitleaks, truffleHog
+- **Security scanning** - Snyk, Dependabot
+
+## Before Committing
+
+- [ ] Tests pass
+- [ ] No linter errors
+- [ ] No trailing whitespace
+- [ ] Newline at end of files
+- [ ] No debug code
+- [ ] Documentation updated
