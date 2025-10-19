@@ -11,6 +11,15 @@ All notable changes to this project will be documented in this file.
 - Snyk security scanning workflow
 - Modern Makefile targets: `setup-init`, `format-python`, `lint-python`, `pre-commit`
 - Black code formatter for consistent code style
+- 15 new unit tests improving code coverage from 83% to 91%:
+  - Exception handling tests for process() function
+  - CLI argument parsing tests (parse_args with default and custom arguments)
+  - Main entry point tests
+  - API retry logic tests (429 and 529 error handling)
+  - Error status handling tests
+  - Endpoint filtering tests (skipping "Unable" endpoints)
+  - Print message variant tests (DEBUG, WAIT_FOR_COMPLETE, etc.)
+  - Actual requests_get() implementation tests (with and without email)
 
 ### Changed
 - Moved tests from `ssllabsscan/tests/` to root-level `tests/` directory (Python best practice)
