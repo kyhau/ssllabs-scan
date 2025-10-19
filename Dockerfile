@@ -1,22 +1,27 @@
-# Use an official Python runtime as a parent image
-FROM python:3.13.1-slim-bookworm
-
-# Install poetry
-RUN pip install --no-cache-dir poetry==1.8.5
+FROM python:3.13-slim
+LABEL maintainer="virtualda@gmail.com"
 
 WORKDIR /app
 
-# Copy only dependency files first for better caching
-COPY pyproject.toml poetry.lock* ./
+# Install Poetry
+RUN pip install --no-cache-dir poetry==1.8.5
 
-# Install dependencies without dev dependencies
+# Copy dependency files first for better layer caching
+COPY pyproject.toml poetry.lock ./
+
+# Install dependencies only (without the package itself)
 RUN poetry config virtualenvs.create false && \
-    poetry install --only main --no-interaction --no-ansi
+    poetry install --only main --no-root --no-interaction --no-ansi && \
+    rm -rf /root/.cache/pip
 
-# Copy the rest of the application
-COPY . .
+# Copy application code
+COPY ssllabsscan/ ./ssllabsscan/
+COPY sample/ ./sample/
 
-# Copy styles.css to the correct location
+# Install the package itself
+RUN poetry install --only-root
+
+# Copy styles.css to the correct location for runtime
 RUN cp sample/styles.css /usr/local/lib/python3.13/site-packages/ssllabsscan/styles.css
 
-ENTRYPOINT [ "ssllabs-scan" ]
+ENTRYPOINT ["ssllabs-scan"]

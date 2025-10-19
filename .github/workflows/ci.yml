@@ -1,10 +1,30 @@
-name: Build and Test
+name: CI
+run-name: CI @ ${{ github.ref_name }}
 
 on:
   push:
-    paths-ignore:
-      - '**.json'
-      - '**.md'
+    branches: [main, master]
+    paths:
+      - .github/**
+      - ssllabsscan/**
+      - tests/**
+      - Makefile
+      - poetry.lock
+      - pyproject.toml
+  pull_request:
+    branches: [main, master]
+    paths:
+      - .github/**
+      - ssllabsscan/**
+      - tests/**
+      - Makefile
+      - poetry.lock
+      - pyproject.toml
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 defaults:
   run:
@@ -12,22 +32,30 @@ defaults:
 
 jobs:
   lint:
-    name: Run yamllint on workflows
+    name: Lint code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.13"
-      - name: Install Poetry
-        run: pip install poetry
-      - name: Install yamllint
-        run: poetry install --only dev
-      - name: Run yamllint
-        run: make yamllint
 
-  build:
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Lint YAML
+        run: make lint-yaml
+
+      - name: Lint Python
+        run: make lint-python
+
+  test:
     needs: lint
     runs-on: ubuntu-latest
     strategy:
@@ -44,10 +72,10 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        run: make install-test-deps
+        run: make install-test
 
       - name: Run tests with coverage
-        run: make test-coverage
+        run: make test-with-coverage
 
       - name: Upload coverage to Codecov
         if: matrix.python-version == '3.13'
