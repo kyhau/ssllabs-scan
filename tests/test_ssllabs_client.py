@@ -450,5 +450,8 @@ def test_ssl_labs_client_print_msg_failed_and_skipped():
         client.print_msg(mock_response, "FAILED_AND_SKIPPED", host="example.com")
         mock_print.assert_called_once()
         import re
-        assert re.search(r"(?<!\w)example\.com(?!\w)", mock_print.call_args[0][0]), "example.com should appear as an exact host in output"
+
+        assert re.search(
+            r"(?<!\w)example\.com(?!\w)", mock_print.call_args[0][0]
+        ), "example.com should appear as an exact host in output"
         assert "500" in mock_print.call_args[0][0]
