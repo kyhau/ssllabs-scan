@@ -209,3 +209,4 @@ def test_main_process_file_creation():
             for path in [temp_input_path, temp_csv_path, temp_html_path]:
                 if os.path.exists(path):
                     os.unlink(path)
+

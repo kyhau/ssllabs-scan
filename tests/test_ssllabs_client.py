@@ -234,3 +234,4 @@ def test_ssl_labs_client_requests_get_without_email():
 
         # Verify the method was called with the payload
         mock_requests_get.assert_called_once_with(payload)
+

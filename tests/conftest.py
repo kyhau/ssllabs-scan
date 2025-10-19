@@ -150,3 +150,4 @@ def output_summary_html_file(unit_tests_tmp_output_dir):
 @pytest.fixture(scope="session")
 def output_server_1_json_file(unit_tests_tmp_output_dir):
     return os.path.join(unit_tests_tmp_output_dir, "example.com.json")
+
