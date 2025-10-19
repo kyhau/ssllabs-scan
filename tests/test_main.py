@@ -209,3 +209,122 @@ def test_main_process_file_creation():
             for path in [temp_input_path, temp_csv_path, temp_html_path]:
                 if os.path.exists(path):
                     os.unlink(path)
+
+
+def test_main_process_with_exception_handling():
+    """Test that exceptions during processing are handled gracefully."""
+    with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".txt") as temp_input:
+        temp_input_path = temp_input.name
+        temp_input.write("example.com\n")
+    with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".csv") as temp_csv:
+        temp_csv_path = temp_csv.name
+    with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".html") as temp_html:
+        temp_html_path = temp_html.name
+
+    # Mock SSLLabsClient to raise an exception
+    with patch("ssllabsscan.main.SSLLabsClient") as mock_client_class:
+        mock_client = Mock()
+        mock_client_class.return_value = mock_client
+        # Make analyze raise an exception
+        mock_client.analyze.side_effect = Exception("Test error")
+
+        try:
+            result = process(
+                temp_input_path,
+                "test@example.com",
+                check_progress_interval_secs=1,
+                summary_csv=temp_csv_path,
+                summary_html=temp_html_path,
+            )
+
+            # Should return 1 (error) but still create output files
+            assert result == 1
+            assert os.path.exists(temp_csv_path)
+            assert os.path.exists(temp_html_path)
+
+        finally:
+            for path in [temp_input_path, temp_csv_path, temp_html_path]:
+                if os.path.exists(path):
+                    os.unlink(path)
+
+
+def test_parse_args_default_values():
+    """Test parse_args() with minimal arguments."""
+    from ssllabsscan.main import parse_args
+
+    with patch("sys.argv", ["ssllabs-scan", "servers.txt"]):
+        args = parse_args()
+        assert args.inputfile == "servers.txt"
+        assert args.email is None
+        assert args.output == "summary.html"
+        assert args.summary == "summary.csv"
+        assert args.progress == 30
+
+
+def test_parse_args_all_arguments():
+    """Test parse_args() with all arguments provided."""
+    from ssllabsscan.main import parse_args
+
+    with patch(
+        "sys.argv",
+        [
+            "ssllabs-scan",
+            "servers.txt",
+            "-e",
+            "test@example.com",
+            "-o",
+            "custom_output.html",
+            "-s",
+            "custom_summary.csv",
+            "-p",
+            "60",
+        ],
+    ):
+        args = parse_args()
+        assert args.inputfile == "servers.txt"
+        assert args.email == "test@example.com"
+        assert args.output == "custom_output.html"
+        assert args.summary == "custom_summary.csv"
+        assert args.progress == "60"
+
+
+def test_main_function():
+    """Test main() function entry point."""
+    from ssllabsscan.main import main
+
+    with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".txt") as temp_input:
+        temp_input_path = temp_input.name
+        temp_input.write("example.com\n")
+
+    # Mock SSLLabsClient
+    with patch("ssllabsscan.main.SSLLabsClient") as mock_client_class:
+        mock_client = Mock()
+        mock_client_class.return_value = mock_client
+        mock_client.analyze.return_value = None
+
+        # Mock sys.argv
+        with patch("sys.argv", ["ssllabs-scan", temp_input_path, "-e", "test@example.com"]):
+            try:
+                result = main()
+                # Should return 0 on success
+                assert result == 0 or result is None
+
+            finally:
+                # Clean up any created files
+                for ext in [".txt", ".csv", ".html"]:
+                    try:
+                        if ext == ".txt":
+                            os.unlink(temp_input_path)
+                        else:
+                            filename = temp_input_path.replace(".txt", ext)
+                            if os.path.exists(filename):
+                                os.unlink(filename)
+                    except Exception:
+                        pass
+                # Also clean up default output files
+                for default_file in ["summary.csv", "summary.html", "styles.css"]:
+                    try:
+                        if os.path.exists(default_file):
+                            os.unlink(default_file)
+                    except Exception:
+                        pass

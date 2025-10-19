@@ -234,3 +234,220 @@ def test_ssl_labs_client_requests_get_without_email():
 
         # Verify the method was called with the payload
         mock_requests_get.assert_called_once_with(payload)
+
+
+def test_ssl_labs_client_analyze_with_error_status(email_1, output_summary_csv_file):
+    """Test analyze() when start_new_scan returns ERROR status."""
+    client = SSLLabsClient(email=email_1, check_progress_interval_secs=1)
+
+    error_response = {"status": "ERROR", "statusMessage": "Unable to resolve domain name"}
+
+    with patch.object(client, "start_new_scan", return_value=error_response):
+        # analyze() should return early without creating files
+        client.analyze(host="bad-domain.com", summary_csv_file=output_summary_csv_file)
+
+        # Verify no JSON file was created
+        assert not os.path.exists(
+            os.path.join(os.path.dirname(output_summary_csv_file), "bad-domain.com.json")
+        )
+
+
+def test_ssl_labs_client_request_api_retry_429():
+    """Test request_api() retry logic for 429 status code."""
+    client = SSLLabsClient(email="test@example.com", check_progress_interval_secs=1, max_attempts=3)
+
+    # First two requests return 429, third returns 200
+    mock_responses = [
+        MockHttpResponse(429, {"status": "ERROR", "statusMessage": "Rate limit exceeded"}),
+        MockHttpResponse(429, {"status": "ERROR", "statusMessage": "Rate limit exceeded"}),
+        MockHttpResponse(200, {"status": "READY", "statusMessage": "Ready"}),
+    ]
+
+    with patch.object(client, "requests_get", side_effect=mock_responses):
+        payload = {"host": "example.com"}
+        response = client.request_api(payload)
+
+        # Should return the successful response after retries
+        assert response.status_code == 200
+        assert response.json()["status"] == "READY"
+
+
+def test_ssl_labs_client_request_api_retry_529():
+    """Test request_api() retry logic for 529 status code."""
+    client = SSLLabsClient(email="test@example.com", check_progress_interval_secs=1, max_attempts=3)
+
+    # First request returns 529, second returns 200
+    mock_responses = [
+        MockHttpResponse(529, {"status": "ERROR", "statusMessage": "Service overloaded"}),
+        MockHttpResponse(200, {"status": "READY", "statusMessage": "Ready"}),
+    ]
+
+    with patch.object(client, "requests_get", side_effect=mock_responses):
+        payload = {"host": "example.com"}
+        response = client.request_api(payload)
+
+        # Should return the successful response after retry
+        assert response.status_code == 200
+        assert response.json()["status"] == "READY"
+
+
+def test_ssl_labs_client_request_api_max_attempts_exceeded():
+    """Test request_api() when max attempts are exceeded."""
+    client = SSLLabsClient(email="test@example.com", check_progress_interval_secs=1, max_attempts=2)
+
+    # All requests return 429
+    mock_responses = [
+        MockHttpResponse(429, {"status": "ERROR", "statusMessage": "Rate limit exceeded"}),
+        MockHttpResponse(429, {"status": "ERROR", "statusMessage": "Rate limit exceeded"}),
+        MockHttpResponse(429, {"status": "ERROR", "statusMessage": "Rate limit exceeded"}),
+    ]
+
+    with patch.object(client, "requests_get", side_effect=mock_responses):
+        payload = {"host": "example.com"}
+        response = client.request_api(payload)
+
+        # Should return the error response after max attempts
+        assert response.status_code == 429
+
+
+def test_ssl_labs_client_append_summary_csv_skip_unable_endpoints():
+    """Test append_summary_csv() skips endpoints with 'Unable' in statusMessage."""
+    import tempfile
+
+    client = SSLLabsClient(email="test@example.com")
+
+    # Create a temporary file
+    with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".csv") as temp_file:
+        temp_file_path = temp_file.name
+
+    try:
+        host = "example.com"
+        data = {
+            "certs": [{"notAfter": 1521257378}],
+            "endpoints": [
+                {
+                    "ipAddress": "1.2.3.4",
+                    "statusMessage": "Unable to connect to the server",
+                    "grade": "A",
+                    "hasWarnings": False,
+                    "details": {
+                        "certChains": [{"issues": 0}],
+                        "forwardSecrecy": 4,
+                        "heartbeat": True,
+                        "vulnBeast": False,
+                        "drownVulnerable": False,
+                        "heartbleed": False,
+                        "freak": False,
+                        "openSslCcs": 0,
+                        "openSSLLuckyMinus20": 0,
+                        "poodle": False,
+                        "poodleTls": 0,
+                        "supportsRc4": False,
+                        "rc4WithModern": False,
+                        "rc4Only": False,
+                        "protocols": [{"name": "TLS", "version": "1.3"}],
+                    },
+                },
+                {
+                    "ipAddress": "5.6.7.8",
+                    "statusMessage": "Ready",
+                    "grade": "B",
+                    "hasWarnings": True,
+                    "details": {
+                        "certChains": [{"issues": 0}],
+                        "forwardSecrecy": 2,
+                        "heartbeat": False,
+                        "vulnBeast": True,
+                        "drownVulnerable": True,
+                        "heartbleed": True,
+                        "freak": True,
+                        "openSslCcs": 1,
+                        "openSSLLuckyMinus20": 1,
+                        "poodle": True,
+                        "poodleTls": 1,
+                        "supportsRc4": True,
+                        "rc4WithModern": True,
+                        "rc4Only": True,
+                        "protocols": [{"name": "TLS", "version": "1.2"}],
+                    },
+                },
+            ],
+        }
+
+        # Call the method
+        client.append_summary_csv(temp_file_path, host, data)
+
+        # Verify file was created
+        assert os.path.exists(temp_file_path)
+        with open(temp_file_path, "r") as f:
+            content = f.read()
+            # First endpoint should be skipped (has "Unable")
+            assert "1.2.3.4" not in content
+            # Second endpoint should be included
+            assert "5.6.7.8" in content
+            assert "B" in content
+
+    finally:
+        if os.path.exists(temp_file_path):
+            os.unlink(temp_file_path)
+
+
+def test_ssl_labs_client_print_msg_debug():
+    """Test print_msg() with DEBUG message type."""
+    client = SSLLabsClient(email="test@example.com")
+
+    mock_response = Mock()
+    mock_response.status_code = 200
+    mock_response.json.return_value = {"status": "READY", "statusMessage": "Scan complete"}
+
+    # Capture logging output
+    with patch("logging.info") as mock_logging:
+        client.print_msg(mock_response, "DEBUG")
+        mock_logging.assert_called_once()
+
+
+def test_ssl_labs_client_print_msg_wait_for_complete():
+    """Test print_msg() with WAIT_FOR_COMPLETE message type."""
+    client = SSLLabsClient(email="test@example.com", check_progress_interval_secs=5)
+
+    mock_response = Mock()
+    mock_response.status_code = 200
+    mock_response.json.return_value = {"status": "IN_PROGRESS", "statusMessage": "Processing"}
+
+    # Capture print output
+    with patch("builtins.print") as mock_print:
+        client.print_msg(mock_response, "WAIT_FOR_COMPLETE")
+        mock_print.assert_called_once()
+        # Check that interval is mentioned in message
+        assert "5 secs" in mock_print.call_args[0][0]
+
+
+def test_ssl_labs_client_print_msg_wait_for_retry():
+    """Test print_msg() with WAIT_FOR_RETRY message type."""
+    client = SSLLabsClient(email="test@example.com")
+
+    mock_response = Mock()
+    mock_response.status_code = 429
+    mock_response.json.return_value = {"status": "ERROR", "statusMessage": "Rate limit exceeded"}
+
+    # Capture print output
+    with patch("builtins.print") as mock_print:
+        client.print_msg(mock_response, "WAIT_FOR_RETRY")
+        mock_print.assert_called_once()
+        assert "429" in mock_print.call_args[0][0]
+
+
+def test_ssl_labs_client_print_msg_failed_and_skipped():
+    """Test print_msg() with FAILED_AND_SKIPPED message type."""
+    client = SSLLabsClient(email="test@example.com")
+
+    mock_response = Mock()
+    mock_response.status_code = 500
+    mock_response.json.return_value = {"status": "ERROR", "statusMessage": "Internal error"}
+
+    # Capture print output
+    with patch("builtins.print") as mock_print:
+        client.print_msg(mock_response, "FAILED_AND_SKIPPED", host="example.com")
+        mock_print.assert_called_once()
+        assert "example.com" in mock_print.call_args[0][0]
+        assert "500" in mock_print.call_args[0][0]
