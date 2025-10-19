@@ -1,7 +1,38 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-4.0.0 - 2025-10-12
+4.1.0 - 2025-01-19
+==================
+
+### Added
+- Community health files: CODE_OF_CONDUCT.md, CONTRIBUTING.md, SECURITY.md, CODEOWNERS
+- Issue templates for bug reports and feature requests with structured forms
+- .dockerignore for optimized Docker builds
+- Snyk security scanning workflow
+- Modern Makefile targets: `setup-init`, `format-python`, `lint-python`, `pre-commit`
+- Black code formatter for consistent code style
+
+### Changed
+- Moved tests from `ssllabsscan/tests/` to root-level `tests/` directory (Python best practice)
+- Renamed CI workflow from `build-and-test.yml` to `ci.yml` for consistency
+- Updated all Makefile targets to match standard conventions across projects
+- Migrated from standalone `mock` package to built-in `unittest.mock`
+- Reorganized dependencies: moved flake8 from test to dev dependencies
+- Cleaned up pyproject.toml: removed unused dependencies (mock, coverage, pytest-gitignore, setuptools, wheel)
+- Improved Dockerfile with two-phase installation and cache cleanup
+- Updated LICENSE copyright to 2017-2025 with author name
+- Enhanced README with better structure, badges, and documentation
+- Modernized all .github workflows with concurrency control
+- Simplified .yaml-lint.yml configuration
+- Updated dependabot.yml to remove redundant pip ecosystem
+- Updated pull request template for better clarity
+
+### Removed
+- Unused dependencies: mock, coverage, pytest-gitignore, setuptools, wheel
+- Old `ssllabsscan/tests/` directory (moved to root)
+- Redundant application-specific patterns from .gitignore
+
+4.0.0 - 2024-10-12
 ==================
 
 ### Added

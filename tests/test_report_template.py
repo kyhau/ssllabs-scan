@@ -1,5 +1,3 @@
-import pytest
-
 from ssllabsscan.report_template import REPORT_HTML
 
 
@@ -17,12 +15,12 @@ class TestReportTemplate:
 
     def test_report_html_contains_html_tag(self):
         """Test that the template contains html tag."""
-        assert "<html lang=\"en\">" in REPORT_HTML
+        assert '<html lang="en">' in REPORT_HTML
 
     def test_report_html_contains_head_section(self):
         """Test that the template contains head section with meta charset."""
         assert "<head>" in REPORT_HTML
-        assert "<meta charset=\"UTF-8\">" in REPORT_HTML
+        assert '<meta charset="UTF-8">' in REPORT_HTML
 
     def test_report_html_contains_title_placeholder(self):
         """Test that the template contains title placeholder."""
@@ -56,7 +54,7 @@ class TestReportTemplate:
         data_count = REPORT_HTML.count("{{VAR_DATA}}")
 
         assert title_count == 2  # Once in title, once in h1
-        assert data_count == 1   # Once in table
+        assert data_count == 1  # Once in table
 
     def test_report_html_is_valid_template(self):
         """Test that the template can be used for string formatting."""
@@ -81,4 +79,3 @@ class TestReportTemplate:
         assert 'border="1"' in REPORT_HTML
         assert 'lang="en"' in REPORT_HTML
         assert 'charset="UTF-8"' in REPORT_HTML
-

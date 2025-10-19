@@ -1,14 +1,15 @@
 """
 conftest.py for testing
 """
+
 import os
 from shutil import rmtree
 from tempfile import mkdtemp
 
 import pytest
 
-#SAMPLE_READY_RESPONSE_FILE = join(dirname(realpath(__file__)), "sample_response_ready.json")
-#with open(SAMPLE_READY_RESPONSE_FILE) as f:
+# SAMPLE_READY_RESPONSE_FILE = join(dirname(realpath(__file__)), "sample_response_ready.json")
+# with open(SAMPLE_READY_RESPONSE_FILE) as f:
 #    SAMPLE_READY_RESPONSE = json.load(f)
 
 SAMPLE_READY_RESPONSE = {
@@ -37,26 +38,20 @@ SAMPLE_READY_RESPONSE = {
                 "vulnBeast": False,
                 "heartbleed": False,
                 "supportsRc4": False,
-                "protocols": [
-                    {
-                        "version": "1.2",
-                        "id": 771,
-                        "name": "TLS"
-                    }
-                ],
+                "protocols": [{"version": "1.2", "id": 771, "name": "TLS"}],
                 "forwardSecrecy": 4,
                 "heartbeat": True,
                 "supportsRc4": False,
                 "rc4WithModern": False,
-                "rc4Only": False
-            }
+                "rc4Only": False,
+            },
         }
     ],
     "certs": [
         {
             "notAfter": 1521257378000,
         }
-    ]
+    ],
 }
 
 
@@ -147,7 +142,7 @@ def output_summary_csv_file(unit_tests_tmp_output_dir):
 def output_summary_html_file(unit_tests_tmp_output_dir):
     return os.path.join(unit_tests_tmp_output_dir, "test_summary.html")
 
+
 @pytest.fixture(scope="session")
 def output_server_1_json_file(unit_tests_tmp_output_dir):
     return os.path.join(unit_tests_tmp_output_dir, "example.com.json")
-

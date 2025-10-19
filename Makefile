@@ -55,13 +55,13 @@ test-with-coverage: install-test ## Run unit tests with coverage reporting
 
 # Code quality
 lint-python: install-dev ## Lint Python code with flake8
-	@$(POETRY) run flake8 --max-line-length=100 $(PACKAGE_NAME)/
+	@$(POETRY) run flake8 --max-line-length=100 $(PACKAGE_NAME)/ tests/
 
 lint-yaml: install-dev ## Lint YAML files with yamllint
 	@$(POETRY) run yamllint -c .github/linters/.yaml-lint.yml .github/
 
 format-python: install-dev ## Format Python code with black
-	@$(POETRY) run black --line-length=100 $(PACKAGE_NAME)/
+	@$(POETRY) run black --line-length=100 $(PACKAGE_NAME)/ tests/
 
 # Pre-commit checks
 pre-commit: format-python lint-python lint-yaml test-with-coverage ## Run all quality checks before committing
