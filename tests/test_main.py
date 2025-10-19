@@ -1,8 +1,8 @@
 import os
 import tempfile
+from unittest.mock import Mock, patch
 
 import pytest
-from mock import Mock, patch
 
 from ssllabsscan.main import process
 from ssllabsscan.ssllabs_client import SSLLabsClient

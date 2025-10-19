@@ -1,107 +1,131 @@
 # SSL Labs Scan
 
-[![githubactions](https://github.com/kyhau/ssllabs-scan/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/build-and-test.yml)
-[![codecov](https://codecov.io/gh/kyhau/ssllabs-scan/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kyhau/ssllabs-scan/tree/main)
-[![CodeQL](https://github.com/kyhau/ssllabs-scan/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/codeql-analysis.yml)
-[![SecretsScan](https://github.com/kyhau/ssllabs-scan/actions/workflows/secrets-scan.yml/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/secrets-scan.yml)
+[![CI](https://github.com/kyhau/ssllabs-scan/actions/workflows/ci.yml/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/ci.yml)
+[![Codecov](https://codecov.io/gh/kyhau/ssllabs-scan/branch/main/graph/badge.svg)](https://app.codecov.io/gh/kyhau/ssllabs-scan/tree/main)
+[![CodeQL](https://github.com/kyhau/ssllabs-scan/workflows/CodeQL/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/codeql-analysis.yml)
+[![Snyk Checks](https://github.com/kyhau/ssllabs-scan/workflows/Snyk%20Checks/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/snyk.yml)
+[![Secrets Scan](https://github.com/kyhau/ssllabs-scan/workflows/Secrets%20Scan/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/secrets-scan.yml)
+![Python Version](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)
+![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
+![GitHub last commit](https://img.shields.io/github/last-commit/kyhau/ssllabs-scan)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://en.wikipedia.org/wiki/MIT_License)
 
-This tool calls the SSL Labs API to do SSL testings on the given hosts, and generates csv and html reports.
-- The tool uses [API v4](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v4.md) if you provide your registered email with Qualys SSLLabs via the `--email` argument.
-- The tool uses [API v3](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md) if you do not specify the `--email` argument. Note that v3 will be being deprecated in 2024 by Qualys.
+A command-line tool that calls the SSL Labs API to perform SSL/TLS testing on hosts and generates comprehensive CSV and HTML reports.
 
+- **API v4** support with registered email (Qualys SSL Labs)
+- **API v3** fallback (no email required, deprecated by Qualys)
+- Beautiful HTML reports with customizable templates
+- Batch processing of multiple hosts
+- Docker support for containerized execution
 
 All notable changes to this project will be documented in [CHANGELOG](./CHANGELOG.md).
 
----
-## Built with
-- Python - support Python 3.11, 3.12, 3.13.
-- [CodeQL](https://codeql.github.com) is [enabled](.github/workflows/codeql-analysis.yml) in this repository.
-- [Dependabot](https://docs.github.com/en/code-security/dependabot/dependabot-version-updates) is [enabled](.github/dependabot.yml) for auto dependency updates.
-- [Gitleaks](https://github.com/gitleaks/gitleaks) and [TruffleHog](https://github.com/trufflesecurity/trufflehog) are enabled in this GitHub Actions [workflow](.github/workflows/secrets-scan.yml) for detecting and preventing hardcoded secrets.
+**Supports Python 3.11, 3.12, 3.13**
+
+## ✨ Features
+
+### 🔧 Development Tools
+- **[Poetry](https://python-poetry.org/)** - Modern dependency management
+- **[Makefile](Makefile)** - Convenient command shortcuts for common tasks
+- **[pytest](https://pytest.org/)** - Testing framework with coverage reporting
+- **[black](https://black.readthedocs.io/)** - Code formatting
+- **[flake8](https://flake8.pycqa.org/)** - Python code linting
+- **[yamllint](https://yamllint.readthedocs.io/)** - YAML file linting
+
+### 🔐 Security & Code Quality
+- **[CodeQL](https://codeql.github.com)** - Automated security analysis ([workflow](.github/workflows/codeql-analysis.yml))
+- **[Secrets Scan](https://github.com/gitleaks/gitleaks)** - Gitleaks and TruffleHog for detecting hardcoded secrets ([workflow](.github/workflows/secrets-scan.yml))
+- **[Snyk](https://snyk.io/)** - Vulnerability scanning ([workflow](.github/workflows/snyk.yml))
+- **[Dependabot](https://docs.github.com/en/code-security/dependabot)** - Automated dependency updates ([config](.github/dependabot.yml))
+
+### 🚀 CI/CD
+- **[GitHub Actions](https://github.com/features/actions)** - Automated testing across Python 3.11-3.13
+- **[Codecov](https://codecov.io/)** - Code coverage reporting
+- **Stale Issue Management** - Automatically closes inactive issues
 
 ---
-## Input and outputs
+## 📊 Input and Outputs
 
+### Input
 Sample input: [sample/SampleServerList.txt](sample/SampleServerList.txt)
 
-1. summary.html (sample output: [sample/summary.html](https://kyhau.github.io/ssllabs-scan/sample/summary.html))
-1. summary.csv (sample output: [sample/summary.csv](sample/summary.csv))
-1. _hostname_.json (sample output: [sample/google.com.json](sample/google.com.json))
+### Outputs
+1. **summary.html** - Visual report ([sample output](https://kyhau.github.io/ssllabs-scan/sample/summary.html))
+2. **summary.csv** - Data export ([sample output](sample/summary.csv))
+3. **{hostname}.json** - Detailed API response ([sample output](sample/google.com.json))
 
-**Sample html output:**
-![alt text](sample/SampleHtmlOutput.png "Sample html output")
+### Sample HTML Report
+![Sample HTML Output](sample/SampleHtmlOutput.png "Sample html output")
 
-You can change the report template and styles in these files:
+### Customize Reports
+You can modify report templates and styles:
 - [ssllabsscan/report_template.py](./ssllabsscan/report_template.py)
 - [ssllabsscan/styles.css](./ssllabsscan/styles.css)
 
 ---
-## Important Notes
+## 🚀 Installation
 
-ℹ️ Please note that from Qualys SSLLabs API v4, you must use a one-time registration with Qualys SSLLabs. For details see [Introduction of API v4 for Qualys SSLLabs and deprecation of API v3](https://notifications.qualys.com/api/2023/09/28/introduction-of-api-v4-for-qualys-ssllabs-and-deprecation-of-api-v3).
-> The API v3 API will be available until the end of 2023 (Dec 31st 2023), and starting from 1st January 2024, we will be deprecating the API v3 support for SSL Labs. Request all customers to move to API v4.
+### Using pipx (Recommended)
+```bash
+# Install pipx if needed
+pip install pipx
 
-ℹ️ Please note that the SSL Labs Assessment API has access rate limits. You can find more details in the sections "Error Response Status Codes" and "Access Rate and Rate Limiting" in the official [SSL Labs API Documentation](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v3.md). Some common status codes are:
-- 400 - invocation error (e.g., invalid parameters)
-- 429 - client request rate too high or too many new assessments too fast
-- 500 - internal error
-- 503 - the service is not available (e.g., down for maintenance)
-- 529 - the service is overloaded
+# Install ssllabs-scan
+pipx install .
+
+# Run from anywhere
+ssllabs-scan --help
+```
+
+### Using pip
+```bash
+# Install directly
+pip install .
+
+# Run the tool
+ssllabs-scan --help
+```
+
+### Using Poetry (Development)
+```bash
+# Quick setup
+make setup-init
+
+# Or manual setup
+make setup-venv
+make install-all
+
+# Run with Poetry
+poetry run ssllabs-scan --help
+```
 
 ---
-## Build and run
+## 💻 Usage
 
-### Using Poetry (Recommended)
+### Basic Usage
+
 ```bash
-# Install dependencies
-make install
-
-# Or manually with poetry
-poetry install --only main
-
-# Run with v3 (v3, which does not required a registered email, will be being deprecated in 2024)
-poetry run ssllabs-scan sample/SampleServerList.txt
-
-# Run with v4
-poetry run ssllabs-scan sample/SampleServerList.txt --email <your registered email with Qualys SSLLabs>
-```
-
-### Using pip (Alternative)
-```bash
-# Create and activate a new virtual env (optional)
-python -m venv env
-source env/bin/activate  # On Linux/Mac
-# env\Scripts\activate  # On Windows
-
-# Install
-pip install -e .
-
-# Run with v3
+# Using API v3 (no registration required, being deprecated)
 ssllabs-scan sample/SampleServerList.txt
 
-# Run with v4
-ssllabs-scan sample/SampleServerList.txt --email <your registered email with Qualys SSLLabs>
+# Using API v4 (recommended, requires registration)
+ssllabs-scan sample/SampleServerList.txt --email your@email.com
 ```
 
-### Docker
-```
-# Build docker image
-docker build . --tag=ssllabsscan
-```
-Running Docker from commandline:
-```
-# create directory for input and output
+### Docker Usage
+
+```bash
+# Build image
+docker build -t ssllabsscan .
+
+# Run with mounted directory
 mkdir out
-# put serverlist in directory
-cp SampleServerlist.txt out
-# Run docker image with created directory mounted as /tmp
-# use -t option to prevent output buffering
-docker run --mount type=bind,source=./out,target=/tmp ssllabsscan  -o /tmp/output.html -s /tmp/output.csv /tmp/SampleServerList.txt
-# all html, csv, json output is in the out directory
+cp sample/SampleServerList.txt out/
+docker run --mount type=bind,source=./out,target=/tmp ssllabsscan \
+  -o /tmp/output.html -s /tmp/output.csv /tmp/SampleServerList.txt
 ```
 
-### Example console output
+### Example Output
 ```
 $ ssllabs-scan sample/SampleServerList.txt
 Start analyzing duckduckgo.com...
@@ -111,84 +135,116 @@ Status: IN_PROGRESS, StatusMsg(None): waiting 30 secs until next check...
 Start analyzing google.com...
 Status: DNS, StatusMsg(Resolving domain names): waiting 30 secs until next check...
 Status: IN_PROGRESS, StatusMsg(None): waiting 30 secs until next check...
-Status: IN_PROGRESS, StatusMsg(None): waiting 30 secs until next check...
-Status: IN_PROGRESS, StatusMsg(None): waiting 30 secs until next check...
-Status: IN_PROGRESS, StatusMsg(None): waiting 30 secs until next check...
-Status: IN_PROGRESS, StatusMsg(None): waiting 30 secs until next check...
-Status: IN_PROGRESS, StatusMsg(None): waiting 30 secs until next check...
+...
 Creating summary.html ...
 ```
 
-## Development
+---
+## ⚠️ Important Notes
 
-**Note**: This project uses Poetry for dependency management and Makefile for task automation.
+### API v4 Registration
+⚡ **API v4 requires one-time registration** with Qualys SSL Labs. See [Introduction of API v4](https://notifications.qualys.com/api/2023/09/28/introduction-of-api-v4-for-qualys-ssllabs-and-deprecation-of-api-v3).
 
-### Setup Development Environment
+> API v3 was deprecated on December 31st, 2023. All users should migrate to API v4.
+
+### Rate Limits
+⚡ The SSL Labs API has rate limits. Common status codes:
+- `400` - Invalid parameters
+- `429` - Request rate too high
+- `500` - Internal error
+- `503` - Service unavailable (maintenance)
+- `529` - Service overloaded
+
+See the [SSL Labs API Documentation](https://github.com/ssllabs/ssllabs-scan/blob/master/ssllabs-api-docs-v4.md) for details.
+
+---
+## 📋 Development Workflow
+
+### Common Commands
 
 ```bash
-# Install Poetry (if not already installed)
-curl -sSL https://install.python-poetry.org | python3 -
-
-# Install dependencies with dev packages
-make install-dev
-
-# Or manually with poetry
-poetry install
+make setup-init         # First-time setup (configure, lock, install everything)
+make help               # Show all available commands
+make install-all        # Install all dependencies (main, dev, test)
+make test               # Run tests without coverage
+make test-with-coverage # Run tests with coverage
+make format-python      # Auto-format Python code
+make lint-python        # Lint Python code
+make lint-yaml          # Lint YAML files
+make pre-commit         # Run all quality checks (format, lint, test)
+make build              # Build the package
+make clean              # Clean build artifacts
 ```
 
-### Available Make Commands
-
-Run `make help` to see all available commands. Common commands:
+### Running Tests
 
 ```bash
-# Install dependencies
-make install          # Production dependencies only
-make install-dev      # All dependencies including dev
-
-# Testing
-make test            # Run tests
-make test-all        # Run tests on all Python versions (3.9-3.12)
-make coverage        # Run tests with coverage report
-make check-deps      # Check dependency security and compatibility
-
-# Code Quality
-make lint            # Run flake8 linter
-
-# Build and Release
-make build           # Build wheel package
-make clean           # Clean build artifacts
-
-# Version Management
-make version         # Show current version
-make version-patch   # Bump patch version (0.0.X)
-make version-minor   # Bump minor version (0.X.0)
-make version-major   # Bump major version (X.0.0)
-
-# Utilities
-make update          # Update dependencies
-make show-deps       # Show dependency tree
-make ci              # Run all CI checks (test, coverage, lint)
-make all             # Run complete workflow
-
-# See all available commands
-make help
-```
-
-### Manual Poetry Commands
-
-```bash
-# Run tests manually
-poetry run pytest
-
 # Run tests with coverage
-poetry run pytest --cov=ssllabsscan --cov-report=html
+make test-with-coverage
 
-# Run linter
-poetry run flake8 ssllabsscan
+# Run tests only
+make test
 
-# Build package
-poetry build
+# Format and lint code
+make format-python
+make lint-python
+make lint-yaml
 
-# Update dependencies
-poetry update
+# Run all quality checks before committing
+make pre-commit
 ```
+
+### Managing Dependencies
+
+```bash
+# Update dependencies to latest compatible versions
+make update-deps
+
+# Regenerate lock file
+make lock
+```
+
+---
+## 🏗️ Project Structure
+
+```
+ssllabs-scan/
+├── .github/
+│   ├── ISSUE_TEMPLATE/       # Bug report and feature request templates
+│   ├── workflows/            # CI/CD workflows
+│   ├── dependabot.yml        # Dependency updates config
+│   └── pull_request_template.md
+├── ssllabsscan/              # Main Python package
+│   ├── __init__.py
+│   ├── main.py               # CLI entry point
+│   ├── ssllabs_client.py     # API client
+│   ├── export_response.py    # Response handling
+│   ├── report_template.py    # HTML template
+│   └── styles.css            # Report styling
+├── tests/                    # Unit tests
+│   ├── test_main.py
+│   ├── test_ssllabs_client.py
+│   ├── test_export_response.py
+│   └── test_report_template.py
+├── sample/                   # Sample inputs and outputs
+├── pyproject.toml            # Project metadata and dependencies
+├── Makefile                  # Build and test commands
+├── Dockerfile                # Container definition
+├── CHANGELOG.md              # Version history
+├── CODE_OF_CONDUCT.md        # Community guidelines
+├── CONTRIBUTING.md           # Contribution guidelines
+├── SECURITY.md               # Security policy
+└── README.md                 # This file
+```
+
+---
+## 🤝 Contributing
+
+Contributions are welcome! Please see:
+- [CONTRIBUTING.md](CONTRIBUTING.md) - Contribution guidelines
+- [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) - Community standards
+
+---
+## 🔒 Security
+
+For security issues, please see [SECURITY.md](SECURITY.md) for our security policy and reporting guidelines.

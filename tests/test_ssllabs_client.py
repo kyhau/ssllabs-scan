@@ -1,7 +1,7 @@
 import os
+from unittest.mock import Mock, patch
 
 import pytest
-from mock import Mock, patch
 
 from ssllabsscan.ssllabs_client import SSLLabsClient
 
