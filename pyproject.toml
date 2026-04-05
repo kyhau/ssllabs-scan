@@ -23,7 +23,7 @@ homepage = "https://github.com/kyhau/ssllabs-scan"
 
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
-requests = "2.33.0"
+requests = "2.33.1"
 
 [tool.poetry.group.test.dependencies]
 pytest = "9.0.2"
