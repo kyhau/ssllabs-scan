@@ -31,7 +31,7 @@ pytest-cov = "7.1.0"
 pytest-mock = "3.16.0"
 
 [tool.poetry.group.dev.dependencies]
-black = "26.10.0"
+black = "26.10.1"
 flake8 = "7.4.1"
 yamllint = "1.38.0"
 
