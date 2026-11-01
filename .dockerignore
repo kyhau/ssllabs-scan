@@ -29,7 +29,6 @@ tests/
 .env
 
 # Documentation
-*.md
 docs/
 
 # IDE

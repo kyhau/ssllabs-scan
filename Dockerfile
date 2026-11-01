@@ -15,6 +15,7 @@ RUN poetry config virtualenvs.create false && \
     rm -rf /root/.cache/pip
 
 # Copy application code
+COPY README.md .
 COPY ssllabsscan/ ./ssllabsscan/
 COPY sample/ ./sample/
 
@@ -22,6 +23,6 @@ COPY sample/ ./sample/
 RUN poetry install --only-root
 
 # Copy styles.css to the correct location for runtime
-RUN cp sample/styles.css /usr/local/lib/python3.13/site-packages/ssllabsscan/styles.css
+RUN cp sample/styles.css ssllabsscan/styles.css
 
 ENTRYPOINT ["ssllabs-scan"]
