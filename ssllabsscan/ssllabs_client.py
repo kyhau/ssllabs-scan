@@ -152,7 +152,9 @@ class SSLLabsClient:
     def append_summary_csv(self, summary_file, host, data):
         # write the summary to file
         with open(summary_file, "a") as outfile:
-            na = self.prepare_datetime(data["certs"][0]["notAfter"])
+            na = None
+            if len(data["certs"]) > 0:
+                na = self.prepare_datetime(data["certs"][0]["notAfter"])
             for ep in data["endpoints"]:
                 # Skip endpoints that were not contactable during scan
                 # (e.g. GitHub Pages URLs with IPv6 endpoints)
