@@ -310,6 +310,60 @@ def test_ssl_labs_client_request_api_max_attempts_exceeded():
         assert response.status_code == 429
 
 
+def test_ssl_labs_client_append_summary_csv_invalid_certificate():
+    """Test append_summary_csv() when certificate is invalid."""
+    import tempfile
+
+    client = SSLLabsClient(email="test@example.com")
+
+    # Create a temporary file
+    with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".csv") as temp_file:
+        temp_file_path = temp_file.name
+
+    try:
+        host = "example.com"
+        data = {
+            "certs": [{"notAfter": 1521257378}],
+            "endpoints": [
+                {
+                    "ipAddress": "1.2.3.4",
+                    "statusMessage": "Ready",
+                    "grade": "T",
+                    "gradeTrustIgnored": "A",
+                    "hasWarnings": False,
+                    "details": {
+                        "certChains": [{"issues": 0}],
+                        "forwardSecrecy": 4,
+                        "freak": False,
+                        "openSslCcs": 0,
+                        "openSSLLuckyMinus20": 0,
+                        "poodleTls": 0,
+                        "supportsRc4": False,
+                        "rc4WithModern": False,
+                        "rc4Only": False,
+                        "protocols": [{"name": "TLS", "version": "1.3"}],
+                    },
+                },
+            ],
+        }
+
+        # Call the method
+        client.append_summary_csv(temp_file_path, host, data)
+
+        # Verify file was created
+        assert os.path.exists(temp_file_path)
+        with open(temp_file_path, "r") as f:
+            content = f.read()
+            assert host in content
+            assert "2018-03-17" in content  # from prepare_datetime
+            assert ",T," in content
+            assert "1.2.3.4" in content
+
+    finally:
+        if os.path.exists(temp_file_path):
+            os.unlink(temp_file_path)
+
+
 def test_ssl_labs_client_append_summary_csv_skip_unable_endpoints():
     """Test append_summary_csv() skips endpoints with 'Unable' in statusMessage."""
     import tempfile
