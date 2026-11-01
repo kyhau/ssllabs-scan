@@ -52,7 +52,7 @@ make test-with-coverage      # Verify installation
 
 ## Python Environment
 - **Poetry** - Dependency management
-- **Python 3.11+** - Minimum version (supports 3.11, 3.12, 3.13)
+- **Python 3.11+** - Minimum version (supports 3.11, 3.12, 3.13, 3.14, 3.15)
 - **`.venv/`** - Virtual environment (project-local)
 - **Dependencies** in `pyproject.toml`:
   - Main: requests

@@ -5,7 +5,7 @@
 [![CodeQL](https://github.com/kyhau/ssllabs-scan/workflows/CodeQL/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/codeql-analysis.yml)
 [![Snyk Checks](https://github.com/kyhau/ssllabs-scan/workflows/Snyk%20Checks/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/snyk.yml)
 [![Secrets Scan](https://github.com/kyhau/ssllabs-scan/workflows/Secrets%20Scan/badge.svg)](https://github.com/kyhau/ssllabs-scan/actions/workflows/secrets-scan.yml)
-![Python Version](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)
+![Python Version](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13%20%7C%203.14%20%7C%203.15-blue)
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/kyhau/ssllabs-scan)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://en.wikipedia.org/wiki/MIT_License)
@@ -20,7 +20,7 @@ A command-line tool that calls the SSL Labs API to perform SSL/TLS testing on ho
 
 All notable changes to this project will be documented in [CHANGELOG](./CHANGELOG.md).
 
-**Supports Python 3.11, 3.12, 3.13**
+**Supports Python 3.11, 3.12, 3.13, 3.14, 3.15**
 
 ## ✨ Features
 
@@ -39,7 +39,7 @@ All notable changes to this project will be documented in [CHANGELOG](./CHANGELO
 - **[Dependabot](https://docs.github.com/en/code-security/dependabot)** - Automated dependency updates ([config](.github/dependabot.yml))
 
 ### 🚀 CI/CD
-- **[GitHub Actions](https://github.com/features/actions)** - Automated testing across Python 3.11-3.13
+- **[GitHub Actions](https://github.com/features/actions)** - Automated testing across Python 3.11-3.15
 - **[Codecov](https://codecov.io/)** - Code coverage reporting
 - **Stale Issue Management** - Automatically closes inactive issues
 
