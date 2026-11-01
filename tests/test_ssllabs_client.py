@@ -328,24 +328,21 @@ def test_ssl_labs_client_append_summary_csv_skip_unable_endpoints():
                 {
                     "ipAddress": "1.2.3.4",
                     "statusMessage": "Unable to connect to the server",
-                    "grade": "A",
-                    "hasWarnings": False,
+                    "statusDetails": "TESTING_PROTO_2_0",
+                    "statusDetailsMessage": "Testing SSL 2.0",
+                    "duration": 456,
+                    "delegation": 1,
                     "details": {
-                        "certChains": [{"issues": 0}],
-                        "forwardSecrecy": 4,
-                        "heartbeat": True,
-                        "vulnBeast": False,
-                        "drownVulnerable": False,
-                        "heartbleed": False,
-                        "freak": False,
-                        "openSslCcs": 0,
-                        "openSSLLuckyMinus20": 0,
-                        "poodle": False,
-                        "poodleTls": 0,
-                        "supportsRc4": False,
-                        "rc4WithModern": False,
-                        "rc4Only": False,
-                        "protocols": [{"name": "TLS", "version": "1.3"}],
+                        "hostStartTime": 123,
+                        "certChains": [],
+                        "protocols": [],
+                        "prefixDelegation": False,
+                        "nonPrefixDelegation": True,
+                        "zeroRTTEnabled": -1,
+                        "zombiePoodle": 0,
+                        "goldenDoodle": 0,
+                        "zeroLengthPaddingOracle": 0,
+                        "sleepingPoodle": 0,
                     },
                 },
                 {
@@ -386,6 +383,59 @@ def test_ssl_labs_client_append_summary_csv_skip_unable_endpoints():
             # Second endpoint should be included
             assert "5.6.7.8" in content
             assert "B" in content
+
+    finally:
+        if os.path.exists(temp_file_path):
+            os.unlink(temp_file_path)
+
+
+def test_ssl_labs_client_append_summary_csv_skip_single_unable_endpoint():
+    """Test append_summary_csv() skips single endpoint with 'Unable' in statusMessage."""
+    import tempfile
+
+    client = SSLLabsClient(email="test@example.com")
+
+    # Create a temporary file
+    with tempfile.NamedTemporaryFile(mode="w", delete=False, suffix=".csv") as temp_file:
+        temp_file_path = temp_file.name
+
+    try:
+        host = "example.com"
+        data = {
+            "certs": [],
+            "endpoints": [
+                {
+                    "ipAddress": "1.2.3.4",
+                    "statusMessage": "Unable to connect to the server",
+                    "statusDetails": "TESTING_PROTO_2_0",
+                    "statusDetailsMessage": "Testing SSL 2.0",
+                    "duration": 456,
+                    "delegation": 1,
+                    "details": {
+                        "hostStartTime": 123,
+                        "certChains": [],
+                        "protocols": [],
+                        "prefixDelegation": False,
+                        "nonPrefixDelegation": True,
+                        "zeroRTTEnabled": -1,
+                        "zombiePoodle": 0,
+                        "goldenDoodle": 0,
+                        "zeroLengthPaddingOracle": 0,
+                        "sleepingPoodle": 0,
+                    },
+                },
+            ],
+        }
+
+        # Call the method
+        client.append_summary_csv(temp_file_path, host, data)
+
+        # Verify file was created
+        assert os.path.exists(temp_file_path)
+        with open(temp_file_path, "r") as f:
+            content = f.read()
+            # Endpoint should be skipped (has "Unable")
+            assert "" == content
 
     finally:
         if os.path.exists(temp_file_path):
