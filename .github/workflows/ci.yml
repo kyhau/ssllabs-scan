@@ -86,3 +86,17 @@ jobs:
           name: codecov-umbrella
           fail_ci_if_error: false
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Build Docker image
+        run: |
+          docker build -t ssllabsscan .
+
+      - name: Run Docker image
+        run: |
+          docker run ssllabsscan --help
